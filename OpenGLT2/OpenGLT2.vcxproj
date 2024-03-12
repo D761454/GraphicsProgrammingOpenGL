@@ -22,7 +22,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{05913b64-7ddb-4140-a2c7-fa228e115416}</ProjectGuid>
+    <ProjectGuid>{7806e154-8c6e-41fe-bc46-8aba95d9302b}</ProjectGuid>
     <RootNamespace>OpenGLT2</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
