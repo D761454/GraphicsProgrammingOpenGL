@@ -6,5 +6,11 @@
 
 class HelloGL
 {
+public:
+	// constructor def
+	HelloGL(int argc, char* argv[]);
+
+	// destructor
+	~HelloGL(void);
 };
 

@@ -7,3 +7,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutDisplayFunc(Display);
 	glutMainLoop();
 }
+
+HelloGL::~HelloGL(void) {
+
+}
