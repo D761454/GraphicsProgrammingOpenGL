@@ -18,6 +18,8 @@ public:
 
 	void DrawPolygon();
 
+	void DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a);
+
 	void DrawTriangle1();
 	void DrawTriangle2();
 	void DrawTriangle3();

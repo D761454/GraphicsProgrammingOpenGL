@@ -22,6 +22,17 @@ void HelloGL::Display() {
 	glFlush(); // flush scene to graphics card
 }
 
+void HelloGL::DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a) {
+	glBegin(GL_POLYGON); // begin drawing
+	{
+		glColor4f(r, g, b, a);
+		glVertex2f(x1, y1); // t
+		glVertex2f(x2, y2); // b r
+		glVertex2f(x3, y3); // b l
+		glEnd(); // end drawing
+	}
+}
+
 void HelloGL::DrawPolygon() {
 	glBegin(GL_POLYGON); // begin drawing
 	{
