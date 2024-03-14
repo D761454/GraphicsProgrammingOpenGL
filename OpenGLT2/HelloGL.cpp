@@ -155,15 +155,15 @@ void HelloGL::DrawHexagon() {
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 		glVertex2f(-0.25, 0.75); // t l
-		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
+		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
 		glVertex2f(0.25, 0.75); // t r
 		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
 		glVertex2f(0.5, 0); // m r
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glVertex2f(0.25, -0.75); // b r
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glVertex2f(-0.25, -0.75); // b l
-		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
+		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 		glVertex2f(-0.5, 0); // m l
 		glEnd(); // end drawing
 	}
