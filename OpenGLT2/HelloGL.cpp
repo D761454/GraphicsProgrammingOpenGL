@@ -12,7 +12,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene
-	DrawHexagon();
+	DrawPentagon();
 	glFlush(); // flush scene to graphics card
 }
 
@@ -165,6 +165,23 @@ void HelloGL::DrawHexagon() {
 		glVertex2f(-0.25, -0.75); // b l
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 		glVertex2f(-0.5, 0); // m l
+		glEnd(); // end drawing
+	}
+}
+
+void HelloGL::DrawPentagon() {
+	glBegin(GL_POLYGON);
+	{
+		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glVertex2f(0, 0.6); // t l
+		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
+		glVertex2f(0.4, 0); // m r
+		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
+		glVertex2f(0.25, -0.75); // b r
+		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
+		glVertex2f(-0.25, -0.75); // b l
+		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
+		glVertex2f(-0.4, 0); // m l
 		glEnd(); // end drawing
 	}
 }

@@ -28,5 +28,7 @@ public:
 	void DrawTriangleAll();
 
 	void DrawHexagon();
+
+	void DrawPentagon();
 };
 
