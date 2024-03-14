@@ -12,7 +12,13 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene
+
+	glPushMatrix();
+
 	DrawTriangleAll();
+
+	glPopMatrix();
+
 	glFlush(); // flush scene to graphics card
 }
 
