@@ -154,12 +154,12 @@ void HelloGL::DrawHexagon() {
 	glBegin(GL_POLYGON);
 	{
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-		glVertex2f(-0.25, 0.5); // t l
-		glVertex2f(0.25, 0.5); // t r
-		glVertex2f(-0.5, 0); // m l
+		glVertex2f(-0.25, 0.75); // t l
+		glVertex2f(0.25, 0.75); // t r
 		glVertex2f(0.5, 0); // m r
-		glVertex2f(0.25, -0.5); // b r
-		glVertex2f(-0.25, -0.5); // b l
+		glVertex2f(0.25, -0.75); // b r
+		glVertex2f(-0.25, -0.75); // b l
+		glVertex2f(-0.5, 0); // m l
 		glEnd(); // end drawing
 	}
 }
