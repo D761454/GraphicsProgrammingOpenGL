@@ -26,5 +26,7 @@ public:
 	void DrawTriangle6();
 
 	void DrawTriangleAll();
+
+	void DrawHexagon();
 };
 

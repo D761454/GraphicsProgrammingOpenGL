@@ -12,7 +12,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene
-	DrawTriangleAll();
+	DrawHexagon();
 	glFlush(); // flush scene to graphics card
 }
 
@@ -95,7 +95,7 @@ void HelloGL::DrawTriangle6() {
 }
 
 void HelloGL::DrawTriangleAll() {
-	glBegin(GL_POLYGON); // begin drawing
+	glBegin(GL_POLYGON); // scalene
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 		glVertex2f(-0.75, 0.5); // t
@@ -104,7 +104,7 @@ void HelloGL::DrawTriangleAll() {
 		glEnd(); // end drawing
 	}
 
-	glBegin(GL_POLYGON); // begin drawing
+	glBegin(GL_POLYGON); // isoceles
 	{
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glVertex2f(0, 0.75); // t
@@ -113,7 +113,7 @@ void HelloGL::DrawTriangleAll() {
 		glEnd(); // end drawing
 	}
 
-	glBegin(GL_POLYGON); // begin drawing
+	glBegin(GL_POLYGON); // equilateral
 	{
 		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
 		glVertex2f(0.665, 0.75); // t
@@ -122,7 +122,7 @@ void HelloGL::DrawTriangleAll() {
 		glEnd(); // end drawing
 	}
 
-	glBegin(GL_POLYGON); // begin drawing
+	glBegin(GL_POLYGON); // acute
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 		glVertex2f(-0.8, 0); // t
@@ -131,7 +131,7 @@ void HelloGL::DrawTriangleAll() {
 		glEnd(); // end drawing
 	}
 
-	glBegin(GL_POLYGON); // begin drawing
+	glBegin(GL_POLYGON); // right angle
 	{
 		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
 		glVertex2f(-0.33, 0); // t
@@ -140,12 +140,26 @@ void HelloGL::DrawTriangleAll() {
 		glEnd(); // end drawing
 	}
 
-	glBegin(GL_POLYGON); // begin drawing
+	glBegin(GL_POLYGON); // obtuse
 	{
 		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
 		glVertex2f(0.33, -0.5); // t
 		glVertex2f(1, -1); // b r
 		glVertex2f(0.5, -1); // b l
+		glEnd(); // end drawing
+	}
+}
+
+void HelloGL::DrawHexagon() {
+	glBegin(GL_POLYGON);
+	{
+		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
+		glVertex2f(-0.25, 0.5); // t l
+		glVertex2f(0.25, 0.5); // t r
+		glVertex2f(-0.5, 0); // m l
+		glVertex2f(0.5, 0); // m r
+		glVertex2f(0.25, -0.5); // b r
+		glVertex2f(-0.25, -0.5); // b l
 		glEnd(); // end drawing
 	}
 }
