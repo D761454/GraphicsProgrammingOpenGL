@@ -29,6 +29,8 @@ public:
 
 	void DrawHexagon();
 
+	void Draw3DCube();
+
 	void DrawPentagon();
 };
 

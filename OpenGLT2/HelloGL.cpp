@@ -15,7 +15,7 @@ void HelloGL::Display() {
 
 	glPushMatrix();
 
-	DrawTriangleAll();
+	Draw3DCube();
 
 	glPopMatrix();
 
@@ -189,6 +189,57 @@ void HelloGL::DrawPentagon() {
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
 		glVertex2f(-0.4, 0); // m l
 		glEnd(); // end drawing
+	}
+}
+
+void HelloGL::Draw3DCube() {
+	glBegin(GL_POLYGON); 
+	{
+		// top
+		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
+		glVertex2f(0, 0.75);
+		// r
+		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
+		glVertex2f(0.5, 0.375);
+		// b
+		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
+		glVertex2f(0, 0);
+		// l
+		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
+		glVertex2f(-0.5, 0.375);
+		glEnd();
+	}
+	glBegin(GL_POLYGON);
+	{
+		// top
+		glColor4f(0.75f, 0.75f, 0.75f, 0.5f);
+		glVertex2f(0.5, 0.375);
+		// r
+		glColor4f(0.75f, 0.75f, 0.75f, 0.5f);
+		glVertex2f(0.5, -0.5);
+		// b
+		glColor4f(0.75f, 0.75f, 0.75f, 0.5f);
+		glVertex2f(0, -0.875);
+		// l
+		glColor4f(0.75f, 0.75f, 0.75f, 0.5f);
+		glVertex2f(0, 0);
+		glEnd();
+	}
+	glBegin(GL_POLYGON);
+	{
+		// top
+		glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
+		glVertex2f(-0.5, 0.375);
+		// r
+		glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
+		glVertex2f(-0.5, -0.5);
+		// b
+		glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
+		glVertex2f(0, -0.875);
+		// l
+		glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
+		glVertex2f(0, 0);
+		glEnd();
 	}
 }
 
