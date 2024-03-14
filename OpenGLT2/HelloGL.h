@@ -3,6 +3,7 @@
 #include <gl/GL.h> // OpenGl
 #include <gl/GLU.h> // OpenGL Utilities
 #include "GL\freeglut.h" // freeglut library
+#include "GLUTCallbacks.h"
 
 class HelloGL
 {
@@ -12,5 +13,7 @@ public:
 
 	// destructor
 	~HelloGL(void);
+
+	void Display();
 };
 
