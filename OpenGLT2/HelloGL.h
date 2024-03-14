@@ -15,5 +15,16 @@ public:
 	~HelloGL(void);
 
 	void Display();
+
+	void DrawPolygon();
+
+	void DrawTriangle1();
+	void DrawTriangle2();
+	void DrawTriangle3();
+	void DrawTriangle4();
+	void DrawTriangle5();
+	void DrawTriangle6();
+
+	void DrawTriangleAll();
 };
 
