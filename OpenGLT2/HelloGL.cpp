@@ -4,7 +4,9 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	rotation = 0.0f;
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
-	glutInitWindowSize(16*50, 9*50);
+	glutInitDisplayMode(GLUT_DOUBLE); // enable double buffering - reduce flicker
+	//glutInitWindowSize(16*50, 9*50);
+	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
@@ -15,9 +17,10 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene
 
-	DrawTriangleAll();
+	Draw3DCube();
 
 	glFlush(); // flush scene to graphics card
+	glutSwapBuffers();
 }
 
 void HelloGL::DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a) {
@@ -135,9 +138,9 @@ void HelloGL::DrawTriangle6() {
 
 void HelloGL::DrawTriangleAll() {
 	glPushMatrix();
-	glTranslatef(-0.66, 0.25, 0);
+	glTranslatef(-0.66, 0.25, 0); // obj centre (centre of the 1/6 chunk of window)
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glTranslatef(0.66, -0.25, 0);
+	glTranslatef(0.66, -0.25, 0); // origin pos
 	glBegin(GL_POLYGON); // scalene
 	{
 		
@@ -213,7 +216,7 @@ void HelloGL::DrawTriangleAll() {
 	glPushMatrix();
 	glTranslatef(0.66, -0.5, 0);
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glTranslatef(-0.66, 0.5, 0);
+	glTranslatef(-0.66, 0.5, 0); 
 	glBegin(GL_POLYGON); // obtuse
 	{
 		glColor4f(1.0f, 0.0f, 1.0f, 0.0f);
@@ -270,7 +273,6 @@ void HelloGL::DrawPentagon() {
 
 void HelloGL::Draw3DCube() {
 	glPushMatrix();
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); 
 	{
 		// top
