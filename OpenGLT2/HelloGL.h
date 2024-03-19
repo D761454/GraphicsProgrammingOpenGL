@@ -11,6 +11,7 @@ class HelloGL
 {
 private:
 	float rotation;
+	float zAxis;
 
 public:
 	// constructor def
@@ -39,6 +40,8 @@ public:
 	void Draw3DCube();
 
 	void DrawPentagon();
+
+	void Keyboard(unsigned char key, int x, int y);
 
 	void Update();
 };

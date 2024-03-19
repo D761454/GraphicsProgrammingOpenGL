@@ -2,9 +2,11 @@
 
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotation = 0.0f;
+	zAxis = -1.0f;
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE); // enable double buffering - reduce flicker
+	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	//glutInitWindowSize(16*50, 9*50);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
@@ -17,10 +19,19 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene
 
-	Draw3DCube();
+	DrawTriangleAll();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
+}
+
+void HelloGL::Keyboard(unsigned char key, int x, int y) {
+	if (key == 'd') {
+		rotation += 0.5f;
+	}
+	if (key == 'a') {
+		zAxis = 1.0f;
+	}
 }
 
 void HelloGL::DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a) {
@@ -139,7 +150,7 @@ void HelloGL::DrawTriangle6() {
 void HelloGL::DrawTriangleAll() {
 	glPushMatrix();
 	glTranslatef(-0.66, 0.25, 0); // obj centre (centre of the 1/6 chunk of window)
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glRotatef(rotation, 0.0f, 0.0f, zAxis);
 	glTranslatef(0.66, -0.25, 0); // origin pos
 	glBegin(GL_POLYGON); // scalene
 	{
@@ -155,7 +166,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(0, 0.325, 0);
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glRotatef(rotation, 0.0f, 0.0f, zAxis);
 	glTranslatef(0, -0.325, 0);
 	glBegin(GL_POLYGON); // isoceles
 	{
@@ -170,7 +181,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(0.66, 0.325, 0);
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glRotatef(rotation, 0.0f, 0.0f, zAxis);
 	glTranslatef(-0.66, -0.325, 0);
 	glBegin(GL_POLYGON); // equilateral
 	{
@@ -185,7 +196,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(-0.66, -0.5, 0);
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glRotatef(rotation, 0.0f, 0.0f, zAxis);
 	glTranslatef(0.66, 0.5, 0);
 	glBegin(GL_POLYGON); // acute
 	{
@@ -200,7 +211,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(0, -0.5, 0);
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glRotatef(rotation, 0.0f, 0.0f, zAxis);
 	glTranslatef(0, 0.5, 0);
 	glBegin(GL_POLYGON); // right angle
 	{
@@ -215,7 +226,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(0.66, -0.5, 0);
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glRotatef(rotation, 0.0f, 0.0f, zAxis);
 	glTranslatef(-0.66, 0.5, 0); 
 	glBegin(GL_POLYGON); // obtuse
 	{
@@ -330,8 +341,6 @@ void HelloGL::Update() {
 	if (rotation >= 360.0f) {
 		rotation = 0.0f;
 	}
-
-	
 
 	glutPostRedisplay();
 }
