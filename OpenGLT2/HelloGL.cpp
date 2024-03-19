@@ -331,6 +331,8 @@ void HelloGL::Update() {
 		rotation = 0.0f;
 	}
 
+	
+
 	glutPostRedisplay();
 }
 
