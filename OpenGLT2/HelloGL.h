@@ -5,6 +5,8 @@
 #include "GL\freeglut.h" // freeglut library
 #include "GLUTCallbacks.h"
 
+#define REFRESHRATE 16
+
 class HelloGL
 {
 public:
@@ -34,5 +36,7 @@ public:
 	void Draw3DCube();
 
 	void DrawPentagon();
+
+	void Update();
 };
 

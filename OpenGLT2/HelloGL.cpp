@@ -6,6 +6,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutInitWindowSize(16*50, 9*50);
 	glutCreateWindow("Simple OpenGL Program");
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
+	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glutMainLoop();
 }
 
@@ -252,6 +253,10 @@ void HelloGL::Draw3DCube() {
 		glVertex2f(0, 0);
 		glEnd();
 	}
+}
+
+void HelloGL::Update() {
+	glutPostRedisplay();
 }
 
 HelloGL::~HelloGL(void) {
