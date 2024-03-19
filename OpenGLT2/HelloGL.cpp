@@ -27,7 +27,7 @@ void HelloGL::Display() {
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 'd') {
-		rotation += 0.5f;
+		rotation += 5.0f;
 	}
 	if (key == 'a') {
 		zAxis = 1.0f;
