@@ -135,73 +135,92 @@ void HelloGL::DrawTriangle6() {
 
 void HelloGL::DrawTriangleAll() {
 	glPushMatrix();
+	glTranslatef(-0.66, 0.25, 0);
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glTranslatef(0.66, -0.25, 0);
 	glBegin(GL_POLYGON); // scalene
 	{
+		
 		glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
 		glVertex2f(-0.75, 0.5); // t
 		glVertex2f(-0.33, 0); // b r
 		glVertex2f(-1, 0); // b l
+		
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
 
 	glPushMatrix();
+	glTranslatef(0, 0.325, 0);
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glTranslatef(0, -0.325, 0);
 	glBegin(GL_POLYGON); // isoceles
 	{
 		glColor4f(0.0f, 1.0f, 0.0f, 0.0f);
 		glVertex2f(0, 0.75); // t
 		glVertex2f(0.2, 0); // b r
 		glVertex2f(-0.2, 0); // b l
+		
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
 
 	glPushMatrix();
+	glTranslatef(0.66, 0.325, 0);
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glTranslatef(-0.66, -0.325, 0);
 	glBegin(GL_POLYGON); // equilateral
 	{
 		glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
 		glVertex2f(0.665, 0.75); // t
 		glVertex2f(1, 0); // b r
 		glVertex2f(0.33, 0); // b l
+		
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
 
 	glPushMatrix();
+	glTranslatef(-0.66, -0.5, 0);
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glTranslatef(0.66, 0.5, 0);
 	glBegin(GL_POLYGON); // acute
 	{
 		glColor4f(1.0f, 1.0f, 0.0f, 0.0f);
 		glVertex2f(-0.8, 0); // t
 		glVertex2f(-0.33, -1); // b r
 		glVertex2f(-1, -1); // b l
+		
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
 
 	glPushMatrix();
+	glTranslatef(0, -0.5, 0);
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glTranslatef(0, 0.5, 0);
 	glBegin(GL_POLYGON); // right angle
 	{
 		glColor4f(0.0f, 1.0f, 1.0f, 0.0f);
 		glVertex2f(-0.33, 0); // t
 		glVertex2f(0.33, -1); // b r
 		glVertex2f(-0.33, -1); // b l
+		
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
 
 	glPushMatrix();
+	glTranslatef(0.66, -0.5, 0);
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
+	glTranslatef(-0.66, 0.5, 0);
 	glBegin(GL_POLYGON); // obtuse
 	{
 		glColor4f(1.0f, 0.0f, 1.0f, 0.0f);
 		glVertex2f(0.33, -0.5); // t
 		glVertex2f(1, -1); // b r
 		glVertex2f(0.5, -1); // b l
+		
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
