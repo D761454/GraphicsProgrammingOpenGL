@@ -15,7 +15,7 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene
 
-	Draw3DCube();
+	DrawTriangleAll();
 
 	glFlush(); // flush scene to graphics card
 }
@@ -144,7 +144,10 @@ void HelloGL::DrawTriangleAll() {
 		glVertex2f(-1, 0); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // isoceles
 	{
 		glColor4f(0.0f, 1.0f, 0.0f, 0.0f);
@@ -153,7 +156,10 @@ void HelloGL::DrawTriangleAll() {
 		glVertex2f(-0.2, 0); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // equilateral
 	{
 		glColor4f(0.0f, 0.0f, 1.0f, 0.0f);
@@ -162,7 +168,10 @@ void HelloGL::DrawTriangleAll() {
 		glVertex2f(0.33, 0); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // acute
 	{
 		glColor4f(1.0f, 1.0f, 0.0f, 0.0f);
@@ -171,7 +180,10 @@ void HelloGL::DrawTriangleAll() {
 		glVertex2f(-1, -1); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // right angle
 	{
 		glColor4f(0.0f, 1.0f, 1.0f, 0.0f);
@@ -180,7 +192,10 @@ void HelloGL::DrawTriangleAll() {
 		glVertex2f(-0.33, -1); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // obtuse
 	{
 		glColor4f(1.0f, 0.0f, 1.0f, 0.0f);
