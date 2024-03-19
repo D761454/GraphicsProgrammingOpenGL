@@ -1,6 +1,7 @@
 #include "HelloGL.h"
 
 HelloGL::HelloGL(int argc, char* argv[]) {
+	rotation = 0.0f;
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitWindowSize(16*50, 9*50);
@@ -14,16 +15,14 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene
 
-	glPushMatrix();
-
 	Draw3DCube();
-
-	glPopMatrix();
 
 	glFlush(); // flush scene to graphics card
 }
 
 void HelloGL::DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a) {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // begin drawing
 	{
 		glColor4f(r, g, b, a);
@@ -32,9 +31,12 @@ void HelloGL::DrawTriangleBase(float x1, float y1, float x2, float y2, float x3,
 		glVertex2f(x3, y3); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawPolygon() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // begin drawing
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -44,9 +46,12 @@ void HelloGL::DrawPolygon() {
 		glVertex2f(-0.75, -0.5); // bottom left
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawTriangle1() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // begin drawing
 	{
 		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
@@ -55,9 +60,12 @@ void HelloGL::DrawTriangle1() {
 		glVertex2f(-0.75, -0.5); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawTriangle2() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // begin drawing
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -66,9 +74,12 @@ void HelloGL::DrawTriangle2() {
 		glVertex2f(-0.75, -0.5); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawTriangle3() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // begin drawing
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -77,9 +88,12 @@ void HelloGL::DrawTriangle3() {
 		glVertex2f(-0.75, -0.5); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawTriangle4() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // begin drawing
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -88,9 +102,12 @@ void HelloGL::DrawTriangle4() {
 		glVertex2f(-0.75, -0.5); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawTriangle5() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // begin drawing
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -99,9 +116,12 @@ void HelloGL::DrawTriangle5() {
 		glVertex2f(-0.75, -0.5); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawTriangle6() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // begin drawing
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -110,9 +130,12 @@ void HelloGL::DrawTriangle6() {
 		glVertex2f(-0.65, -0.5); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawTriangleAll() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); // scalene
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.0f);
@@ -166,9 +189,12 @@ void HelloGL::DrawTriangleAll() {
 		glVertex2f(0.5, -1); // b l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawHexagon() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON);
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -185,9 +211,12 @@ void HelloGL::DrawHexagon() {
 		glVertex2f(-0.5, 0); // m l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::DrawPentagon() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON);
 	{
 		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
@@ -202,9 +231,12 @@ void HelloGL::DrawPentagon() {
 		glVertex2f(-0.4, 0); // m l
 		glEnd(); // end drawing
 	}
+	glPopMatrix();
 }
 
 void HelloGL::Draw3DCube() {
+	glPushMatrix();
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glBegin(GL_POLYGON); 
 	{
 		// top
@@ -253,9 +285,16 @@ void HelloGL::Draw3DCube() {
 		glVertex2f(0, 0);
 		glEnd();
 	}
+	glPopMatrix();
 }
 
 void HelloGL::Update() {
+	rotation += 0.5f;
+
+	if (rotation >= 360.0f) {
+		rotation = 0.0f;
+	}
+
 	glutPostRedisplay();
 }
 

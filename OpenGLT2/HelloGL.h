@@ -9,6 +9,9 @@
 
 class HelloGL
 {
+private:
+	float rotation;
+
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);
