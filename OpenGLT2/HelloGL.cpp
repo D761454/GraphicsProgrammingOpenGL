@@ -6,10 +6,10 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE); // enable double buffering - reduce flicker
-	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	//glutInitWindowSize(16*50, 9*50);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
+	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	glutMainLoop();
@@ -27,7 +27,7 @@ void HelloGL::Display() {
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 'd') {
-		rotation += 5.0f;
+		rotation += 0.5f;
 	}
 	if (key == 'a') {
 		zAxis = 1.0f;
@@ -336,8 +336,6 @@ void HelloGL::Draw3DCube() {
 }
 
 void HelloGL::Update() {
-	rotation += 0.5f;
-
 	if (rotation >= 360.0f) {
 		rotation = 0.0f;
 	}
