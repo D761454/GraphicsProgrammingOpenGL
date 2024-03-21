@@ -45,20 +45,6 @@ void HelloGL::Motion(int x, int y) {
 
 }
 
-void HelloGL::DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a) {
-	glPushMatrix();
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON); // begin drawing
-	{
-		glColor4f(r, g, b, a);
-		glVertex2f(x1, y1); // t
-		glVertex2f(x2, y2); // b r
-		glVertex2f(x3, y3); // b l
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
 void HelloGL::DrawPolygon() {
 	glPushMatrix();
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
@@ -69,90 +55,6 @@ void HelloGL::DrawPolygon() {
 		glVertex2f(0.75, 0.5); // top right
 		glVertex2f(0.75, -0.5); // bottom right
 		glVertex2f(-0.75, -0.5); // bottom left
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
-void HelloGL::DrawTriangle1() {
-	glPushMatrix();
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON); // begin drawing
-	{
-		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
-		glVertex2f(-0.25, 0.5); // t
-		glVertex2f(0.75, -0.5); // b r
-		glVertex2f(-0.75, -0.5); // b l
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
-void HelloGL::DrawTriangle2() {
-	glPushMatrix();
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON); // begin drawing
-	{
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.5, 0.75); // t
-		glVertex2f(-0.25, -0.5); // b r
-		glVertex2f(-0.75, -0.5); // b l
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
-void HelloGL::DrawTriangle3() {
-	glPushMatrix();
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON); // begin drawing
-	{
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.25, 0.75); // t
-		glVertex2f(0.25, -0.5); // b r
-		glVertex2f(-0.75, -0.5); // b l
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
-void HelloGL::DrawTriangle4() {
-	glPushMatrix();
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON); // begin drawing
-	{
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.5, 0.75); // t
-		glVertex2f(0.25, -0.5); // b r
-		glVertex2f(-0.75, -0.5); // b l
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
-void HelloGL::DrawTriangle5() {
-	glPushMatrix();
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON); // begin drawing
-	{
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.75, 0.75); // t
-		glVertex2f(0.00, -0.5); // b r
-		glVertex2f(-0.75, -0.5); // b l
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
-void HelloGL::DrawTriangle6() {
-	glPushMatrix();
-	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON); // begin drawing
-	{
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.825, 0.75); // t
-		glVertex2f(0.5, -0.5); // b r
-		glVertex2f(-0.65, -0.5); // b l
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
