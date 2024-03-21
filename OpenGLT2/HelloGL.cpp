@@ -59,7 +59,7 @@ void HelloGL::Motion(int x, int y) {
 
 void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 	glPushMatrix();
-	glRotatef(rotationx, rotationx/2, rotationx, rotationy);
+	glRotatef(rotationx, rotationx, rotationy, -1.0f);
 	glBegin(GL_QUADS); // begin drawing
 	{
 		glVertex3fv(&vertices[a].x);
