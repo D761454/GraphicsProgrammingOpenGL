@@ -23,16 +23,18 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 		int d;
 	};
 
-	point3D* vertices; // vertices
-	colour* colours;
-	polygon* indices; // faces
-
-	vertices[0] = { -0.5, 0.5, 0 };
-	vertices[1] = { 0.5, 0.5, 0 };
-	vertices[2] = { 0.5, -0.5, 0 };
-	vertices[3] = { -0.5, -0.5, 0 };
-	colours[0] = { 0.0, 0.0, 0.0, 1.0 };
-	indices[0] = { 0, 1, 2, 3 };
+	point3D vertices[4] = {
+		{-0.5, 0.5, 0}, 
+		{0.5, 0.5, 0}, 
+		{0.5, -0.5, 0}, 
+		{-0.5, -0.5, 0}
+	}; // vertices
+	colour colours[1] = {
+		{0.0, 0.0, 0.0, 1.0}
+	};
+	polygon indices[1] = {
+		{0, 1, 2, 3}
+	}; // faces
 
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
