@@ -18,6 +18,10 @@ private:
 
 	struct polygon;
 
+	point3D* vertices;
+	colour* colours;
+	polygon* indices;
+
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);
@@ -27,7 +31,7 @@ public:
 
 	void Display();
 
-	void DrawPolygon();
+	void DrawPolygon(int a, int b, int c, int d);
 
 	void DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a);
 

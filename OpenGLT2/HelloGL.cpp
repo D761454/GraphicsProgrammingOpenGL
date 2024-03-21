@@ -20,7 +20,19 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 		int a;
 		int b;
 		int c;
+		int d;
 	};
+
+	point3D vertices[4]; // vertices
+	colour colours[1];
+	polygon indices[1]; // faces
+
+	vertices[0] = { -0.5, 0.5, 0 };
+	vertices[1] = { 0.5, 0.5, 0 };
+	vertices[2] = { 0.5, -0.5, 0 };
+	vertices[3] = { -0.5, -0.5, 0 };
+	colours[0] = { 0.0, 0.0, 0.0, 1.0 };
+	indices[0] = { 0, 1, 2, 3 };
 
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
@@ -65,16 +77,15 @@ void HelloGL::Motion(int x, int y) {
 
 }
 
-void HelloGL::DrawPolygon() {
+void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 	glPushMatrix();
 	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON); // begin drawing
+	glBegin(GL_QUADS); // begin drawing
 	{
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.75, 0.5); // top left
-		glVertex2f(0.75, 0.5); // top right
-		glVertex2f(0.75, -0.5); // bottom right
-		glVertex2f(-0.75, -0.5); // bottom left
+		glVertex3fv(&vertices[a].x);
+		glVertex3fv(&vertices[b].x);
+		glVertex3fv(&vertices[c].x);
+		glVertex3fv(&vertices[d].x);
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
