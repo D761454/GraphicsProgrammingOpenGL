@@ -26,6 +26,10 @@ namespace GLUTCallbacks {
 		helloGL->Mouse(button, state, x, y);
 	}
 
+	void Motion(int x, int y) {
+		helloGL->Motion(x, y);
+	}
+
 	void Display() {
 		if (helloGL != nullptr) {
 			helloGL -> Display();

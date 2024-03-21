@@ -11,6 +11,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
+	glutMotionFunc(GLUTCallbacks::Motion);
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 
@@ -37,6 +38,10 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 }
 
 void HelloGL::Mouse(int button, int state, int x, int y) {
+
+}
+
+void HelloGL::Motion(int x, int y) {
 
 }
 
