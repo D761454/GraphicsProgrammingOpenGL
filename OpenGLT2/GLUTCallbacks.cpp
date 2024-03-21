@@ -22,6 +22,10 @@ namespace GLUTCallbacks {
 		helloGL->Keyboard(key, x, y);
 	}
 
+	void Mouse(int button, int state, int x, int y) {
+		helloGL->Mouse(button, state, x, y);
+	}
+
 	void Display() {
 		if (helloGL != nullptr) {
 			helloGL -> Display();

@@ -8,9 +8,12 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	//glutInitWindowSize(16*50, 9*50);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
+
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
+	glutMouseFunc(GLUTCallbacks::Mouse);
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
+
 	glutMainLoop();
 }
 
@@ -31,6 +34,10 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 'a') { // flip rotation 
 		rotation -= 0.5f;
 	}
+}
+
+void HelloGL::Mouse(int button, int state, int x, int y) {
+
 }
 
 void HelloGL::DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a) {
