@@ -5,9 +5,9 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 	point3D* vertices = new point3D[4] {
 		{-0.5f, 0.5f, 0.0f}, 
-		{0.5f, 0.5f, 0.0f}, 
+		{-0.5f, -0.5f, 0.0f}, 
 		{0.5f, -0.5f, 0.0f}, 
-		{-0.5f, -0.5f, 0.0f}
+		{0.5f, 0.5f, 0.0f}
 	}; // vertices
 	colour* colours = new colour[1] {
 		{0.0f, 0.0f, 0.0f, 1.0f}
@@ -18,10 +18,14 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE); // enable double buffering - reduce flicker
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); // enable double buffering - reduce flicker, enable depth testing
 	//glutInitWindowSize(16*50, 9*50);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
+
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	glEnable(GL_DEPTH_TEST);
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
@@ -34,7 +38,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 void HelloGL::Display() {
 	// drawing code
-	glClear(GL_COLOR_BUFFER_BIT); // clear scene
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene
 
 	DrawCube();
 
