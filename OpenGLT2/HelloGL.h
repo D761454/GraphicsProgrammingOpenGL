@@ -12,11 +12,25 @@ class HelloGL
 private:
 	float rotation;
 
-	struct point3D;
+	struct point3D {
+		float x;
+		float y;
+		float z;
+	};
 
-	struct colour;
+	struct colour {
+		float r;
+		float g;
+		float b;
+		float a;
+	};
 
-	struct polygon;
+	struct polygon {
+		int a;
+		int b;
+		int c;
+		int d;
+	};
 
 	point3D* vertices;
 	colour* colours;

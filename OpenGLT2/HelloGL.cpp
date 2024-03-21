@@ -2,26 +2,6 @@
 
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotation = 0.0f;
-	
-	struct point3D {
-		float x;
-		float y;
-		float z;
-	};
-
-	struct colour {
-		float r;
-		float g;
-		float b;
-		float a;
-	};
-
-	struct polygon {
-		int a;
-		int b;
-		int c;
-		int d;
-	};
 
 	point3D vertices[4] = {
 		{-0.5, 0.5, 0}, 
