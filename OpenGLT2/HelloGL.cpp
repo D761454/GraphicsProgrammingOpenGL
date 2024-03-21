@@ -2,7 +2,6 @@
 
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotation = 0.0f;
-	zAxis = -1.0f;
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE); // enable double buffering - reduce flicker
@@ -30,7 +29,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 		rotation += 0.5f;
 	}
 	if (key == 'a') { // flip rotation 
-		zAxis = -zAxis;
+		rotation -= 0.5f;
 	}
 }
 
@@ -150,7 +149,7 @@ void HelloGL::DrawTriangle6() {
 void HelloGL::DrawTriangleAll() {
 	glPushMatrix();
 	glTranslatef(-0.66, 0.25, 0); // obj centre (centre of the 1/6 chunk of window)
-	glRotatef(rotation, 0.0f, 0.0f, zAxis);
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glTranslatef(0.66, -0.25, 0); // origin pos
 	glBegin(GL_POLYGON); // scalene
 	{
@@ -166,7 +165,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(0, 0.325, 0);
-	glRotatef(rotation, 0.0f, 0.0f, zAxis);
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glTranslatef(0, -0.325, 0);
 	glBegin(GL_POLYGON); // isoceles
 	{
@@ -181,7 +180,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(0.66, 0.325, 0);
-	glRotatef(rotation, 0.0f, 0.0f, zAxis);
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glTranslatef(-0.66, -0.325, 0);
 	glBegin(GL_POLYGON); // equilateral
 	{
@@ -196,7 +195,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(-0.66, -0.5, 0);
-	glRotatef(rotation, 0.0f, 0.0f, zAxis);
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glTranslatef(0.66, 0.5, 0);
 	glBegin(GL_POLYGON); // acute
 	{
@@ -211,7 +210,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(0, -0.5, 0);
-	glRotatef(rotation, 0.0f, 0.0f, zAxis);
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glTranslatef(0, 0.5, 0);
 	glBegin(GL_POLYGON); // right angle
 	{
@@ -226,7 +225,7 @@ void HelloGL::DrawTriangleAll() {
 
 	glPushMatrix();
 	glTranslatef(0.66, -0.5, 0);
-	glRotatef(rotation, 0.0f, 0.0f, zAxis);
+	glRotatef(rotation, 0.0f, 0.0f, -1.0f);
 	glTranslatef(-0.66, 0.5, 0); 
 	glBegin(GL_POLYGON); // obtuse
 	{
@@ -336,7 +335,7 @@ void HelloGL::Draw3DCube() {
 }
 
 void HelloGL::Update() {
-	if (rotation >= 360.0f) {
+	if (rotation >= 360.0f || rotation <= -360.0f) {
 		rotation = 0.0f;
 	}
 

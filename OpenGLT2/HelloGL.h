@@ -11,7 +11,6 @@ class HelloGL
 {
 private:
 	float rotation;
-	float zAxis;
 
 public:
 	// constructor def
