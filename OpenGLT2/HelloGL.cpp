@@ -10,8 +10,8 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
+	/*glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
+	glCullFace(GL_BACK);*/
 	glEnable(GL_DEPTH_TEST);
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
