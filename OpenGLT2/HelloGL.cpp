@@ -3,16 +3,16 @@
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotation = 0.0f;
 
-	point3D vertices[4] = {
+	point3D* vertices = new point3D[4] {
 		{-0.5f, 0.5f, 0.0f}, 
 		{0.5f, 0.5f, 0.0f}, 
 		{0.5f, -0.5f, 0.0f}, 
 		{-0.5f, -0.5f, 0.0f}
 	}; // vertices
-	colour colours[1] = {
+	colour* colours = new colour[1] {
 		{0.0f, 0.0f, 0.0f, 1.0f}
 	};
-	polygon indices[1] = {
+	polygon* indices = new polygon[1] {
 		{0, 1, 2, 3}
 	}; // faces
 
@@ -277,5 +277,7 @@ void HelloGL::Update() {
 }
 
 HelloGL::~HelloGL(void) {
-
+	delete[] vertices;
+	delete[] colours;
+	delete[] indices;
 }
