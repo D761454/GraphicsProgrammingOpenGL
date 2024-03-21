@@ -4,13 +4,13 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	rotation = 0.0f;
 
 	point3D vertices[4] = {
-		{-0.5, 0.5, 0}, 
-		{0.5, 0.5, 0}, 
-		{0.5, -0.5, 0}, 
-		{-0.5, -0.5, 0}
+		{-0.5f, 0.5f, 0.0f}, 
+		{0.5f, 0.5f, 0.0f}, 
+		{0.5f, -0.5f, 0.0f}, 
+		{-0.5f, -0.5f, 0.0f}
 	}; // vertices
 	colour colours[1] = {
-		{0.0, 0.0, 0.0, 1.0}
+		{0.0f, 0.0f, 0.0f, 1.0f}
 	};
 	polygon indices[1] = {
 		{0, 1, 2, 3}
@@ -36,7 +36,7 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene
 
-	DrawTriangleAll();
+	DrawCube();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
