@@ -10,7 +10,8 @@
 class HelloGL
 {
 private:
-	float rotation;
+	float rotationx;
+	float rotationy;
 
 	struct point3D {
 		float x;
@@ -33,10 +34,10 @@ private:
 	};
 
 	point3D* vertices = new point3D[8]{
-		{-0.25f, 0.25f, 0.0f}, // ftl		0
-		{-0.25f, -0.25f, 0.0f}, //fbl		1
-		{0.25f, -0.25f, 0.0f}, // fbr		2
-		{0.25f, 0.25f, 0.0f}, // ftr		3
+		{-0.25f, 0.25f, 0.25f}, // ftl		0
+		{-0.25f, -0.25f, 0.25f}, //fbl		1
+		{0.25f, -0.25f, 0.25f}, // fbr		2
+		{0.25f, 0.25f, 0.25f}, // ftr		3
 		{-0.25f, 0.25f, -0.25f}, // btl		4
 		{-0.25f, -0.25f, -0.25f}, // bbl	5
 		{0.25f, -0.25f, -0.25f}, // bbr		6
