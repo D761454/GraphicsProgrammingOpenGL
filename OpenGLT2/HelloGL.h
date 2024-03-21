@@ -32,17 +32,31 @@ private:
 		int d;
 	};
 
-	point3D* vertices = new point3D[4]{
-		{-0.5f, 0.5f, 0.0f},
-		{-0.5f, -0.5f, 0.0f},
-		{0.5f, -0.5f, 0.0f},
-		{0.5f, 0.5f, 0.0f}
+	point3D* vertices = new point3D[8]{
+		{-0.25f, 0.25f, 0.0f}, // ftl		0
+		{-0.25f, -0.25f, 0.0f}, //fbl		1
+		{0.25f, -0.25f, 0.0f}, // fbr		2
+		{0.25f, 0.25f, 0.0f}, // ftr		3
+		{-0.25f, 0.25f, -0.25f}, // btl		4
+		{-0.25f, -0.25f, -0.25f}, // bbl	5
+		{0.25f, -0.25f, -0.25f}, // bbr		6
+		{0.25f, 0.25f, -0.25f} // btr		7
 	}; // vertices
-	colour* colours = new colour[1] {
-		{1.0f, 1.0f, 1.0f, 1.0f}
+	colour* colours = new colour[6] {
+		{1.0f, 1.0f, 1.0f, 1.0f},
+		{1.0f, 0.0f, 0.0f, 1.0f},
+		{0.0f, 1.0f, 0.0f, 1.0f},
+		{0.0f, 0.0f, 1.0f, 1.0f},
+		{1.0f, 1.0f, 0.0f, 1.0f},
+		{0.0f, 1.0f, 1.0f, 1.0f}
 	};
-	polygon* indices = new polygon[1] {
-		{0, 1, 2, 3}
+	polygon* indices = new polygon[6] {
+		{0, 1, 2, 3}, // f
+		{0, 4, 5, 1}, // l
+		{3, 2, 6, 7}, // r
+		{0, 3, 7, 4}, // t
+		{1, 2, 6, 5}, // b
+		{4, 5, 6, 7} // ba
 	}; // faces
 
 public:

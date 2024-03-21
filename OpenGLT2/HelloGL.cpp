@@ -65,7 +65,7 @@ void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 }
 
 void HelloGL::DrawCube() {
-	for (int i = 0; i < 1; i++) { // change 1 to NUM_POLY for later
+	for (int i = 0; i < 6; i++) { // change 1 to NUM_POLY for later
 		glColor4f(colours[i].r, colours[i].g, colours[i].b, colours[i].a);
 		DrawPolygon(indices[i].a, indices[i].b, indices[i].c, indices[i].d);
 	}
