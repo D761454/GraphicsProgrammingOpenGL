@@ -23,9 +23,9 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 		int d;
 	};
 
-	point3D vertices[4]; // vertices
-	colour colours[1];
-	polygon indices[1]; // faces
+	point3D* vertices; // vertices
+	colour* colours;
+	polygon* indices; // faces
 
 	vertices[0] = { -0.5, 0.5, 0 };
 	vertices[1] = { 0.5, 0.5, 0 };
@@ -89,6 +89,13 @@ void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
+}
+
+void HelloGL::DrawCube() {
+	for (int i = 0; i < 1; i++) { // change 1 to NUM_POLY for later
+		glColor4f(colours[i].r, colours[i].g, colours[i].b, colours[i].a);
+		DrawPolygon(indices[i].a, indices[i].b, indices[i].c, indices[i].d);
+	}
 }
 
 void HelloGL::DrawTriangleAll() {

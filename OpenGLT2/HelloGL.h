@@ -33,6 +33,8 @@ public:
 
 	void DrawPolygon(int a, int b, int c, int d);
 
+	void DrawCube();
+
 	void DrawTriangleBase(float x1, float y1, float x2, float y2, float x3, float y3, float r, float g, float b, float a);
 
 	void DrawTriangle1();
