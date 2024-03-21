@@ -2,6 +2,26 @@
 
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotation = 0.0f;
+	
+	struct point3D {
+		float x;
+		float y;
+		float z;
+	};
+
+	struct colour {
+		float r;
+		float g;
+		float b;
+		float a;
+	};
+
+	struct polygon {
+		int a;
+		int b;
+		int c;
+	};
+
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE); // enable double buffering - reduce flicker

@@ -12,6 +12,12 @@ class HelloGL
 private:
 	float rotation;
 
+	struct point3D;
+
+	struct colour;
+
+	struct polygon;
+
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);
