@@ -3,22 +3,9 @@
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotation = 0.0f;
 
-	point3D* vertices = new point3D[4] {
-		{-0.5f, 0.5f, 0.0f}, 
-		{-0.5f, -0.5f, 0.0f}, 
-		{0.5f, -0.5f, 0.0f}, 
-		{0.5f, 0.5f, 0.0f}
-	}; // vertices
-	colour* colours = new colour[1] {
-		{0.0f, 0.0f, 0.0f, 1.0f}
-	};
-	polygon* indices = new polygon[1] {
-		{0, 1, 2, 3}
-	}; // faces
-
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); // enable double buffering - reduce flicker, enable depth testing
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); // enable double buffering - reduce flicker, | GLUT_DEPTH enable depth testing
 	//glutInitWindowSize(16*50, 9*50);
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
@@ -38,7 +25,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 void HelloGL::Display() {
 	// drawing code
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
 
 	DrawCube();
 

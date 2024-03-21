@@ -32,9 +32,18 @@ private:
 		int d;
 	};
 
-	point3D* vertices;
-	colour* colours;
-	polygon* indices;
+	point3D* vertices = new point3D[4]{
+		{-0.5f, 0.5f, 0.0f},
+		{-0.5f, -0.5f, 0.0f},
+		{0.5f, -0.5f, 0.0f},
+		{0.5f, 0.5f, 0.0f}
+	}; // vertices
+	colour* colours = new colour[1] {
+		{1.0f, 1.0f, 1.0f, 1.0f}
+	};
+	polygon* indices = new polygon[1] {
+		{0, 1, 2, 3}
+	}; // faces
 
 public:
 	// constructor def
