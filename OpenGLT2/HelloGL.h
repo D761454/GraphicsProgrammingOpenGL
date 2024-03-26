@@ -7,42 +7,43 @@
 
 #define REFRESHRATE 16
 
+struct Vector3 {
+	float x, y, z;
+};
+
+struct Camera {
+	Vector3 eye, center, up;
+};
+
 class HelloGL
 {
 private:
 	float rotationx;
 	float rotationy;
+	Camera* camera;
 
 	// temp s
 	struct point3D {
-		float x;
-		float y;
-		float z;
+		float x, y, z;
 	};
 
 	struct colour {
-		float r;
-		float g;
-		float b;
-		float a;
+		float r, g, b, a;
 	};
 
 	struct polygon {
-		int a;
-		int b;
-		int c;
-		int d;
+		int a, b, c, d;
 	};
 
 	point3D* vertices = new point3D[8]{
-		{-0.25f, 0.25f, 0.25f}, // ftl		0
-		{-0.25f, -0.25f, 0.25f}, //fbl		1
-		{0.25f, -0.25f, 0.25f}, // fbr		2
-		{0.25f, 0.25f, 0.25f}, // ftr		3
-		{-0.25f, 0.25f, -0.25f}, // btl		4
-		{-0.25f, -0.25f, -0.25f}, // bbl	5
-		{0.25f, -0.25f, -0.25f}, // bbr		6
-		{0.25f, 0.25f, -0.25f} // btr		7
+		{-0.25f, 0.25f, -4.0f}, // ftl		0
+		{-0.25f, -0.25f, -4.0f}, //fbl		1
+		{0.25f, -0.25f, -4.0f}, // fbr		2
+		{0.25f, 0.25f, -4.0f}, // ftr		3
+		{-0.25f, 0.25f, -5.0f}, // btl		4
+		{-0.25f, -0.25f, -5.0f}, // bbl	5
+		{0.25f, -0.25f, -5.0f}, // bbr		6
+		{0.25f, 0.25f, -5.0f} // btr		7
 	}; // vertices
 	colour* colours = new colour[6] {
 		{1.0f, 1.0f, 1.0f, 1.0f},

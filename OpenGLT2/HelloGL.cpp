@@ -4,6 +4,13 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	rotationx = 0.0f;
 	rotationy = 0.0f;
 
+	// camera setup
+	camera = new Camera();
+	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
+	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
+	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
+
+	// glut setup
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); // enable double buffering - reduce flicker, | GLUT_DEPTH enable depth testing
@@ -23,6 +30,9 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity(); // identity matricy - 1 down diag, 0 all else e.g. 1: [1, 0, 0] 2: [0, 1, 0] 3: [0, 0, 1] (n*n size)
+	glViewport(0, 0, 800, 800); // set viewport to be window
+	gluPerspective(45, 1, 0, 1000); // set correct perspective: FOV, ASPECT RATIO, NEAR CLIPPING DIST, FAR CLIPPING DIST
+	glMatrixMode(GL_MODELVIEW);
 	glutMainLoop();
 }
 
@@ -272,6 +282,8 @@ void HelloGL::Draw3DCube() {
 }
 
 void HelloGL::Update() {
+	glLoadIdentity(); // reset Modelview Matrix
+
 	if (rotationx >= 360.0f || rotationx <= -360.0f) {
 		rotationx = 0.0f;
 	}
@@ -283,6 +295,7 @@ void HelloGL::Update() {
 }
 
 HelloGL::~HelloGL(void) {
+	delete camera;
 	delete[] vertices;
 	delete[] colours;
 	delete[] indices;
