@@ -40,6 +40,29 @@ Color HelloGL::colors[] = {
 	0,1,0,1,		0,1,1,1,		0,0,1,1
 };
 
+Vertex HelloGL::indexedVertices[] = {
+	1,1,1,	-1,1,1,
+	-1,-1,1,	1,-1,1,
+	1,-1,-1,	1,1,-1,
+	-1,1,-1,	-1,-1,-1
+};
+
+Color HelloGL::indexedColors[] = {
+	1,1,1,1,	1,1,0,1,
+	1,0,0,1,	1,0,1,1,
+	0,0,1,1,	0,1,1,1,
+	0,1,0,1,	0,0,0,1
+};
+
+GLushort HelloGL::indices[] = {
+	0,1,2,	2,3,0, // front
+	0,3,4,	4,5,0, // right
+	0,5,6,	6,1,0, // top
+	1,6,7,	7,2,1, // left
+	7,4,3,	3,2,7, // bottom
+	4,7,6,	6,5,4 // back
+}
+
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotationx = 0.0f;
 	rotationy = 0.0f;
@@ -80,11 +103,12 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
 
-	glPushMatrix();
+	/*glPushMatrix();
 	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
 	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
 	glutWireCube(0.3);
-	glPopMatrix();
+	glPopMatrix();*/
+	DrawCubeArray();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
