@@ -323,9 +323,9 @@ HelloGL::~HelloGL(void) {
 }
 
 /*
-metricy calc
+matrix multiplication
 [A, B] [E, F]   [(A*E)+(B*G), (A*F)+(B*H)]
 [C, D].[G, H] = [(C*E)+(D*G), (C*F)+(D*H)]
 
-E.G. COL 1 ANSWER = 1st and 2nd in row of 1, * 1st and 2nd in col of 2
+E.G. COL 1 ANSWER = 1st and 2nd in row of 1, * 1st and 2nd in col of 2, added together
 */
