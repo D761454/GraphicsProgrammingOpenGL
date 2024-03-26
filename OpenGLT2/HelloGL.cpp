@@ -70,8 +70,8 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	}
 	if (key == 'a') {
 		// camera->up.z -= 0.1f; // diag z
-		camera->eye.x -= 0.1f;
-		// camera->eye.y -= 0.1f;
+		camera->eye.x -= 0.1f; // horizontal
+		// camera->eye.y -= 0.1f; // vertical
 	}
 	if (key == 'w') { // zoom
 		camera->eye.z -= 0.1f;
@@ -321,3 +321,11 @@ HelloGL::~HelloGL(void) {
 	delete[] colours;
 	delete[] indices;
 }
+
+/*
+metricy calc
+[A, B] [E, F]   [(A*E)+(B*G), (A*F)+(B*H)]
+[C, D].[G, H] = [(C*E)+(D*G), (C*F)+(D*H)]
+
+E.G. COL 1 ANSWER = 1st and 2nd in row of 1, * 1st and 2nd in col of 2
+*/
