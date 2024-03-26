@@ -1,5 +1,45 @@
 #include "HelloGL.h"
 
+Vertex HelloGL::vertices[] = {
+	1,1,1,		-1,1,1,		-1,-1,1,
+	-1,-1,1,	1,-1,1,		1,1,1,
+
+	1,1,1,		1,-1,1,		1,-1,-1,
+	1,-1,-1,	1,1,-1,		1,1,1,
+
+	1,1,1,		1,1,-1,		-1,1,-1,
+	-1,1,-1,	-1,1,1,		1,1,1,
+
+	-1,1,1,		-1,1,-1,	-1,-1,-1,
+	-1,-1,-1,	-1,-1,1,	-1,1,1,
+
+	-1,-1,-1,	1,-1,-1,	1,-1,1,
+	1,-1,1,		-1,-1,1,	-1,-1,-1,
+
+	1,-1,-1,	-1,-1,-1,	-1,1,-1,
+	-1,1,-1,	1,1,-1,		1,-1,-1
+};
+
+Color HelloGL::colors[] = {
+	1,1,1,1,		1,1,0,1,		1,0,0,1,
+	1,0,0,1,		1,0,1,1,		1,1,1,1,
+
+	1,1,1,1,		1,0,1,1,		0,0,1,1,
+	0,0,1,1,		0,1,1,1,		1,1,1,1,
+
+	1,1,1,1,		0,1,1,1,		0,1,0,1,
+	0,1,0,1,		1,1,0,1,		1,1,1,1,
+
+	1,1,0,1,		0,1,0,1,		0,0,0,1,
+	0,0,0,1,		1,0,0,1,		1,1,0,1,
+
+	0,0,0,1,		0,0,1,1,		1,0,1,1,
+	1,0,1,1,		1,0,0,1,		0,0,0,1,
+
+	0,0,1,1,		0,0,0,1,		0,1,0,1,
+	0,1,0,1,		0,1,1,1,		0,0,1,1
+};
+
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotationx = 0.0f;
 	rotationy = 0.0f;
@@ -92,14 +132,18 @@ void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 	}
 	glPopMatrix();
 }
-
-void HelloGL::DrawCube() {
-	for (int i = 0; i < 6; i++) { // change 1 to NUM_POLY for later
-		glColor4f(colours[i].r, colours[i].g, colours[i].b, colours[i].a);
-		DrawPolygon(indices[i].a, indices[i].b, indices[i].c, indices[i].d);
-	}
-}
 // temp e
+
+void HelloGL::DrawCubeArray() {
+	glPushMatrix();
+	glBegin(GL_TRIANGLES);
+	for (int i = 0; i < 36; i++) {
+		glColor4f(&colors[i].r);
+		glVertex3f(&vertices[i].x);
+	}
+	glEnd(); // end drawing
+	glPopMatrix();
+}
 
 void HelloGL::DrawTriangleAll() {
 	glPushMatrix();
