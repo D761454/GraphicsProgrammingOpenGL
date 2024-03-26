@@ -19,8 +19,8 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutCreateWindow("Simple OpenGL Program");
 
 	/*glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
-	glCullFace(GL_BACK);*/
-	glEnable(GL_DEPTH_TEST);
+	glCullFace(GL_BACK);
+	glEnable(GL_DEPTH_TEST);*/
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
@@ -38,9 +38,13 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 void HelloGL::Display() {
 	// drawing code
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
+	glClear(GL_COLOR_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
 
-	DrawCube();
+	glPushMatrix();
+	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
+	glutWireCube(0.3);
+	glPopMatrix();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
@@ -283,6 +287,7 @@ void HelloGL::Draw3DCube() {
 
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
+	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.z, camera->up.y, camera->up.z);
 
 	if (rotationx >= 360.0f || rotationx <= -360.0f) {
 		rotationx = 0.0f;
