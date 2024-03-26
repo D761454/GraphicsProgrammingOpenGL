@@ -48,7 +48,7 @@ public:
 
 	void DrawPolygon(int a, int b, int c, int d);
 
-	void DrawCube();
+	void DrawIndexedCube();
 
 	void DrawCubeArray();
 

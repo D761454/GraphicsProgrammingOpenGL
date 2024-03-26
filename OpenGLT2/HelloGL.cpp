@@ -41,7 +41,7 @@ Color HelloGL::colors[] = {
 };
 
 Vertex HelloGL::indexedVertices[] = {
-	1,1,1,	-1,1,1,
+	1,1,1,		-1,1,1,
 	-1,-1,1,	1,-1,1,
 	1,-1,-1,	1,1,-1,
 	-1,1,-1,	-1,-1,-1
@@ -61,7 +61,7 @@ GLushort HelloGL::indices[] = {
 	1,6,7,	7,2,1, // left
 	7,4,3,	3,2,7, // bottom
 	4,7,6,	6,5,4 // back
-}
+};
 
 HelloGL::HelloGL(int argc, char* argv[]) {
 	rotationx = 0.0f;
@@ -108,7 +108,7 @@ void HelloGL::Display() {
 	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
 	glutWireCube(0.3);
 	glPopMatrix();*/
-	DrawCubeArray();
+	DrawIndexedCube();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
@@ -160,12 +160,23 @@ void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 
 void HelloGL::DrawCubeArray() {
 	glPushMatrix();
-	glBegin(GL_TRIANGLES);
-	for (int i = 0; i < 36; i++) {
-		glColor4f(&colors[i].r);
-		glVertex3f(&vertices[i].x);
-	}
-	glEnd(); // end drawing
+		glBegin(GL_TRIANGLES);
+		for (int i = 0; i < 36; i++) {
+			glColor4f(&indexedColors[i].r);
+			glVertex3f(&indexedVertices[indices[i]].x);
+		}
+		glEnd(); // end drawing
+	glPopMatrix();
+}
+
+void HelloGL::DrawIndexedCube() {
+	glPushMatrix();
+		glBegin(GL_TRIANGLES);
+		for (int i = 0; i < 36; i++) {
+			glColor4f(&colors[i].r);
+			glVertex3f(&vertices[i].x);
+		}
+		glEnd(); // end drawing
 	glPopMatrix();
 }
 
