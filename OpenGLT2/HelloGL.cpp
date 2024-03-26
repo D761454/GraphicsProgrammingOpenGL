@@ -101,7 +101,7 @@ void HelloGL::Motion(int x, int y) {
 
 }
 
-void HelloGL::DrawPolygon(int a, int b, int c, int d) {
+void HelloGL::DrawPolygon(int a, int b, int c, int d) { // temp
 	glPushMatrix();
 	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
 	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
