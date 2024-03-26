@@ -6,7 +6,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 	// camera setup
 	camera = new Camera();
-	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
+	camera->eye.x = 5.0f; camera->eye.y = 5.0f; camera->eye.z = -5.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
@@ -18,9 +18,9 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 
-	/*glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
+	glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
 	glCullFace(GL_BACK);
-	glEnable(GL_DEPTH_TEST);*/
+	//glEnable(GL_DEPTH_TEST);
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
@@ -51,18 +51,6 @@ void HelloGL::Display() {
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
-	/*if (key == 'd') {
-		rotationx += 0.5f;
-	}
-	if (key == 'a') {
-		rotationx -= 0.5f;
-	}
-	if (key == 'w') {
-		rotationy += 0.5f;
-	}
-	if (key == 's') {
-		rotationy -= 0.5f;
-	}*/
 	if (key == 'd') {
 		// camera->up.z += 0.1f; // diag z
 		camera->eye.x += 0.1f; // horizontal
@@ -206,101 +194,6 @@ void HelloGL::DrawTriangleAll() {
 	glPopMatrix();
 }
 
-void HelloGL::DrawHexagon() {
-	glPushMatrix();
-	glRotatef(rotationx, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON);
-	{
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.25, 0.75); // t l
-		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
-		glVertex2f(0.25, 0.75); // t r
-		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
-		glVertex2f(0.5, 0); // m r
-		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-		glVertex2f(0.25, -0.75); // b r
-		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-		glVertex2f(-0.25, -0.75); // b l
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.5, 0); // m l
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
-void HelloGL::DrawPentagon() {
-	glPushMatrix();
-	glRotatef(rotationx, 0.0f, 0.0f, -1.0f);
-	glBegin(GL_POLYGON);
-	{
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(0, 0.6); // t l
-		glColor4f(0.0f, 0.0f, 1.0f, 0.5f);
-		glVertex2f(0.4, 0); // m r
-		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-		glVertex2f(0.25, -0.75); // b r
-		glColor4f(0.0f, 1.0f, 0.0f, 0.5f);
-		glVertex2f(-0.25, -0.75); // b l
-		glColor4f(1.0f, 0.0f, 0.0f, 0.5f);
-		glVertex2f(-0.4, 0); // m l
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
-
-void HelloGL::Draw3DCube() {
-	glPushMatrix();
-	glBegin(GL_POLYGON); 
-	{
-		// top
-		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
-		glVertex2f(0, 0.75);
-		// r
-		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
-		glVertex2f(0.5, 0.375);
-		// b
-		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
-		glVertex2f(0, 0);
-		// l
-		glColor4f(1.0f, 1.0f, 1.0f, 0.5f);
-		glVertex2f(-0.5, 0.375);
-		glEnd();
-	}
-	glBegin(GL_POLYGON);
-	{
-		// top
-		glColor4f(0.75f, 0.75f, 0.75f, 0.5f);
-		glVertex2f(0.5, 0.375);
-		// r
-		glColor4f(0.75f, 0.75f, 0.75f, 0.5f);
-		glVertex2f(0.5, -0.5);
-		// b
-		glColor4f(0.75f, 0.75f, 0.75f, 0.5f);
-		glVertex2f(0, -0.875);
-		// l
-		glColor4f(0.75f, 0.75f, 0.75f, 0.5f);
-		glVertex2f(0, 0);
-		glEnd();
-	}
-	glBegin(GL_POLYGON);
-	{
-		// top
-		glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
-		glVertex2f(-0.5, 0.375);
-		// r
-		glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
-		glVertex2f(-0.5, -0.5);
-		// b
-		glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
-		glVertex2f(0, -0.875);
-		// l
-		glColor4f(0.25f, 0.25f, 0.25f, 0.5f);
-		glVertex2f(0, 0);
-		glEnd();
-	}
-	glPopMatrix();
-}
-
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.z, camera->up.y, camera->up.z);
@@ -328,4 +221,10 @@ matrix multiplication
 [C, D].[G, H] = [(C*E)+(D*G), (C*F)+(D*H)]
 
 E.G. COL 1 ANSWER = 1st and 2nd in row of 1, * 1st and 2nd in col of 2, added together
+rows of Matrix A and col of Matrix B determine matrix size. can only * if A col size = B row size
+
+standard *
+
+2 * [2, 0] = [4, 0]
+    [3, 4]   [6, 8]
 */

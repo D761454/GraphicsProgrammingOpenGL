@@ -15,53 +15,23 @@ struct Camera {
 	Vector3 eye, center, up;
 };
 
+struct Color {
+	GLfloat r, g, b, a;
+};
+
+struct Vertex {
+	GLfloat x, y, z;
+};
+
 class HelloGL
 {
 private:
 	float rotationx;
 	float rotationy;
 	Camera* camera;
-
-	// temp s
-	struct point3D {
-		float x, y, z;
-	};
-
-	struct colour {
-		float r, g, b, a;
-	};
-
-	struct polygon {
-		int a, b, c, d;
-	};
-
-	point3D* vertices = new point3D[8]{
-		{-0.25f, 0.25f, -4.0f}, // ftl		0
-		{-0.25f, -0.25f, -4.0f}, //fbl		1
-		{0.25f, -0.25f, -4.0f}, // fbr		2
-		{0.25f, 0.25f, -4.0f}, // ftr		3
-		{-0.25f, 0.25f, -5.0f}, // btl		4
-		{-0.25f, -0.25f, -5.0f}, // bbl	5
-		{0.25f, -0.25f, -5.0f}, // bbr		6
-		{0.25f, 0.25f, -5.0f} // btr		7
-	}; // vertices
-	colour* colours = new colour[6] {
-		{1.0f, 1.0f, 1.0f, 1.0f},
-		{1.0f, 0.0f, 0.0f, 1.0f},
-		{0.0f, 1.0f, 0.0f, 1.0f},
-		{0.0f, 0.0f, 1.0f, 1.0f},
-		{1.0f, 1.0f, 0.0f, 1.0f},
-		{0.0f, 1.0f, 1.0f, 1.0f}
-	};
-	polygon* indices = new polygon[6] {
-		{0, 1, 2, 3}, // f
-		{0, 4, 5, 1}, // l
-		{3, 2, 6, 7}, // r
-		{0, 3, 7, 4}, // t
-		{1, 2, 6, 5}, // b
-		{4, 5, 6, 7} // ba
-	}; // faces
-	// temp e
+	
+	static Vertex vertices[];
+	static Color colors[];
 
 public:
 	// constructor def
@@ -76,13 +46,9 @@ public:
 
 	void DrawCube();
 
+	void DrawCubeArray();
+
 	void DrawTriangleAll();
-
-	void DrawHexagon();
-
-	void Draw3DCube();
-
-	void DrawPentagon();
 
 	void Keyboard(unsigned char key, int x, int y);
 
