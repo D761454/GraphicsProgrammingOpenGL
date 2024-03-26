@@ -21,6 +21,8 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity(); // identity matricy - 1 down diag, 0 all else e.g. 1: [1, 0, 0] 2: [0, 1, 0] 3: [0, 0, 1] (n*n size)
 	glutMainLoop();
 }
 
