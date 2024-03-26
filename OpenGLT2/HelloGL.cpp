@@ -51,17 +51,33 @@ void HelloGL::Display() {
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
-	if (key == 'd') {
+	/*if (key == 'd') {
 		rotationx += 0.5f;
 	}
-	if (key == 'a') { // flip rotation 
+	if (key == 'a') {
 		rotationx -= 0.5f;
 	}
 	if (key == 'w') {
 		rotationy += 0.5f;
 	}
-	if (key == 's') { // flip rotation 
+	if (key == 's') {
 		rotationy -= 0.5f;
+	}*/
+	if (key == 'd') {
+		// camera->up.z += 0.1f; // diag z
+		camera->eye.x += 0.1f; // horizontal
+		// camera->eye.y += 0.1f; // vertical
+	}
+	if (key == 'a') {
+		// camera->up.z -= 0.1f; // diag z
+		camera->eye.x -= 0.1f;
+		// camera->eye.y -= 0.1f;
+	}
+	if (key == 'w') { // zoom
+		camera->eye.z -= 0.1f;
+	}
+	if (key == 's') { // zoom
+		camera->eye.z+= 0.1f;
 	}
 }
 
