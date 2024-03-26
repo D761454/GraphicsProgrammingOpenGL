@@ -13,6 +13,7 @@ private:
 	float rotationx;
 	float rotationy;
 
+	// temp s
 	struct point3D {
 		float x;
 		float y;
@@ -59,6 +60,7 @@ private:
 		{1, 2, 6, 5}, // b
 		{4, 5, 6, 7} // ba
 	}; // faces
+	// temp e
 
 public:
 	// constructor def

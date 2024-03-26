@@ -57,9 +57,11 @@ void HelloGL::Motion(int x, int y) {
 
 }
 
+// temp s
 void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 	glPushMatrix();
-	glRotatef(rotationx, rotationx, rotationy, -1.0f);
+	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
+	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
 	glBegin(GL_QUADS); // begin drawing
 	{
 		glVertex3fv(&vertices[a].x);
@@ -77,6 +79,7 @@ void HelloGL::DrawCube() {
 		DrawPolygon(indices[i].a, indices[i].b, indices[i].c, indices[i].d);
 	}
 }
+// temp e
 
 void HelloGL::DrawTriangleAll() {
 	glPushMatrix();
