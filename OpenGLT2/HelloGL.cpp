@@ -101,27 +101,27 @@ void HelloGL::Motion(int x, int y) {
 
 }
 
-void HelloGL::DrawPolygon(int a, int b, int c, int d) { // temp
-	glPushMatrix();
-	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
-	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
-	glBegin(GL_QUADS); // begin drawing
-	{
-		glVertex3fv(&vertices[a].x);
-		glVertex3fv(&vertices[b].x);
-		glVertex3fv(&vertices[c].x);
-		glVertex3fv(&vertices[d].x);
-		glEnd(); // end drawing
-	}
-	glPopMatrix();
-}
+//void HelloGL::DrawPolygon(int a, int b, int c, int d) { // temp
+//	glPushMatrix();
+//	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
+//	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
+//	glBegin(GL_QUADS); // begin drawing
+//	{
+//		glVertex3fv(&vertices[a].x);
+//		glVertex3fv(&vertices[b].x);
+//		glVertex3fv(&vertices[c].x);
+//		glVertex3fv(&vertices[d].x);
+//		glEnd(); // end drawing
+//	}
+//	glPopMatrix();
+//}
 
 void HelloGL::DrawIndexedCube() {
 	glPushMatrix();
 		glBegin(GL_TRIANGLES);
 		for (int i = 0; i < 36; i++) {
-			glColor4f(&colors[i].r);
-			glVertex3f(&vertices[i].x);
+			glColor4f(indexedColors[i].r);
+			glVertex3f(indexedVertices[indices[i]].x);
 		}
 		glEnd(); // end drawing
 	glPopMatrix();
