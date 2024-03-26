@@ -1,45 +1,5 @@
 #include "HelloGL.h"
 
-Vertex HelloGL::vertices[] = {
-	1,1,1,		-1,1,1,		-1,-1,1,
-	-1,-1,1,	1,-1,1,		1,1,1,
-
-	1,1,1,		1,-1,1,		1,-1,-1,
-	1,-1,-1,	1,1,-1,		1,1,1,
-
-	1,1,1,		1,1,-1,		-1,1,-1,
-	-1,1,-1,	-1,1,1,		1,1,1,
-
-	-1,1,1,		-1,1,-1,	-1,-1,-1,
-	-1,-1,-1,	-1,-1,1,	-1,1,1,
-
-	-1,-1,-1,	1,-1,-1,	1,-1,1,
-	1,-1,1,		-1,-1,1,	-1,-1,-1,
-
-	1,-1,-1,	-1,-1,-1,	-1,1,-1,
-	-1,1,-1,	1,1,-1,		1,-1,-1
-};
-
-Color HelloGL::colors[] = {
-	1,1,1,1,		1,1,0,1,		1,0,0,1,
-	1,0,0,1,		1,0,1,1,		1,1,1,1,
-
-	1,1,1,1,		1,0,1,1,		0,0,1,1,
-	0,0,1,1,		0,1,1,1,		1,1,1,1,
-
-	1,1,1,1,		0,1,1,1,		0,1,0,1,
-	0,1,0,1,		1,1,0,1,		1,1,1,1,
-
-	1,1,0,1,		0,1,0,1,		0,0,0,1,
-	0,0,0,1,		1,0,0,1,		1,1,0,1,
-
-	0,0,0,1,		0,0,1,1,		1,0,1,1,
-	1,0,1,1,		1,0,0,1,		0,0,0,1,
-
-	0,0,1,1,		0,0,0,1,		0,1,0,1,
-	0,1,0,1,		0,1,1,1,		0,0,1,1
-};
-
 Vertex HelloGL::indexedVertices[] = {
 	1,1,1,		-1,1,1,
 	-1,-1,1,	1,-1,1,
@@ -141,7 +101,6 @@ void HelloGL::Motion(int x, int y) {
 
 }
 
-// temp s
 void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 	glPushMatrix();
 	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
@@ -154,18 +113,6 @@ void HelloGL::DrawPolygon(int a, int b, int c, int d) {
 		glVertex3fv(&vertices[d].x);
 		glEnd(); // end drawing
 	}
-	glPopMatrix();
-}
-// temp e
-
-void HelloGL::DrawCubeArray() {
-	glPushMatrix();
-		glBegin(GL_TRIANGLES);
-		for (int i = 0; i < 36; i++) {
-			glColor4f(&indexedColors[i].r);
-			glVertex3f(&indexedVertices[indices[i]].x);
-		}
-		glEnd(); // end drawing
 	glPopMatrix();
 }
 
@@ -289,9 +236,6 @@ void HelloGL::Update() {
 
 HelloGL::~HelloGL(void) {
 	delete camera;
-	delete[] vertices;
-	delete[] colours;
-	delete[] indices;
 }
 
 /*

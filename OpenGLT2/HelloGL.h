@@ -29,9 +29,6 @@ private:
 	float rotationx;
 	float rotationy;
 	Camera* camera;
-	
-	static Vertex vertices[];
-	static Color colors[];
 
 	static Vertex indexedVertices[];
 	static Color indexedColors[];
