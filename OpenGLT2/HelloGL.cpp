@@ -120,8 +120,8 @@ void HelloGL::DrawIndexedCube() {
 	glPushMatrix();
 		glBegin(GL_TRIANGLES);
 		for (int i = 0; i < 36; i++) {
-			glColor4f(indexedColors[i].r);
-			glVertex3f(indexedVertices[indices[i]].x);
+			glColor4f(&indexedColors[i].r);
+			glVertex3f(&indexedVertices[indices[i]].x);
 		}
 		glEnd(); // end drawing
 	glPopMatrix();
