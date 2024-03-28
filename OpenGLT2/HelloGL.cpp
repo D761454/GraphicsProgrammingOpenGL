@@ -1,6 +1,6 @@
 #include "HelloGL.h"
 
-Vertex HelloGL::indexedVertices[] = {
+Vertex HelloGL::indexedVertices[] = { // incompatible with TexCoords, need to separate vertices, modelling tools will do this for me
 	1,1,1,		-1,1,1,
 	-1,-1,1,	1,-1,1,
 	1,-1,-1,	1,1,-1,
