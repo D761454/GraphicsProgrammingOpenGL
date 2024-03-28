@@ -72,13 +72,11 @@ void HelloGL::Display() {
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 'd') {
 		// camera->up.z += 0.1f; // diag z
-		camera->eye.x += 0.1f; // horizontal
-		// camera->eye.y += 0.1f; // vertical
+		camera->eye.x -= 0.1f; // horizontal
 	}
 	if (key == 'a') {
 		// camera->up.z -= 0.1f; // diag z
-		camera->eye.x -= 0.1f; // horizontal
-		// camera->eye.y -= 0.1f; // vertical
+		camera->eye.x += 0.1f; // horizontal
 	}
 	if (key == 'w') { 
 		// camera->eye.z -= 0.1f; // zoom
@@ -87,6 +85,12 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 's') {
 		// camera->eye.z+= 0.1f; // zoom
 		camera->eye.y -= 0.1f; // vertical
+	}
+	if (key == '1') {
+		camera->eye.z -= 0.1f; // zoom
+	}
+	if (key == '2') {
+		camera->eye.z += 0.1f; // zoom
 	}
 }
 
