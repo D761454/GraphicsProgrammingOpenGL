@@ -223,10 +223,7 @@ bool HelloGL::LoadObj(char* path) {
 	inFile.close();
 
 	/* 
-	seek to just before indexes start
-	make array of size
-	read data in
-	repeat for only indexes in seperate array
+	search through array, v - vertex list, f - index list
 	*/
 
 
