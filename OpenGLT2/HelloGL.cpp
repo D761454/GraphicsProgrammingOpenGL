@@ -105,7 +105,7 @@ void HelloGL::Motion(int x, int y) {
 void HelloGL::DrawIndexedCube() {
 	glPushMatrix();
 		glBegin(GL_TRIANGLES);
-		for (int i = 0; i < 36; i++) {
+		for (int i = 0; i < sizeof(indices); i++) {
 			glColor4fv(&indexedColors[indices[i]].r); // v on end to use &
 			glVertex3fv(&indexedVertices[indices[i]].x);
 		}
@@ -206,9 +206,29 @@ void HelloGL::DrawTriangleAll() {
 	glPopMatrix();
 }
 
-bool HelloGL::LoadObj(char* path) {
-	int fileSize; ifstream inFile;
-}
+//bool HelloGL::LoadObj(char* path) {
+//	char* tempObjData; int fileSize; ifstream inFile;
+//	inFile.open(path, ios::binary);
+//
+//	if (!inFile.good()) {
+//		cerr << "Can't open object file: " << path << endl;
+//		return false;
+//	}
+//
+//	inFile.seekg(0, ios::end); // seek to end of file
+//	fileSize = (int)inFile.tellg(); // get current pos in file - End = total filesize
+//	tempObjData = new char[fileSize]; // create new array to store data
+//	inFile.seekg(0, ios::beg); // seek back to beginning of file
+//	inFile.read(tempObjData, fileSize); // read in all data at once
+//	inFile.close();
+//
+//	cout << path << " Loaded." << endl;
+//
+//
+//
+//	delete[] tempObjData; // clear up unneeded data
+//	return true;
+//}
 
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
