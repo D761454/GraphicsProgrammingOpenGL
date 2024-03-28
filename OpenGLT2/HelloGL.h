@@ -4,6 +4,10 @@
 #include <gl/GLU.h> // OpenGL Utilities
 #include "GL\freeglut.h" // freeglut library
 #include "GLUTCallbacks.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 #define REFRESHRATE 16
 
@@ -46,6 +50,8 @@ public:
 	void DrawIndexedCube();
 
 	void DrawTriangleAll();
+
+	bool LoadObj(char* path);
 
 	void Keyboard(unsigned char key, int x, int y);
 
