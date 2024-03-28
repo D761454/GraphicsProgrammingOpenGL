@@ -43,8 +43,6 @@ public:
 
 	void Display();
 
-	void DrawPolygon(int a, int b, int c, int d);
-
 	void DrawIndexedCube();
 
 	void DrawTriangleAll();

@@ -41,8 +41,8 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 
-	glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
-	glCullFace(GL_BACK);
+	//glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
+	//glCullFace(GL_BACK);
 	//glEnable(GL_DEPTH_TEST);
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
@@ -101,27 +101,12 @@ void HelloGL::Motion(int x, int y) {
 
 }
 
-//void HelloGL::DrawPolygon(int a, int b, int c, int d) { // temp
-//	glPushMatrix();
-//	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
-//	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
-//	glBegin(GL_QUADS); // begin drawing
-//	{
-//		glVertex3fv(&vertices[a].x);
-//		glVertex3fv(&vertices[b].x);
-//		glVertex3fv(&vertices[c].x);
-//		glVertex3fv(&vertices[d].x);
-//		glEnd(); // end drawing
-//	}
-//	glPopMatrix();
-//}
-
 void HelloGL::DrawIndexedCube() {
 	glPushMatrix();
 		glBegin(GL_TRIANGLES);
 		for (int i = 0; i < 36; i++) {
-			glColor4f(indexedColors[i].r, indexedColors[i].g, indexedColors[i].b, indexedColors[i].a);
-			glVertex3f(indexedVertices[indices[i]].x, indexedVertices[indices[i]].y, indexedVertices[indices[i]].z);
+			glColor4fv(&indexedColors[i].r); // v on end to use &
+			glVertex3fv(&indexedVertices[indices[i]].x);
 		}
 		glEnd(); // end drawing
 	glPopMatrix();
