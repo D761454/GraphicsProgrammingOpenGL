@@ -206,7 +206,7 @@ void HelloGL::DrawTriangleAll() {
 	glPopMatrix();
 }
 
-bool HelloGL::LoadObj(char* path) {
+bool HelloGL::LoadObj(char* path) { // save for later - will be done in future tutorial
 	char* tempObjData; int fileSize; ifstream inFile;
 	inFile.open(path, ios::binary);
 
