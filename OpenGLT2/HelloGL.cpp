@@ -222,6 +222,16 @@ bool HelloGL::LoadObj(char* path) {
 	inFile.read(tempObjData, fileSize); // read in all data at once
 	inFile.close();
 
+	/* 
+	seek to just before indexes start
+	make array of size
+	read data in
+	repeat for only indexes in seperate array
+	*/
+
+
+
+
 	cout << path << " Loaded." << endl;
 
 
