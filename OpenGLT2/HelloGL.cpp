@@ -105,7 +105,7 @@ void HelloGL::Motion(int x, int y) {
 void HelloGL::DrawIndexedCube() {
 	glPushMatrix();
 		glBegin(GL_TRIANGLES);
-		for (int i = 0; i < int(sizeof(indices))/2; i++) {
+		for (int i = 0; i < sizeof(indices)/2; i++) {
 			glColor4fv(&indexedColors[indices[i]].r); // v on end to use &
 			glVertex3fv(&indexedVertices[indices[i]].x);
 		}
