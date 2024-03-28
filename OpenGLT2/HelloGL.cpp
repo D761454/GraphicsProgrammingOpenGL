@@ -41,8 +41,8 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 
-	//glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
-	//glCullFace(GL_BACK);
+	glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
+	glCullFace(GL_BACK);
 	//glEnable(GL_DEPTH_TEST);
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
@@ -63,11 +63,6 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
 
-	/*glPushMatrix();
-	glRotatef(rotationx, 1.0f, 0.0f, 0.0f);
-	glRotatef(rotationy, 0.0f, 1.0f, 0.0f);
-	glutWireCube(0.3);
-	glPopMatrix();*/
 	DrawIndexedCube();
 
 	glFlush(); // flush scene to graphics card
@@ -85,11 +80,13 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 		camera->eye.x -= 0.1f; // horizontal
 		// camera->eye.y -= 0.1f; // vertical
 	}
-	if (key == 'w') { // zoom
-		camera->eye.z -= 0.1f;
+	if (key == 'w') { 
+		// camera->eye.z -= 0.1f; // zoom
+		camera->eye.y += 0.1f; // vertical
 	}
-	if (key == 's') { // zoom
-		camera->eye.z+= 0.1f;
+	if (key == 's') {
+		// camera->eye.z+= 0.1f; // zoom
+		camera->eye.y -= 0.1f; // vertical
 	}
 }
 
@@ -105,7 +102,7 @@ void HelloGL::DrawIndexedCube() {
 	glPushMatrix();
 		glBegin(GL_TRIANGLES);
 		for (int i = 0; i < 36; i++) {
-			glColor4fv(&indexedColors[i].r); // v on end to use &
+			glColor4fv(&indexedColors[indices[i]].r); // v on end to use &
 			glVertex3fv(&indexedVertices[indices[i]].x);
 		}
 		glEnd(); // end drawing
