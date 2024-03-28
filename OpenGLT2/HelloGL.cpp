@@ -63,7 +63,7 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
 
-	DrawIndexedCube();
+	 DrawIndexedCube();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
@@ -227,10 +227,7 @@ bool HelloGL::LoadObj(char* path) {
 	*/
 
 
-
-
 	cout << path << " Loaded." << endl;
-
 
 
 	delete[] tempObjData; // clear up unneeded data
