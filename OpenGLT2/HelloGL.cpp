@@ -98,6 +98,7 @@ void HelloGL::Update() {
 
 HelloGL::~HelloGL(void) {
 	delete camera;
+	delete[] cube;
 }
 
 /*
