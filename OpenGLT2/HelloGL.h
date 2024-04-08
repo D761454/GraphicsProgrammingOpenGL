@@ -34,6 +34,8 @@ public:
 
 	void DrawIndexedCube();
 
+	void DrawIndexedCubeAlt();
+
 	void DrawTriangleAll();
 
 	void Keyboard(unsigned char key, int x, int y);

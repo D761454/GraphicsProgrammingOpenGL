@@ -63,7 +63,7 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
 
-	 DrawIndexedCube();
+	DrawIndexedCubeAlt();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
@@ -111,6 +111,20 @@ void HelloGL::DrawIndexedCube() {
 		}
 		glEnd(); // end drawing
 	glPopMatrix();
+}
+
+void HelloGL::DrawIndexedCubeAlt() {
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glEnableClientState(GL_COLOR_ARRAY);
+	glVertexPointer(3, GL_FLOAT, 0, indexedVertices);
+	glColorPointer(4, GL_FLOAT, 0, indexedColors);
+
+	glPushMatrix();
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices);
+	glPopMatrix();
+
+	glDisableClientState(GL_COLOR_ARRAY);
+	glDisableClientState(GL_VERTEX_ARRAY);
 }
 
 void HelloGL::DrawTriangleAll() {
