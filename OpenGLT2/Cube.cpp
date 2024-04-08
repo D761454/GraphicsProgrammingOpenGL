@@ -24,7 +24,7 @@ GLushort Cube::indices[] = {
 };
 
 Cube::Cube() {
-
+	_rotation = 0.0f;
 }
 
 Cube::~Cube() {
@@ -36,6 +36,8 @@ void Cube::Draw() {
 	glEnableClientState(GL_COLOR_ARRAY);
 	glVertexPointer(3, GL_FLOAT, 0, indexedVertices);
 	glColorPointer(4, GL_FLOAT, 0, indexedColors);
+	
+	glRotatef(_rotation, 1.0f, 0.0f, 0.0f);
 
 	glPushMatrix();
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices);
@@ -46,5 +48,5 @@ void Cube::Draw() {
 }
 
 void Cube::Update() {
-
+	_rotation += 1.0f;
 }

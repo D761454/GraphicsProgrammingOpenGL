@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include "Structures.h"
+#include "Cube.h"
 
 using namespace std;
 
@@ -15,13 +16,9 @@ using namespace std;
 class HelloGL
 {
 private:
-	float rotationx;
-	float rotationy;
 	Camera* camera;
 
-	static Vertex indexedVertices[];
-	static Color indexedColors[];
-	static GLushort indices[];
+	Cube* cube;
 
 public:
 	// constructor def

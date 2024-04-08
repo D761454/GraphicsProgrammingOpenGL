@@ -1,37 +1,13 @@
 #include "HelloGL.h"
 
-Vertex HelloGL::indexedVertices[] = { // incompatible with TexCoords, need to separate vertices, modelling tools will do this for me
-	1,1,1,		-1,1,1,
-	-1,-1,1,	1,-1,1,
-	1,-1,-1,	1,1,-1,
-	-1,1,-1,	-1,-1,-1
-};
-
-Color HelloGL::indexedColors[] = {
-	1,1,1,1,	1,1,0,1,
-	1,0,0,1,	1,0,1,1,
-	0,0,1,1,	0,1,1,1,
-	0,1,0,1,	0,0,0,1
-};
-
-GLushort HelloGL::indices[] = {
-	0,1,2,	2,3,0, // front
-	0,3,4,	4,5,0, // right
-	0,5,6,	6,1,0, // top
-	1,6,7,	7,2,1, // left
-	7,4,3,	3,2,7, // bottom
-	4,7,6,	6,5,4 // back
-};
-
 HelloGL::HelloGL(int argc, char* argv[]) {
-	rotationx = 0.0f;
-	rotationy = 0.0f;
-
 	// camera setup
 	camera = new Camera();
 	camera->eye.x = 5.0f; camera->eye.y = 5.0f; camera->eye.z = -5.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
+
+	cube = new Cube();
 
 	// glut setup
 	GLUTCallbacks::Init(this);
@@ -63,7 +39,7 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
 
-	DrawIndexedCubeAlt();
+	cube->Draw();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
@@ -106,12 +82,7 @@ void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.z, camera->up.y, camera->up.z);
 
-	if (rotationx >= 360.0f || rotationx <= -360.0f) {
-		rotationx = 0.0f;
-	}
-	if (rotationy >= 360.0f || rotationy <= -360.0f) {
-		rotationy = 0.0f;
-	}
+	cube->Update();
 
 	glutPostRedisplay();
 }
