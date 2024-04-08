@@ -1,27 +1,14 @@
 #include "Cube.h"
 
-Vertex Cube::indexedVertices[] = { // incompatible with TexCoords, need to separate vertices, modelling tools will do this for me
-	1,1,1,		-1,1,1,
-	-1,-1,1,	1,-1,1,
-	1,-1,-1,	1,1,-1,
-	-1,1,-1,	-1,-1,-1
-};
+Vertex* Cube::indexedVertices = nullptr;
 
-Color Cube::indexedColors[] = {
-	1,1,1,1,	1,1,0,1,
-	1,0,0,1,	1,0,1,1,
-	0,0,1,1,	0,1,1,1,
-	0,1,0,1,	0,0,0,1
-};
+Color* Cube::indexedColors = nullptr;
 
-GLushort Cube::indices[] = {
-	0,1,2,	2,3,0, // front
-	0,3,4,	4,5,0, // right
-	0,5,6,	6,1,0, // top
-	1,6,7,	7,2,1, // left
-	7,4,3,	3,2,7, // bottom
-	4,7,6,	6,5,4 // back
-};
+GLushort* Cube::indices = nullptr;
+
+int Cube::numVertices = 0;
+int Cube::numColors = 0;
+int Cube::numIndices = 0;
 
 Cube::Cube(float x, float y, float z) {
 	_rotation = 0.0f;
@@ -37,19 +24,21 @@ Cube::~Cube() {
 }
 
 void Cube::Draw() {
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_COLOR_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, indexedVertices);
-	glColorPointer(4, GL_FLOAT, 0, indexedColors);
+	if (indexedVertices != nullptr && indexedColors != nullptr && indices != nullptr) {
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glEnableClientState(GL_COLOR_ARRAY);
+		glVertexPointer(3, GL_FLOAT, 0, indexedVertices);
+		glColorPointer(3, GL_FLOAT, 0, indexedColors);
 
-	glPushMatrix();
-	glTranslatef(_position.x, _position.y, _position.z);
-	glRotatef(_rotation, _rotationAxis[0], _rotationAxis[1], _rotationAxis[2]);
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices);
-	glPopMatrix();
+		glPushMatrix();
+		glTranslatef(_position.x, _position.y, _position.z);
+		glRotatef(_rotation, _rotationAxis[0], _rotationAxis[1], _rotationAxis[2]);
+		glDrawElements(GL_TRIANGLES, numVertices, GL_UNSIGNED_SHORT, indices); // nv = 36
+		glPopMatrix();
 
-	glDisableClientState(GL_COLOR_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_VERTEX_ARRAY);
+	}
 }
 
 void Cube::Update() {

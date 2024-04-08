@@ -8,9 +8,11 @@
 class Cube
 {
 private:
-	static Vertex indexedVertices[];
-	static Color indexedColors[];
-	static GLushort indices[];
+	static int numVertices, numColors, numIndices;
+
+	static Vertex* indexedVertices;
+	static Color* indexedColors;
+	static GLushort* indices;
 
 	GLfloat _rotation;
 	Vector3 _position;
