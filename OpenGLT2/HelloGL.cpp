@@ -41,7 +41,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 
-	glEnable(GL_CULL_FACE); // leave off for now until figure out how to do normal stuff
+	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	//glEnable(GL_DEPTH_TEST);
 
@@ -204,34 +204,6 @@ void HelloGL::DrawTriangleAll() {
 		glEnd(); // end drawing
 	}
 	glPopMatrix();
-}
-
-bool HelloGL::LoadObj(char* path) { // save for later - will be done in future tutorial
-	char* tempObjData; int fileSize; ifstream inFile;
-	inFile.open(path, ios::binary);
-
-	if (!inFile.good()) {
-		cerr << "Can't open object file: " << path << endl;
-		return false;
-	}
-
-	inFile.seekg(0, ios::end); // seek to end of file
-	fileSize = (int)inFile.tellg(); // get current pos in file - End = total filesize
-	tempObjData = new char[fileSize]; // create new array to store data
-	inFile.seekg(0, ios::beg); // seek back to beginning of file
-	inFile.read(tempObjData, fileSize); // read in all data at once
-	inFile.close();
-
-	/* 
-	search through array, v - vertex list, f - index list
-	*/
-
-
-	cout << path << " Loaded." << endl;
-
-
-	delete[] tempObjData; // clear up unneeded data
-	return true;
 }
 
 void HelloGL::Update() {
