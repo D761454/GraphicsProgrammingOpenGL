@@ -25,6 +25,7 @@ GLushort Cube::indices[] = {
 
 Cube::Cube(float x, float y, float z) {
 	_rotation = 0.0f;
+	_rotationSpeed = (rand() % 2) + 1;
 	_position.x = x;
 	_position.y = y;
 	_position.z = z;
@@ -39,11 +40,10 @@ void Cube::Draw() {
 	glEnableClientState(GL_COLOR_ARRAY);
 	glVertexPointer(3, GL_FLOAT, 0, indexedVertices);
 	glColorPointer(4, GL_FLOAT, 0, indexedColors);
-	
-	glTranslatef(_position.x, _position.y, _position.z);
-	glRotatef(_rotation, 1.0f, 0.0f, 0.0f);
 
 	glPushMatrix();
+	glTranslatef(_position.x, _position.y, _position.z);
+	glRotatef(_rotation, 1.0f, 0.0f, 0.0f);
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices);
 	glPopMatrix();
 
@@ -52,5 +52,5 @@ void Cube::Draw() {
 }
 
 void Cube::Update() {
-	_rotation += 1.0f;
+	_rotation += _rotationSpeed;
 }
