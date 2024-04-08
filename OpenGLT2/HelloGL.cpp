@@ -19,7 +19,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
@@ -37,7 +37,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 void HelloGL::Display() {
 	// drawing code
-	glClear(GL_COLOR_BUFFER_BIT); // clear scene // | GL_DEPTH_BUFFER_BIT
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene
 
 	cube->Draw();
 
