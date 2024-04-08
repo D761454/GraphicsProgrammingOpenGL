@@ -26,6 +26,7 @@ GLushort Cube::indices[] = {
 Cube::Cube(float x, float y, float z) {
 	_rotation = 0.0f;
 	_rotationSpeed = (rand() % 2) + 1;
+	_rotationAxis[rand() % 3] = 1.0f;
 	_position.x = x;
 	_position.y = y;
 	_position.z = z;
@@ -43,7 +44,7 @@ void Cube::Draw() {
 
 	glPushMatrix();
 	glTranslatef(_position.x, _position.y, _position.z);
-	glRotatef(_rotation, 1.0f, 0.0f, 0.0f);
+	glRotatef(_rotation, _rotationAxis[0], _rotationAxis[1], _rotationAxis[2]);
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, indices);
 	glPopMatrix();
 
