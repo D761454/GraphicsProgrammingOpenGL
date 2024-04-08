@@ -7,7 +7,10 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
-	cube = new Cube();
+	for (int i = 0; i < 10; i++)
+	{
+		cube[i] = new Cube(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	}
 
 	// glut setup
 	GLUTCallbacks::Init(this);
@@ -39,7 +42,10 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene
 
-	cube->Draw();
+	for (int i = 0; i < 10; i++)
+	{
+		cube[i]->Draw();
+	}
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
@@ -82,7 +88,10 @@ void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.z, camera->up.y, camera->up.z);
 
-	cube->Update();
+	for (int i = 0; i < 10; i++)
+	{
+		cube[i]->Update();
+	}
 
 	glutPostRedisplay();
 }

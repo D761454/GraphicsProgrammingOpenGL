@@ -18,7 +18,7 @@ class HelloGL
 private:
 	Camera* camera;
 
-	Cube* cube;
+	Cube* cube[];
 
 public:
 	// constructor def
