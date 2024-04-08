@@ -3,7 +3,7 @@
 HelloGL::HelloGL(int argc, char* argv[]) {
 	// camera setup
 	camera = new Camera();
-	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = -5.0f;
+	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 50.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
