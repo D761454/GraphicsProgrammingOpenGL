@@ -13,7 +13,7 @@ struct Camera {
 };
 
 struct Color {
-	GLfloat r, g, b, a;
+	GLfloat r, g, b;
 };
 
 struct Vertex {

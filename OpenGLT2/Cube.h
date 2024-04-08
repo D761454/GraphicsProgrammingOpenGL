@@ -4,6 +4,8 @@
 #include <gl/GLU.h> // OpenGL Utilities
 #include "GL\freeglut.h" // freeglut library
 #include "Structures.h"
+#include <fstream>
+#include <iostream>
 
 class Cube
 {
@@ -25,5 +27,7 @@ public:
 
 	void Draw();
 	void Update();
+
+	static bool Load(char* path);
 };
 
