@@ -10,7 +10,7 @@ class Cube
 private:
 	static Vertex indexedVertices[];
 	static Color indexedColors[];
-	static GLushort indiced[];
+	static GLushort indices[];
 
 public:
 	Cube();
