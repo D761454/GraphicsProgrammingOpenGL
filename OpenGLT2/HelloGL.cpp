@@ -55,31 +55,27 @@ void HelloGL::Display() {
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 'd') {
-		//camera->eye.x -= 0.1f; // horizontal
 		camera->center.x += 0.1f;
 	}
 	if (key == 'a') {
-		//camera->eye.x += 0.1f; // horizontal
 		camera->center.x -= 0.1f;
 	}
 	if (key == 'w') { 
-		//camera->eye.y += 0.1f; // vertical
 		camera->center.y += 0.1f;
 	}
 	if (key == 's') {
-		//camera->eye.y -= 0.1f; // vertical
 		camera->center.y -= 0.1f;
 	}
 	if (key == '1') {
-		camera->eye.z -= 0.1f; // zoom
+		camera->eye.z -= 0.1f;
 	}
 	if (key == '2') {
-		camera->eye.z += 0.1f; // zoom
+		camera->eye.z += 0.1f;
 	}
 }
 
 void HelloGL::Mouse(int button, int state, int x, int y) {
-
+	
 }
 
 void HelloGL::Motion(int x, int y) {
