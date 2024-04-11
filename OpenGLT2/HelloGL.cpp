@@ -3,7 +3,7 @@
 HelloGL::HelloGL(int argc, char* argv[]) {
 	// camera setup
 	camera = new Camera();
-	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 50.0f;
+	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 1.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
@@ -24,7 +24,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
@@ -35,14 +35,14 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity(); // identity matricy - 1 down diag, 0 all else e.g. 1: [1, 0, 0] 2: [0, 1, 0] 3: [0, 0, 1] (n*n size)
 	glViewport(0, 0, 800, 800); // set viewport to be window
-	gluPerspective(45, 1, 0, 1000); // set correct perspective: FOV, ASPECT RATIO, NEAR CLIPPING DIST, FAR CLIPPING DIST
+	gluPerspective(45, 1, 1, 1000); // set correct perspective: FOV, ASPECT RATIO, NEAR CLIPPING DIST, FAR CLIPPING DIST
 	glMatrixMode(GL_MODELVIEW);
 	glutMainLoop();
 }
 
 void HelloGL::Display() {
 	// drawing code
-	glClear(GL_COLOR_BUFFER_BIT ); // clear scene | GL_DEPTH_BUFFER_BIT
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene 
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -55,20 +55,20 @@ void HelloGL::Display() {
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 'd') {
-		// camera->up.z += 0.1f; // diag z
-		camera->eye.x -= 0.1f; // horizontal
+		//camera->eye.x -= 0.1f; // horizontal
+		camera->center.x += 0.1f;
 	}
 	if (key == 'a') {
-		// camera->up.z -= 0.1f; // diag z
-		camera->eye.x += 0.1f; // horizontal
+		//camera->eye.x += 0.1f; // horizontal
+		camera->center.x -= 0.1f;
 	}
 	if (key == 'w') { 
-		// camera->eye.z -= 0.1f; // zoom
-		camera->eye.y += 0.1f; // vertical
+		//camera->eye.y += 0.1f; // vertical
+		camera->center.y += 0.1f;
 	}
 	if (key == 's') {
-		// camera->eye.z+= 0.1f; // zoom
-		camera->eye.y -= 0.1f; // vertical
+		//camera->eye.y -= 0.1f; // vertical
+		camera->center.y -= 0.1f;
 	}
 	if (key == '1') {
 		camera->eye.z -= 0.1f; // zoom
