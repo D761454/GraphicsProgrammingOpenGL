@@ -67,11 +67,11 @@ bool Teapot::Load(char* path) {
 			numVertices++;
 		}
 		else if (data == "f") {
-			numIndices++;
+			numIndices+=3;
 		}
 	}
 	indexedVertices = new Vertex[numVertices];
-	indices = new GLushort[numIndices*3];
+	indices = new GLushort[numIndices];
 
 	std::cout << numVertices << " " << numIndices << std::endl;
 
@@ -90,7 +90,7 @@ bool Teapot::Load(char* path) {
 	inFile.clear();
 	inFile.seekg(numVertices+2); // skip final v line and empty line
 
-	for (int i = 0; i < numIndices; i++) {
+	for (int i = 0; i < numIndices; i+=3) {
 		inFile >> data; // just captures irrelevenat line starters
 		inFile >> indices[i];
 		inFile >> indices[i+1];
