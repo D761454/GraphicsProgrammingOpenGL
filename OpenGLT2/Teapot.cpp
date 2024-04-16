@@ -80,26 +80,22 @@ bool Teapot::Load(char* path) {
 
 	for (int i = 0; i < numVertices; i++)
 	{
-		inFile >> data;
-		if (data == "v") {
-			inFile >> indexedVertices[i].x;
-			inFile >> indexedVertices[i].y;
-			inFile >> indexedVertices[i].z;
-			std::cout << indexedVertices[i].x << " " << indexedVertices[i].y << " " << indexedVertices[i].z << std::endl;
-		}
+		inFile >> data; // just captures irrelevenat line starters
+		inFile >> indexedVertices[i].x;
+		inFile >> indexedVertices[i].y;
+		inFile >> indexedVertices[i].z;
+		std::cout << indexedVertices[i].x << " " << indexedVertices[i].y << " " << indexedVertices[i].z << std::endl;
 	}
 
 	inFile.clear();
 	inFile.seekg(numVertices+2); // skip final v line and empty line
 
 	for (int i = 0; i < numIndices; i++) {
-		inFile >> data;
-		if (data == "f") {
-			inFile >> indices[i];
-			inFile >> indices[i+1];
-			inFile >> indices[i+2];
-			std::cout << indices[i] << " " << indices[i+1] << " " << indices[i+2] << std::endl;
-		}
+		inFile >> data; // just captures irrelevenat line starters
+		inFile >> indices[i];
+		inFile >> indices[i+1];
+		inFile >> indices[i+2];
+		std::cout << indices[i] << " " << indices[i+1] << " " << indices[i+2] << std::endl;
 	}
 
 	// temporary
