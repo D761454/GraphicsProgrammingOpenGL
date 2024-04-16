@@ -8,6 +8,7 @@
 #include <fstream>
 #include "Structures.h"
 #include "Cube.h"
+#include "Teapot.h"
 
 using namespace std;
 
@@ -19,6 +20,8 @@ private:
 	Camera* camera;
 
 	Cube* cube[10];
+
+	Teapot* teapot;
 
 public:
 	// constructor def

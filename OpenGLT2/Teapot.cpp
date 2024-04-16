@@ -56,29 +56,40 @@ bool Teapot::Load(char* path) {
 
 	// edit for obj file format
 
-	inFile >> numVertices;
+	// get line start with letter and final line start with letter, make array of num, used for vertices v and indices f
+
+	int numVertices = 0, numIndices = 0;
+	std::string data;
+
+	while (!inFile.eof()) {
+		inFile >> data;
+		if (data == "v") {
+			numVertices++;
+		}
+		else if (data == "f") {
+			numIndices++;
+		}
+	}
 	indexedVertices = new Vertex[numVertices];
+	indices = new GLushort[numIndices*3];
+
+	std::cout << numVertices << " " << numIndices << std::endl;
+
+	fseek(stdin, 0, SEEK_SET);
+
 	for (int i = 0; i < numVertices; i++)
 	{
-		inFile >> indexedVertices[i].x;
-		inFile >> indexedVertices[i].y;
-		inFile >> indexedVertices[i].z;
-	}
-
-	inFile >> numColors;
-	indexedColors = new Color[numColors];
-	for (int i = 0; i < numColors; i++)
-	{
-		inFile >> indexedColors[i].r;
-		inFile >> indexedColors[i].g;
-		inFile >> indexedColors[i].b;
-	}
-
-	inFile >> numIndices;
-	indices = new GLushort[numIndices];
-	for (int i = 0; i < numIndices; i++)
-	{
-		inFile >> indices[i];
+		inFile >> data;
+		if (data == "v") {
+			inFile >> indexedVertices[i].x;
+			inFile >> indexedVertices[i].y;
+			inFile >> indexedVertices[i].z;
+		}
+		else if (data == "f") {
+			inFile >> indices[i];
+			inFile >> indices[i];
+			inFile >> indices[i];
+		}
 	}
 
 	inFile.close();
