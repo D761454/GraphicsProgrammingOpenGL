@@ -87,6 +87,9 @@ bool Teapot::Load(char* path) {
 			std::cout << indexedVertices[i].x << " " << indexedVertices[i].y << " " << indexedVertices[i].z << std::endl;
 		}
 	}
+
+	fseek(stdin, 1, SEEK_CUR); // skip empty line between v AND f
+
 	for (int i = 0; i < numIndices; i++) {
 		inFile >> data;
 		if (data == "f") {
