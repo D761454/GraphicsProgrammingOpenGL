@@ -76,7 +76,7 @@ bool Teapot::Load(char* path) {
 	std::cout << numVertices << " " << numIndices << std::endl;
 
 	inFile.clear();
-	inFile.seekg(0);
+	inFile.seekg(0, inFile.beg);
 
 	for (int i = 0; i < numVertices; i++)
 	{
@@ -87,10 +87,10 @@ bool Teapot::Load(char* path) {
 		std::cout << indexedVertices[i].x << " " << indexedVertices[i].y << " " << indexedVertices[i].z << std::endl;
 	}
 
-	inFile.clear();
-	inFile.seekg(numVertices+2); // skip final v line and empty line
+	//inFile.clear();
+	inFile.seekg(2, SEEK_CUR); // skip final v line and empty line
 
-	for (int i = 0; i < numIndices; i+=3) {
+	for (int i = 0; i < numIndices; i+=3) { // error : only outputting 52685 repeatedly
 		inFile >> data; // just captures irrelevenat line starters
 		inFile >> indices[i];
 		inFile >> indices[i+1];
