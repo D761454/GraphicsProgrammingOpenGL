@@ -84,11 +84,16 @@ bool Teapot::Load(char* path) {
 			inFile >> indexedVertices[i].x;
 			inFile >> indexedVertices[i].y;
 			inFile >> indexedVertices[i].z;
+			std::cout << indexedVertices[i].x << " " << indexedVertices[i].y << " " << indexedVertices[i].z << std::endl;
 		}
-		else if (data == "f") {
+	}
+	for (int i = 0; i < numIndices; i++) {
+		inFile >> data;
+		if (data == "f") {
 			inFile >> indices[i];
-			inFile >> indices[i];
-			inFile >> indices[i];
+			inFile >> indices[i+1];
+			inFile >> indices[i+2];
+			std::cout << indices[i] << " " << indices[i+1] << " " << indices[i+2] << std::endl;
 		}
 	}
 
