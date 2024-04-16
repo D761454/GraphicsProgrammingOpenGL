@@ -75,7 +75,8 @@ bool Teapot::Load(char* path) {
 
 	std::cout << numVertices << " " << numIndices << std::endl;
 
-	fseek(stdin, 0, SEEK_SET);
+	inFile.clear();
+	inFile.seekg(0);
 
 	for (int i = 0; i < numVertices; i++)
 	{
@@ -88,7 +89,8 @@ bool Teapot::Load(char* path) {
 		}
 	}
 
-	fseek(stdin, 1, SEEK_CUR); // skip empty line between v AND f
+	inFile.clear();
+	inFile.seekg(numVertices+2); // skip final v line and empty line
 
 	for (int i = 0; i < numIndices; i++) {
 		inFile >> data;
