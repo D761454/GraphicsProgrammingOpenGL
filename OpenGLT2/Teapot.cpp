@@ -92,6 +92,18 @@ bool Teapot::Load(char* path) {
 		}
 	}
 
+	// temporary
+	indexedColors = new Color[8];
+	indexedColors[0] = { 1,1,1 };
+	indexedColors[1] = { 1,1,0 };
+	indexedColors[2] = { 1,0,0 };
+	indexedColors[3] = { 1,0,1 };
+	indexedColors[4] = { 0,0,1 };
+	indexedColors[5] = { 0,1,1 };
+	indexedColors[6] = { 0,1,0 };
+	indexedColors[7] = { 0,0,0 };
+
+
 	inFile.close();
 
 	return true;
