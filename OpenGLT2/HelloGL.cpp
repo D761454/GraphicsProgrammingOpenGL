@@ -68,12 +68,12 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 		camera->eye.x -= 0.1f;
 	}
 	if (key == 'w') { 
-		camera->center.z += 0.1f;
-		camera->eye.z += 0.1f;
-	}
-	if (key == 's') {
 		camera->center.z -= 0.1f;
 		camera->eye.z -= 0.1f;
+	}
+	if (key == 's') {
+		camera->center.z += 0.1f;
+		camera->eye.z += 0.1f;
 	}
 	if (key == '1') {
 		camera->center.y += 0.1f;
