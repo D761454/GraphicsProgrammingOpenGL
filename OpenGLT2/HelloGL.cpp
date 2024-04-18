@@ -6,7 +6,7 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 50.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
-	camera->angleX = 0.0f; camera->angleY = 0.0f;
+	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
 
 	Cube::Load((char*)"cube.txt");
 	Teapot::Load((char*)"teapot.obj");
@@ -63,38 +63,45 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 'd') {
 		camera->center.x += 0.1f;
 		camera->eye.x += 0.1f;
-		camera->center.z += camera->angleX;
-		camera->eye.z += camera->angleX;
 	}
 	if (key == 'a') {
 		camera->center.x -= 0.1f;
 		camera->eye.x -= 0.1f;
-		camera->center.z -= camera->angleX;
-		camera->eye.z -= camera->angleX;
 	}
 	if (key == 'w') { 
 		camera->center.z -= 0.1f;
 		camera->eye.z -= 0.1f;
-		camera->center.x += camera->angleX;
-		camera->eye.x += camera->angleX;
-		camera->center.y -= camera->angleY;
-		camera->eye.y -= camera->angleY;
 	}
 	if (key == 's') {
 		camera->center.z += 0.1f;
 		camera->eye.z += 0.1f;
-		camera->center.x -= camera->angleX;
-		camera->eye.x -= camera->angleX;
-		camera->center.y += camera->angleY;
-		camera->eye.y += camera->angleY;
 	}
-	if (key == '1') {
+	if (key == '9') {
 		camera->center.y += 0.1f;
 		camera->eye.y += 0.1f;
 	}
-	if (key == '2') {
+	if (key == '0') {
 		camera->center.y -= 0.1f;
 		camera->eye.y -= 0.1f;
+	}
+	// rotate
+	if (key == '4') {
+		camera->angleX += 0.1f;
+		camera->eye.x = sin(camera->angleX) * camera->radius;
+		camera->eye.z = cos(camera->angleX) * camera->radius;
+	}
+	if (key == '6') {
+		camera->angleX -= 0.1f;
+		camera->eye.x = sin(camera->angleX) * camera->radius;
+		camera->eye.z = cos(camera->angleX) * camera->radius;
+	}
+	if (key == '8') {
+		camera->angleY += 0.1f;
+
+	}
+	if (key == '2') {
+		camera->angleY -= 0.1f;
+
 	}
 }
 
