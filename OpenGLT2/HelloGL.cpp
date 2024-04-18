@@ -120,9 +120,3 @@ standard *
 2 * [2, 0] = [4, 0]
     [3, 4]   [6, 8]
 */
-
-/*
-Teapot obj formatting
-v x y z		-	where 1st letter on line = v	-	vertex info
-f a b c		-	where 1st letter on line = f	-	indices info
-*/
