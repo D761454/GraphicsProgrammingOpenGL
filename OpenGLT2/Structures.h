@@ -10,6 +10,7 @@ struct Vector3 {
 
 struct Camera {
 	Vector3 eye, center, up;
+	float angleX, angleY;
 };
 
 struct Color {
