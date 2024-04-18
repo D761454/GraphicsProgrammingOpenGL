@@ -84,7 +84,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 		camera->center.y -= 0.1f;
 		camera->eye.y -= 0.1f;
 	}
-	// rotate
+	// rotate around origin
 	if (key == '4') {
 		camera->angleX += 0.1f;
 		if (camera->angleX > 6.3f) {
