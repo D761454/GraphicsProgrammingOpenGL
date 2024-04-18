@@ -31,17 +31,17 @@ Teapot::~Teapot() {
 void Teapot::Draw() {
 	if (indexedVertices != nullptr && indexedColors != nullptr && indices != nullptr) {
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
+		//glEnableClientState(GL_COLOR_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, indexedVertices);
-		glColorPointer(3, GL_FLOAT, 0, indexedColors);
+		//glColorPointer(3, GL_FLOAT, 0, indexedColors);
 
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
 		glRotatef(_rotation, _rotationAxis[0], _rotationAxis[1], _rotationAxis[2]);
-		glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, indices); // ni = 36
+		glDrawElements(GL_TRIANGLES, numIndices, GL_UNSIGNED_SHORT, indices);
 		glPopMatrix();
 
-		glDisableClientState(GL_COLOR_ARRAY);
+		//glDisableClientState(GL_COLOR_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 }
@@ -67,10 +67,9 @@ bool Teapot::Load(char* path) {
 			numIndices+=3;
 		}
 	}
+
 	indexedVertices = new Vertex[numVertices];
 	indices = new GLushort[numIndices];
-
-	std::cout << numVertices << " " << numIndices << std::endl;
 
 	inFile.clear();
 	inFile.seekg(0, inFile.beg);
@@ -81,15 +80,13 @@ bool Teapot::Load(char* path) {
 		inFile >> indexedVertices[i].x;
 		inFile >> indexedVertices[i].y;
 		inFile >> indexedVertices[i].z;
-		std::cout << indexedVertices[i].x << " " << indexedVertices[i].y << " " << indexedVertices[i].z << std::endl;
 	}
 
-	for (int i = 0; i < numIndices; i+=3) { // error : only outputting 52685 repeatedly
+	for (int i = 0; i < numIndices; i+=3) {
 		inFile >> data; // just captures irrelevenat line starters
 		inFile >> indices[i];
 		inFile >> indices[i+1];
 		inFile >> indices[i+2];
-		std::cout << indices[i] << " " << indices[i+1] << " " << indices[i+2] << std::endl;
 	}
 
 	// temporary
