@@ -97,11 +97,13 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	}
 	if (key == '8') {
 		camera->angleY += 0.1f;
-
+		camera->eye.y = sin(camera->angleY) * camera->radius;
+		camera->eye.z = cos(camera->angleY) * camera->radius;
 	}
 	if (key == '2') {
 		camera->angleY -= 0.1f;
-
+		camera->eye.y = sin(camera->angleY) * camera->radius;
+		camera->eye.z = cos(camera->angleY) * camera->radius;
 	}
 }
 
