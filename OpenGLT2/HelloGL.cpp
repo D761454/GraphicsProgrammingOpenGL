@@ -87,21 +87,31 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	// rotate
 	if (key == '4') {
 		camera->angleX += 0.1f;
+		if (camera->angleX > 6.3f) {
+			camera->angleX = 0.0f;
+		}
 		camera->eye.x = sin(camera->angleX) * camera->radius;
 		camera->eye.z = cos(camera->angleX) * camera->radius;
 	}
 	if (key == '6') {
 		camera->angleX -= 0.1f;
+		if (camera->angleX < -6.3) {
+			camera->angleX = 0.0f;
+		}
 		camera->eye.x = sin(camera->angleX) * camera->radius;
 		camera->eye.z = cos(camera->angleX) * camera->radius;
 	}
 	if (key == '8') {
-		camera->angleY += 0.1f;
+		if (camera->angleY < 1.5f) {
+			camera->angleY += 0.1f;
+		}
 		camera->eye.y = sin(camera->angleY) * camera->radius;
 		camera->eye.z = cos(camera->angleY) * camera->radius;
 	}
 	if (key == '2') {
-		camera->angleY -= 0.1f;
+		if (camera->angleY > -1.5f) {
+			camera->angleY -= 0.1f;
+		}
 		camera->eye.y = sin(camera->angleY) * camera->radius;
 		camera->eye.z = cos(camera->angleY) * camera->radius;
 	}
