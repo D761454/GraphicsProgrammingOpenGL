@@ -54,13 +54,10 @@ bool Teapot::Load(char* path) {
 		return false;
 	}
 
-	// edit for obj file format
-
-	// get line start with letter and final line start with letter, make array of num, used for vertices v and indices f
-
 	int numVertices = 0, numIndices = 0;
 	std::string data;
 
+	// 
 	while (!inFile.eof()) {
 		inFile >> data;
 		if (data == "v") {
@@ -87,10 +84,7 @@ bool Teapot::Load(char* path) {
 		std::cout << indexedVertices[i].x << " " << indexedVertices[i].y << " " << indexedVertices[i].z << std::endl;
 	}
 
-	inFile.clear();
-	inFile.seekg(+2, SEEK_CUR); // skip final v line and empty line
-
-	for (int i = 0; i < (numIndices-(numIndices%3)); i+=3) { // error : only outputting 52685 repeatedly
+	for (int i = 0; i < numIndices; i+=3) { // error : only outputting 52685 repeatedly
 		inFile >> data; // just captures irrelevenat line starters
 		inFile >> indices[i];
 		inFile >> indices[i+1];
