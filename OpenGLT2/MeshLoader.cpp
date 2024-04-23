@@ -35,7 +35,7 @@ namespace MeshLoader
 		if (mesh.ColorCount > 0) {
 			mesh.Colors = new Color[mesh.ColorCount];
 
-			for (int i; i < mesh.ColorCount; i++) {
+			for (int i = 0; i < mesh.ColorCount; i++) {
 				inFile >> mesh.Colors[i].r;
 				inFile >> mesh.Colors[i].g;
 				inFile >> mesh.Colors[i].b;
