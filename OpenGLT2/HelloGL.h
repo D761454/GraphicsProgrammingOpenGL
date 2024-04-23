@@ -8,9 +8,9 @@
 #include <fstream>
 #include "Structures.h"
 #include "Cube.h"
+#include "StaticObject.h"
 #include "MeshLoader.h"
 #include "SceneObject.h"
-#include "StaticObject.h"
 #include "Teapot.h"
 
 using namespace std;

@@ -13,6 +13,7 @@ class StaticObject : public SceneObject
 private:
 	GLfloat _rotation;
 	Vector3 _position;
+	float _rotationAxis[3] = { 0.0f, 0.0f, 0.0f };
 public:
 	StaticObject(Mesh* mesh, float x, float y, float z);
 	~StaticObject();
