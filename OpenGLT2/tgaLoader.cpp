@@ -1,4 +1,4 @@
-int LoadTextureTGA(const char* textureFileName)
+/*int LoadTextureTGA(const char* textureFileName)
 {
     GLuint ID = 0;
     char* tempHeaderData = new char[18]; //18 Bytes is TGA Header Size
@@ -57,4 +57,4 @@ int LoadTextureTGA(const char* textureFileName)
     delete[] tempTextureData; //Clear up the data - We don't need this any more
 
     return ID;
-}
+}*/
