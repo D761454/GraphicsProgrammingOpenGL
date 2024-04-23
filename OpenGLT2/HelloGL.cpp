@@ -14,15 +14,15 @@ void HelloGL::InitObjects() {
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
 
-	Cube::Load((char*)"cube.txt");
-	Teapot::Load((char*)"teapot.obj");
+	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
+	//Teapot::Load((char*)"teapot.obj");
 
 	for (int i = 0; i < 10; i++)
 	{
-		cube[i] = new Cube(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		cube[i] = new Cube(cubeMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 
-	teapot = new Teapot(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	//teapot = new Teapot(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 }
 
 void HelloGL::InitGL(int argc, char* argv[]) {
@@ -60,7 +60,7 @@ void HelloGL::Display() {
 		cube[i]->Draw();
 	}
 
-	teapot->Draw();
+	//teapot->Draw();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
@@ -141,7 +141,7 @@ void HelloGL::Update() {
 		cube[i]->Update();
 	}
 
-	teapot->Update();
+	//teapot->Update();
 
 	glutPostRedisplay();
 }
@@ -149,7 +149,7 @@ void HelloGL::Update() {
 HelloGL::~HelloGL(void) {
 	delete camera;
 	delete[] cube;
-	delete teapot;
+	//delete teapot;
 }
 
 /*

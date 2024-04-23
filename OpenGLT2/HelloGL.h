@@ -8,6 +8,7 @@
 #include <fstream>
 #include "Structures.h"
 #include "Cube.h"
+#include "MeshLoader.h"
 #include "Teapot.h"
 
 using namespace std;
