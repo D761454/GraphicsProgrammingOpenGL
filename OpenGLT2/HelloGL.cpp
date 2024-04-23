@@ -1,6 +1,12 @@
 #include "HelloGL.h"
 
 HelloGL::HelloGL(int argc, char* argv[]) {
+	InitGL(argc, argv); // 1st
+	InitObjects();
+	glutMainLoop();
+}
+
+void HelloGL::InitObjects() {
 	// camera setup
 	camera = new Camera();
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 50.0f;
@@ -17,7 +23,9 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	}
 
 	teapot = new Teapot(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+}
 
+void HelloGL::InitGL(int argc, char* argv[]) {
 	// glut setup
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
@@ -41,7 +49,6 @@ HelloGL::HelloGL(int argc, char* argv[]) {
 	glViewport(0, 0, 800, 800); // set viewport to be window
 	gluPerspective(45, 1, 1, 1000); // set correct perspective: FOV, ASPECT RATIO, NEAR CLIPPING DIST, FAR CLIPPING DIST
 	glMatrixMode(GL_MODELVIEW);
-	glutMainLoop();
 }
 
 void HelloGL::Display() {

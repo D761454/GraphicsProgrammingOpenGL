@@ -10,11 +10,7 @@
 class Cube
 {
 private:
-	static int numVertices, numColors, numIndices;
-
-	static Vertex* indexedVertices;
-	static Color* indexedColors;
-	static GLushort* indices;
+	Mesh* _mesh;
 
 	GLfloat _rotation;
 	Vector3 _position;
@@ -22,7 +18,7 @@ private:
 	float _rotationAxis[3] = {0.0f, 0.0f, 0.0f};
 
 public:
-	Cube(float x, float y, float z);
+	Cube(Mesh* mesh, float x, float y, float z);
 	~Cube();
 
 	void Draw();
