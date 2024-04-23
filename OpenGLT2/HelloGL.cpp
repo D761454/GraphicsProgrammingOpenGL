@@ -15,7 +15,7 @@ void HelloGL::InitObjects() {
 	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
-	Mesh* staticMesh = MeshLoader::Load((char*)"cube.txt");
+	Mesh* staticMesh = MeshLoader::Load((char*)"pyramid.txt");
 	//Teapot::Load((char*)"teapot.obj");
 
 	for (int i = 0; i < 5; i++)
