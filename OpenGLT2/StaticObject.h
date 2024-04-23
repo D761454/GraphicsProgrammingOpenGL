@@ -8,18 +8,14 @@
 #include <fstream>
 #include <iostream>
 
-class Cube : public SceneObject
+class StaticObject : public SceneObject
 {
 private:
-	//Mesh* _mesh;
 	GLfloat _rotation;
 	Vector3 _position;
-	GLfloat _rotationSpeed = 1.0f;
-	float _rotationAxis[3] = {0.0f, 0.0f, 0.0f};
-
 public:
-	Cube(Mesh* mesh, float x, float y, float z);
-	~Cube();
+	StaticObject(Mesh* mesh, float x, float y, float z);
+	~StaticObject();
 
 	void Draw();
 	void Update();

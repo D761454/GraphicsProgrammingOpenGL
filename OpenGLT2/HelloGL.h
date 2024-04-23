@@ -9,6 +9,8 @@
 #include "Structures.h"
 #include "Cube.h"
 #include "MeshLoader.h"
+#include "SceneObject.h"
+#include "StaticObject.h"
 #include "Teapot.h"
 
 using namespace std;
@@ -20,7 +22,7 @@ class HelloGL
 private:
 	Camera* camera;
 
-	Cube* cube[10];
+	SceneObject* objects[10];
 
 	Teapot* teapot;
 

@@ -15,11 +15,17 @@ void HelloGL::InitObjects() {
 	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
+	Mesh* staticMesh = MeshLoader::Load((char*)"cube.txt");
 	//Teapot::Load((char*)"teapot.obj");
 
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 5; i++)
 	{
-		cube[i] = new Cube(cubeMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		objects[i] = new Cube(cubeMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		objects[i] = new SceneObject(staticMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 
 	//teapot = new Teapot(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
@@ -57,7 +63,7 @@ void HelloGL::Display() {
 
 	for (int i = 0; i < 10; i++)
 	{
-		cube[i]->Draw();
+		objects[i]->Draw();
 	}
 
 	//teapot->Draw();
@@ -138,7 +144,7 @@ void HelloGL::Update() {
 
 	for (int i = 0; i < 10; i++)
 	{
-		cube[i]->Update();
+		objects[i]->Update();
 	}
 
 	//teapot->Update();
@@ -148,7 +154,7 @@ void HelloGL::Update() {
 
 HelloGL::~HelloGL(void) {
 	delete camera;
-	delete[] cube;
+	delete[] objects;
 	//delete teapot;
 }
 
