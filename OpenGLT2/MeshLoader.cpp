@@ -48,20 +48,27 @@ namespace MeshLoader
 	{
 		inFile >> mesh.TexCoordCount;
 
-		if (mesh.TexCoordCount > 0) {
-			mesh.TexCoords = new TexCoord[mesh.TexCoordCount];
+		if (mesh.TexCoordCount == mesh.VertexCount) {
+			if (mesh.TexCoordCount > 0) {
+				mesh.TexCoords = new TexCoord[mesh.TexCoordCount];
 
-			for (int i = 0; i < mesh.TexCoordCount; i++)
-			{
-				inFile >> mesh.TexCoords[i].u;
-				inFile >> mesh.TexCoords[i].v;
+				for (int i = 0; i < mesh.TexCoordCount; i++)
+				{
+					inFile >> mesh.TexCoords[i].u;
+					inFile >> mesh.TexCoords[i].v;
+				}
 			}
+		}
+		else {
+			mesh.IndexCount = mesh.TexCoordCount;
 		}
 	}
 
 	void LoadIndices(ifstream& inFile, Mesh& mesh)
 	{
-		inFile >> mesh.IndexCount;
+		if (mesh.TexCoordCount == mesh.VertexCount) {
+			inFile >> mesh.IndexCount;
+		}
 
 		if (mesh.IndexCount > 0) {
 			mesh.Indices = new GLushort[mesh.IndexCount];

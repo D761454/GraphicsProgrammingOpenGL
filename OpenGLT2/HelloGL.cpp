@@ -44,9 +44,9 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 	glutCreateWindow("Simple OpenGL Program");
 
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-	glEnable(GL_DEPTH_TEST);
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
