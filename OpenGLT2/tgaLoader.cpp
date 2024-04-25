@@ -1,4 +1,12 @@
-/*int LoadTextureTGA(const char* textureFileName)
+#pragma once
+#include "Structures.h"
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int LoadTextureTGA(const char* textureFileName)
 {
     GLuint ID = 0;
     char* tempHeaderData = new char[18]; //18 Bytes is TGA Header Size
@@ -57,4 +65,4 @@
     delete[] tempTextureData; //Clear up the data - We don't need this any more
 
     return ID;
-}*/
+}
