@@ -27,7 +27,7 @@ void Cube::Draw() {
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
 		glRotatef(_rotation, _rotationAxis[0], _rotationAxis[1], _rotationAxis[2]);
-		glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices); // ni = 36
+		glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices);
 		glPopMatrix();
 
 		glDisableClientState(GL_COLOR_ARRAY);
