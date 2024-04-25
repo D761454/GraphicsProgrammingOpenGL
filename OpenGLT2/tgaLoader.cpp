@@ -40,8 +40,9 @@ int LoadTextureTGA(const char* textureFileName)
     pixelDepth = tempHeaderData[16]; // Find the pixel depth (24/32bpp)
 
     bool flipped = false;
-    if ((int)((tempHeaderData[11] << 8) + tempHeaderData[10]) == 0)
+    if ((int)((tempHeaderData[11] << 8) + tempHeaderData[10]) == 0) {
         flipped = true;
+    }
 
     //We only support RGB type
     if (type == 2)
@@ -54,11 +55,12 @@ int LoadTextureTGA(const char* textureFileName)
         mode = pixelDepth / 8;
 
         //Note that TGA files are stored as BGR(A) - So we need to specify the format as GL_BGR(A)_EXT
-        if (mode == 4)
+        if (mode == 4) {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, tempTextureData);
-        else
+        }
+        else {
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_BGR_EXT, GL_UNSIGNED_BYTE, tempTextureData);
-
+        }
     }
 
     delete[] tempHeaderData; //We don't need the header memory anymore
