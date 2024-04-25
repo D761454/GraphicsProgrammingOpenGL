@@ -48,7 +48,7 @@ namespace MeshLoader
 	{
 		inFile >> mesh.TexCoordCount;
 
-		if (mesh.TexCoordCount == mesh.VertexCount) {
+		if (mesh.TexCoordCount == mesh.VertexCount) { // may need changing later
 			if (mesh.TexCoordCount > 0) {
 				mesh.TexCoords = new TexCoord[mesh.TexCoordCount];
 
@@ -66,7 +66,7 @@ namespace MeshLoader
 
 	void LoadIndices(ifstream& inFile, Mesh& mesh)
 	{
-		if (mesh.TexCoordCount == mesh.VertexCount) {
+		if (mesh.TexCoordCount == mesh.VertexCount) { // may need changing later
 			inFile >> mesh.IndexCount;
 		}
 
