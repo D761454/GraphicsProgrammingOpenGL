@@ -1,6 +1,6 @@
 #include "StaticObject.h"
 
-StaticObject::StaticObject(Mesh* mesh, float x, float y, float z) : SceneObject(mesh) {
+StaticObject::StaticObject(Mesh* mesh, float x, float y, float z) : SceneObject(mesh, nullptr) {
 	_rotation = 0.0f;
 	_rotationAxis[rand() % 3] = 1.0f;
 	_position.x = x;

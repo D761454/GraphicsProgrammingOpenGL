@@ -18,16 +18,19 @@ void HelloGL::InitObjects() {
 	Mesh* staticMesh = MeshLoader::Load((char*)"pyramid.txt");
 	//Teapot::Load((char*)"teapot.obj");
 
+	Texture2D* texture = new Texture2D();
+	texture->Load((char*)"Penguins.raw", 512, 512);
+
 	for (int i = 0; i < 5; i++)
 	{
-		objects[i] = new Cube(cubeMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 
 	for (int i = 5; i < 10; i++)
 	{
 		objects[i] = new StaticObject(staticMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
-
+	
 	//teapot = new Teapot(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 }
 
@@ -40,6 +43,7 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 	glutInitWindowSize(800, 800);
 	glutCreateWindow("Simple OpenGL Program");
 
+	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glEnable(GL_DEPTH_TEST);

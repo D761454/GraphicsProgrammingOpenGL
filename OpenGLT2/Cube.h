@@ -4,6 +4,7 @@
 #include <gl/GLU.h> // OpenGL Utilities
 #include "GL\freeglut.h" // freeglut library
 #include "Structures.h"
+#include "Texture2D.h"
 #include "SceneObject.h"
 #include <fstream>
 #include <iostream>
@@ -18,7 +19,7 @@ private:
 	float _rotationAxis[3] = {0.0f, 0.0f, 0.0f};
 
 public:
-	Cube(Mesh* mesh, float x, float y, float z);
+	Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z);
 	~Cube();
 
 	void Draw();
