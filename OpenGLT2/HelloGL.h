@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include "Structures.h"
-#include "Cube.h"
+#include "RedCube.h"
 #include "StaticObject.h"
 #include "MeshLoader.h"
 #include "SceneObject.h"
