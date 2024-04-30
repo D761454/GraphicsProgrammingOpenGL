@@ -3,6 +3,7 @@
 HelloGL::HelloGL(int argc, char* argv[]) {
 	InitGL(argc, argv); // 1st
 	InitObjects();
+	InitLighting();
 	glutMainLoop();
 }
 
@@ -21,7 +22,7 @@ void HelloGL::InitObjects() {
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Penguins.raw", 512, 512);
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 10; i++)
 	{
 		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
@@ -169,6 +170,11 @@ void HelloGL::Motion(int x, int y) {
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.z, camera->up.y, camera->up.z);
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->ambient.x));
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->diffuse.x));
+	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->specular.x));
+	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
 
 	for (int i = 0; i < 10; i++)
 	{
