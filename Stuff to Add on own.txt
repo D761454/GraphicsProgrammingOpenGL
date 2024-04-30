@@ -1,0 +1,9 @@
+SkyBox;
+
+load from obj files;
+
+custom obj that give vertices, tex coords, normals and indices;
+
+better cam controls;
+
+diff obj materials;
