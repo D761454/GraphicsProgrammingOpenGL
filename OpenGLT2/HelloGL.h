@@ -13,6 +13,8 @@
 #include "SceneObject.h"
 #include "Teapot.h"
 
+#include "Constants.h"
+
 using namespace std;
 
 #define REFRESHRATE 16
