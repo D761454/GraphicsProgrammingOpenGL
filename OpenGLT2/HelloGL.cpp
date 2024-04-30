@@ -80,17 +80,20 @@ void HelloGL::InitLighting() {
 }
 
 void HelloGL::DrawString(const char* text, Vector3* position, Color* color) {
+	glDisable(GL_LIGHTING);
 	glEnableClientState(GL_COLOR);
 
 	glPushMatrix();
 
 	glTranslatef(position->x, position->y, position->z);
 	glRasterPos2f(0.0f, 0.0f);
+	glColor3fv(&color->r);
 	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text);
 
 	glPopMatrix();
 
 	glDisableClientState(GL_COLOR);
+	glEnable(GL_LIGHTING);
 }
 
 void HelloGL::Display() {
@@ -102,7 +105,7 @@ void HelloGL::Display() {
 		objects[i]->Draw();
 	}
 
-	Vector3 v = { camera->center.x  + -1.4f, camera->center.y + 0.7f, camera->center.z + -1.0f };
+	Vector3 v = { camera->eye.x  + -1.4f, camera->eye.y + 0.7f, -1.0f };
 	Color c = { 0.0f, 1.0f, 0.0f };
 	DrawString("Hello GL", &v, &c);
 
