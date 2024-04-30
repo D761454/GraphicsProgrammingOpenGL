@@ -15,7 +15,7 @@ void HelloGL::InitObjects() {
 	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
-	Mesh* staticMesh = MeshLoader::Load((char*)"pyramid.txt");
+	//Mesh* staticMesh = MeshLoader::Load((char*)"pyramid.txt");
 	//Teapot::Load((char*)"teapot.obj");
 
 	Texture2D* texture = new Texture2D();
@@ -26,10 +26,10 @@ void HelloGL::InitObjects() {
 		objects[i] = new Cube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
 
-	for (int i = 5; i < 10; i++)
+	/*for (int i = 5; i < 10; i++)
 	{
 		objects[i] = new StaticObject(staticMesh, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
-	}
+	}*/
 	
 	//teapot = new Teapot(((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 }
@@ -44,6 +44,8 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 	glutCreateWindow("Simple OpenGL Program");
 
 	glEnable(GL_TEXTURE_2D);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
@@ -59,6 +61,28 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 	glViewport(0, 0, 800, 800); // set viewport to be window
 	gluPerspective(45, 1, 1, 1000); // set correct perspective: FOV, ASPECT RATIO, NEAR CLIPPING DIST, FAR CLIPPING DIST
 	glMatrixMode(GL_MODELVIEW);
+}
+
+void HelloGL::InitLighting() {
+	_lightPosition = new Vector4();
+	_lightPosition->x = 0.0;
+	_lightPosition->y = 0.0;
+	_lightPosition->z = 1.0;
+	_lightPosition->w = 0.0;
+
+	_lightData = new Lighting();
+	_lightData->ambient.x = 0.2;
+	_lightData->ambient.y = 0.2;
+	_lightData->ambient.z = 0.2;
+	_lightData->ambient.w = 1.0;
+	_lightData->diffuse.x = 0.8;
+	_lightData->diffuse.y = 0.8;
+	_lightData->diffuse.z = 0.8;
+	_lightData->diffuse.w = 1.0;
+	_lightData->specular.x = 0.2;
+	_lightData->specular.y = 0.2;
+	_lightData->specular.z = 0.2;
+	_lightData->specular.w = 1.0;
 }
 
 void HelloGL::Display() {

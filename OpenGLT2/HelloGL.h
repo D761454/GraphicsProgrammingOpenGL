@@ -26,12 +26,16 @@ private:
 
 	Teapot* teapot;
 
+	Vector4* _lightPosition;
+	Lighting* _lightData;
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);
 
 	void InitObjects();
 	void InitGL(int argc, char* argv[]);
+
+	void InitLighting();
 
 	// destructor
 	~HelloGL(void);

@@ -13,11 +13,11 @@ StaticObject::~StaticObject() {
 }
 
 void StaticObject::Draw() {
-	if (_mesh->Vertices != nullptr && _mesh->Colors != nullptr && _mesh->Indices != nullptr) {
+	if (_mesh->Vertices != nullptr && _mesh->Normals != nullptr && _mesh->Indices != nullptr) {
 		glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
+		glEnableClientState(GL_NORMAL_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
-		glColorPointer(3, GL_FLOAT, 0, _mesh->Colors);
+		glNormalPointer(GL_FLOAT, 0, _mesh->Normals);
 
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
@@ -25,7 +25,7 @@ void StaticObject::Draw() {
 		glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices); // ni = 36
 		glPopMatrix();
 
-		glDisableClientState(GL_COLOR_ARRAY);
+		glDisableClientState(GL_NORMAL_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 }
