@@ -7,3 +7,16 @@ custom obj that give vertices, tex coords, normals and indices;
 better cam controls;
 
 diff obj materials;
+
+spawn obj on keyboard input - will use menu eventually;
+
+fps display;
+
+text that can move with the camera independant of rotation etc;
+
+
+
+
+
+
+for other mod - array of parent, each enemy = new specific enemy.
