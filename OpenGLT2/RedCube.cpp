@@ -1,6 +1,6 @@
-#include "Cube.h"
+#include "RedCube.h"
 
-Cube::Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObject(mesh, texture) {
+RedCube::RedCube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObject(mesh, texture) {
 	_rotation = 0.0f;
 	_rotationSpeed = (rand() % 2) + 1;
 	_rotationAxis[rand() % 3] = 1.0f;
@@ -9,11 +9,11 @@ Cube::Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObj
 	_position.z = z;
 }
 
-Cube::~Cube() {
+RedCube::~RedCube() {
 	
 }
 
-void Cube::ApplyMaterial() {
+void RedCube::ApplyMaterial() {
 	_material = new Material();
 	_material->ambient.x = 0.8; _material->ambient.y = 0.05; _material->ambient.z = 0.05; // uniform
 	_material->ambient.w = 1.0;
@@ -24,7 +24,7 @@ void Cube::ApplyMaterial() {
 	_material->shininess = 100.0f;
 }
 
-void Cube::Draw() {
+void RedCube::Draw() {
 	if (_mesh->Vertices != nullptr && _mesh->Normals != nullptr && _mesh->Indices != nullptr && _mesh->TexCoords != nullptr) {
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -52,6 +52,6 @@ void Cube::Draw() {
 	}
 }
 
-void Cube::Update() {
+void RedCube::Update() {
 	_rotation += _rotationSpeed;
 }

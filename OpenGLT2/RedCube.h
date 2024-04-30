@@ -9,7 +9,7 @@
 #include <fstream>
 #include <iostream>
 
-class Cube : public SceneObject
+class RedCube : public SceneObject
 {
 private:
 	//Mesh* _mesh;
@@ -20,8 +20,8 @@ private:
 
 	Material* _material;
 public:
-	Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z);
-	~Cube();
+	RedCube(Mesh* mesh, Texture2D* texture, float x, float y, float z);
+	~RedCube();
 
 	void ApplyMaterial();
 
