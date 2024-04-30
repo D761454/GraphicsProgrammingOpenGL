@@ -18,9 +18,12 @@ private:
 	GLfloat _rotationSpeed = 1.0f;
 	float _rotationAxis[3] = {0.0f, 0.0f, 0.0f};
 
+	Material* _material;
 public:
 	Cube(Mesh* mesh, Texture2D* texture, float x, float y, float z);
 	~Cube();
+
+	void ApplyMaterial();
 
 	void Draw();
 	void Update();

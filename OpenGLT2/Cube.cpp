@@ -13,6 +13,17 @@ Cube::~Cube() {
 	
 }
 
+void Cube::ApplyMaterial() {
+	_material = new Material();
+	_material->ambient.x = 0.8; _material->ambient.y = 0.05; _material->ambient.z = 0.05; // uniform
+	_material->ambient.w = 1.0;
+	_material->diffuse.x = 0.8; _material->diffuse.y = 0.05; _material->diffuse.z = 0.05; // bounce off
+	_material->diffuse.w = 1.0;
+	_material->specular.x = 1.0; _material->specular.y = 1.0; _material->specular.z = 1.0; // shiny and localised
+	_material->specular.w = 1.0;
+	_material->shininess = 100.0f;
+}
+
 void Cube::Draw() {
 	if (_mesh->Vertices != nullptr && _mesh->Normals != nullptr && _mesh->Indices != nullptr && _mesh->TexCoords != nullptr) {
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
@@ -23,6 +34,11 @@ void Cube::Draw() {
 		glNormalPointer(GL_FLOAT, 0, _mesh->Normals);
 
 		glTexCoordPointer(2, GL_FLOAT, 0, _mesh->TexCoords);
+		ApplyMaterial();
+		glMaterialfv(GL_FRONT, GL_AMBIENT, &(_material->ambient.x));
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, &(_material->diffuse.x));
+		glMaterialfv(GL_FRONT, GL_SPECULAR, &(_material->specular.x));
+		glMaterialfv(GL_FRONT, GL_SHININESS, &(_material->shininess));
 
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
