@@ -51,5 +51,7 @@ public:
 	void Motion(int x, int y);
 
 	void Update();
+
+	void DrawString(const char* text, Vector3* position, Color* color);
 };
 

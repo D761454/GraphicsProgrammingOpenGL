@@ -79,6 +79,20 @@ void HelloGL::InitLighting() {
 	_lightData->specular.w = 1.0;
 }
 
+void HelloGL::DrawString(const char* text, Vector3* position, Color* color) {
+	glEnableClientState(GL_COLOR);
+
+	glPushMatrix();
+
+	glTranslatef(position->x, position->y, position->z);
+	glRasterPos2f(0.0f, 0.0f);
+	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text);
+
+	glPopMatrix();
+
+	glDisableClientState(GL_COLOR);
+}
+
 void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene 
@@ -87,6 +101,10 @@ void HelloGL::Display() {
 	{
 		objects[i]->Draw();
 	}
+
+	Vector3 v = { camera->center.x  + -1.4f, camera->center.y + 0.7f, camera->center.z + -1.0f };
+	Color c = { 0.0f, 1.0f, 0.0f };
+	DrawString("Hello GL", &v, &c);
 
 	//teapot->Draw();
 
@@ -159,6 +177,7 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 void HelloGL::Motion(int x, int y) {
 
 }
+
 
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
