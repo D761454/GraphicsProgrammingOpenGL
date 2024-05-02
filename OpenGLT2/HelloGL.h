@@ -30,8 +30,9 @@ private:
 	Lighting* _lightData;
 
 	float fps = 0.0f;
-	float currentTime = 0.0f;
-	float lastRenderTime = 0.0f;
+	int currentTime = 0;
+	int lastTime = 0;
+	int frames = 0;
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);

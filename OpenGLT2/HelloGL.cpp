@@ -24,6 +24,8 @@ void HelloGL::InitObjects() {
 	{
 		objects[i] = new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 	}
+
+	lastTime = 0;
 }
 
 void HelloGL::InitGL(int argc, char* argv[]) {
@@ -120,9 +122,18 @@ void HelloGL::Display() {
 
 	TextPos v = { 10.0f, 770.0f };
 	Color c = { 0.0f, 1.0f, 0.0f };
-	char fpsArray[5];
+	char fpsArray[20];
 
-	sprintf_s(fpsArray, "%.2f", fps); // converts float to char
+	frames++;
+	currentTime = glutGet(GLUT_ELAPSED_TIME);
+
+	if (currentTime - lastTime > 1000) {
+		fps = frames * 1000 / (currentTime - lastTime);
+		lastTime = currentTime;
+		frames = 0;
+	}
+
+	sprintf_s(fpsArray, "FPS:%.2f", fps); // converts float to char
 
 	DrawString(fpsArray, &v, &c);
 
