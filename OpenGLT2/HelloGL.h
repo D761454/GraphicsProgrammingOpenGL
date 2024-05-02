@@ -49,6 +49,6 @@ public:
 
 	void Update();
 
-	void DrawString(const char* text, Vector3* position, Color* color);
+	void DrawString(const char* text, TextPos* position, Color* color);
 };
 

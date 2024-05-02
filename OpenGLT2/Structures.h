@@ -4,6 +4,9 @@
 #include <gl/GLU.h> // OpenGL Utilities
 #include "GL\freeglut.h" // freeglut library
 
+struct TextPos {
+	float x, y;
+};
 
 struct Vector3 {
 	float x, y, z;

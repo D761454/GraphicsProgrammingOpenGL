@@ -16,8 +16,6 @@ void HelloGL::InitObjects() {
 	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
-	//Mesh* staticMesh = MeshLoader::Load((char*)"pyramid.txt");
-	//Teapot::Load((char*)"teapot.obj");
 
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Images/Penguins.raw", 512, 512);
@@ -79,21 +77,32 @@ void HelloGL::InitLighting() {
 	_lightData->specular.w = 1.0;
 }
 
-void HelloGL::DrawString(const char* text, Vector3* position, Color* color) {
-	glDisable(GL_LIGHTING);
-	glEnableClientState(GL_COLOR);
+void HelloGL::DrawString(const char* text, TextPos* position, Color* color) {
+	glDisable(GL_TEXTURE_2D); // without this, text appears darker
+	glDisable(GL_LIGHTING); // needed as without, text = lighting colour
+	glEnableClientState(GL_COLOR); // enable colour
 
+	glMatrixMode(GL_PROJECTION); // needed for ortho
 	glPushMatrix();
+	glLoadIdentity();
+	gluOrtho2D(0, 800, 0, 800); // 2 view of window , means i can place text based on window
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
 
-	glTranslatef(position->x, position->y, position->z);
-	glRasterPos2f(0.0f, 0.0f);
+	glRasterPos2i(position->x, position->y); // x and y raster position, window coordinates
+
 	glColor3fv(&color->r);
 	glutBitmapString(GLUT_BITMAP_TIMES_ROMAN_24, (unsigned char*)text);
 
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 
 	glDisableClientState(GL_COLOR);
 	glEnable(GL_LIGHTING);
+	glEnable(GL_TEXTURE_2D);
 }
 
 void HelloGL::Display() {
@@ -105,11 +114,10 @@ void HelloGL::Display() {
 		objects[i]->Draw();
 	}
 
-	Vector3 v = { camera->center.x  + -1.4f, camera->center.y + 0.7f, -1.0f };
+
+	TextPos v = { 10.0f, 770.0f };
 	Color c = { 0.0f, 1.0f, 0.0f };
 	DrawString("Hello GL", &v, &c);
-
-	//teapot->Draw();
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
@@ -196,15 +204,12 @@ void HelloGL::Update() {
 		objects[i]->Update();
 	}
 
-	//teapot->Update();
-
 	glutPostRedisplay();
 }
 
 HelloGL::~HelloGL(void) {
 	delete camera;
 	delete[] objects;
-	//delete teapot;
 }
 
 /*
