@@ -119,7 +119,7 @@ void HelloGL::Display() {
 	}
 
 
-
+	// FPS text
 	TextPos v = { 10.0f, 770.0f };
 	Color c = { 0.0f, 1.0f, 0.0f };
 	char fpsArray[20];
@@ -134,7 +134,6 @@ void HelloGL::Display() {
 	}
 
 	sprintf_s(fpsArray, "FPS:%.2f", fps); // converts float to char
-
 	DrawString(fpsArray, &v, &c);
 
 	glFlush(); // flush scene to graphics card
