@@ -135,7 +135,6 @@
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="Structures.h" />
-    <ClInclude Include="Teapot.h" />
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
@@ -146,7 +145,6 @@
     <ClCompile Include="MeshLoader.cpp" />
     <ClCompile Include="SceneObject.cpp" />
     <ClCompile Include="StaticObject.cpp" />
-    <ClCompile Include="Teapot.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="tgaLoader.cpp" />
   </ItemGroup>

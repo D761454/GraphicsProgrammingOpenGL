@@ -15,12 +15,12 @@ void HelloGL::InitObjects() {
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
 
-	Mesh* cubeMesh = MeshLoader::Load((char*)"cube.txt");
+	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 	//Mesh* staticMesh = MeshLoader::Load((char*)"pyramid.txt");
 	//Teapot::Load((char*)"teapot.obj");
 
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Penguins.raw", 512, 512);
+	texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
 	for (int i = 0; i < ObjectAmounts; i++)
 	{
@@ -35,7 +35,7 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); // enable double buffering - reduce flicker, | GLUT_DEPTH enable depth testing
 	//glutInitWindowSize(16*50, 9*50);
 	glutInitWindowSize(800, 800);
-	glutCreateWindow("Simple OpenGL Program");
+	glutCreateWindow("Yoinky Sploinky");
 
 	glEnable(GL_TEXTURE_2D);
 	glEnable(GL_LIGHTING);
@@ -105,7 +105,7 @@ void HelloGL::Display() {
 		objects[i]->Draw();
 	}
 
-	Vector3 v = { camera->eye.x  + -1.4f, camera->eye.y + 0.7f, -1.0f };
+	Vector3 v = { camera->center.x  + -1.4f, camera->center.y + 0.7f, -1.0f };
 	Color c = { 0.0f, 1.0f, 0.0f };
 	DrawString("Hello GL", &v, &c);
 

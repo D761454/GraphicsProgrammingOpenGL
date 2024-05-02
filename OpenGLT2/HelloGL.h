@@ -11,7 +11,6 @@
 #include "StaticObject.h"
 #include "MeshLoader.h"
 #include "SceneObject.h"
-#include "Teapot.h"
 
 #include "Constants.h"
 
@@ -25,8 +24,6 @@ private:
 	Camera* camera;
 
 	SceneObject* objects[10];
-
-	Teapot* teapot;
 
 	Vector4* _lightPosition;
 	Lighting* _lightData;
