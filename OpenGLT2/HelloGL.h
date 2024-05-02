@@ -11,6 +11,7 @@
 #include "StaticObject.h"
 #include "MeshLoader.h"
 #include "SceneObject.h"
+#include <string>
 
 #include "Constants.h"
 
@@ -27,6 +28,10 @@ private:
 
 	Vector4* _lightPosition;
 	Lighting* _lightData;
+
+	float fps = 0.0f;
+	float currentTime = 0.0f;
+	float lastRenderTime = 0.0f;
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);

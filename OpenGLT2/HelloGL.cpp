@@ -86,6 +86,7 @@ void HelloGL::DrawString(const char* text, TextPos* position, Color* color) {
 	glPushMatrix();
 	glLoadIdentity();
 	gluOrtho2D(0, 800, 0, 800); // 2 view of window , means i can place text based on window
+
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
@@ -97,6 +98,7 @@ void HelloGL::DrawString(const char* text, TextPos* position, Color* color) {
 
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
+
 	glMatrixMode(GL_MODELVIEW);
 	glPopMatrix();
 
@@ -115,9 +117,14 @@ void HelloGL::Display() {
 	}
 
 
+
 	TextPos v = { 10.0f, 770.0f };
 	Color c = { 0.0f, 1.0f, 0.0f };
-	DrawString("Hello GL", &v, &c);
+	char fpsArray[5];
+
+	sprintf_s(fpsArray, "%.2f", fps); // converts float to char
+
+	DrawString(fpsArray, &v, &c);
 
 	glFlush(); // flush scene to graphics card
 	glutSwapBuffers();
