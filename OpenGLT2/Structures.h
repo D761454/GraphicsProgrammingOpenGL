@@ -56,3 +56,8 @@ struct BasicMesh{
 	GLushort* Indices;
 	int VertexCount, ColorCount, IndexCount;
 };
+
+struct ListNode {
+	int data;
+	ListNode* next;
+};
