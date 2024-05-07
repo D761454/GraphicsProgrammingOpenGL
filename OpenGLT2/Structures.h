@@ -58,6 +58,6 @@ struct BasicMesh{
 };
 
 struct ListNode {
-	int data;
-	ListNode* next;
+	SceneObject* data;
+	ListNode* next = nullptr;
 };

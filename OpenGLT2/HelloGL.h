@@ -12,6 +12,7 @@
 #include "MeshLoader.h"
 #include "SceneObject.h"
 #include <string>
+#include "LinkedList.h"
 
 #include "Constants.h"
 
@@ -24,7 +25,10 @@ class HelloGL
 private:
 	Camera* camera;
 
-	SceneObject* objects[10];
+	SceneObject* objects[ObjectAmounts];
+
+	LinkedList* list = new LinkedList;
+	ListNode* head = nullptr;
 
 	Vector4* _lightPosition;
 	Lighting* _lightData;

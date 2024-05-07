@@ -8,7 +8,7 @@ LinkedList::~LinkedList() {
 
 }
 
-ListNode* LinkedList::MakeNode(ListNode** head, int d) {
+ListNode* LinkedList::MakeNode(ListNode** head, SceneObject* d) {
 	ListNode* newNode = new ListNode;
 	ListNode* last = *head;
 
@@ -29,7 +29,7 @@ ListNode* LinkedList::MakeNode(ListNode** head, int d) {
 	return newNode;
 }
 
-void LinkedList::InsertAfter(ListNode* lastNode, int d) {
+void LinkedList::InsertAfter(ListNode* lastNode, SceneObject* d) {
 	ListNode* newNode = new ListNode;
 
 	newNode->data = d;
@@ -77,41 +77,22 @@ void LinkedList::DeleteAt(ListNode* node, int pos) {
 	}
 }
 
-ListNode* LinkedList::GetNode(ListNode* node, int pos) {
-	int count = 0;
-
-	while (node != nullptr) {
-		if (count == pos) {
-			std::cout << "Data stored at position " << pos << " is: " << node->data << std::endl;
-			return node;
-		}
-		count++;
-		node = node->next;
-	}
-	std::cout << pos << " was not a valid position..." << std::endl;
-	return nullptr;
-}
-
 // recursive
-ListNode* LinkedList::Find(ListNode* node, int val) {
+void LinkedList::UpdateList(ListNode* node) {
 	if (node != nullptr) {
-		if (node->data == val) {
-			std::cout << val << " is present in the list." << std::endl;
-			return node;
-		}
-		Find(node->next, val);
+		node->data->Update();
+		UpdateList(node->next);
 	}
 	else {
-		std::cout << val << " was not a valid item..." << std::endl;
-		return nullptr;
+		std::cout << "| NULL |" << std::endl;
 	}
 }
 
 // recursive
-void LinkedList::PrintList(ListNode* node) {
+void LinkedList::DrawList(ListNode* node) {
 	if (node != nullptr) {
-		std::cout << "| " << node->data << " |-->";
-		PrintList(node->next);
+		node->data->Update();
+		DrawList(node->next);
 	}
 	else {
 		std::cout << "| NULL |" << std::endl;

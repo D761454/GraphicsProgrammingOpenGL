@@ -20,9 +20,10 @@ void HelloGL::InitObjects() {
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
-	for (int i = 0; i < ObjectAmounts; i++)
+	for (int i = 0; i < ObjectAmounts; i++) // initial base amount of obj
 	{
-		objects[i] = new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		//objects[i] = new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
+		list->MakeNode(&head, new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
 	}
 
 	lastTime = 0;
@@ -113,10 +114,12 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene 
 
-	for (int i = 0; i < 10; i++)
+	/*for (int i = 0; i < ObjectAmounts; i++)
 	{
 		objects[i]->Draw();
-	}
+	}*/
+
+	list->DrawList(head);
 
 
 	// FPS text
@@ -216,10 +219,11 @@ void HelloGL::Update() {
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->specular.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
 
-	for (int i = 0; i < ObjectAmounts; i++)
+	/*for (int i = 0; i < ObjectAmounts; i++)
 	{
 		objects[i]->Update();
-	}
+	}*/
+	list->UpdateList(head);
 
 	glutPostRedisplay();
 }
@@ -227,6 +231,7 @@ void HelloGL::Update() {
 HelloGL::~HelloGL(void) {
 	delete camera;
 	delete[] objects;
+	list->DeleteList(&head);
 }
 
 /*
