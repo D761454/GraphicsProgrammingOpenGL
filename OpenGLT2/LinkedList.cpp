@@ -83,18 +83,12 @@ void LinkedList::UpdateList(ListNode* node) {
 		node->data->Update();
 		UpdateList(node->next);
 	}
-	else {
-		std::cout << "| NULL |" << std::endl;
-	}
 }
 
 // recursive
 void LinkedList::DrawList(ListNode* node) {
 	if (node != nullptr) {
-		node->data->Update();
+		node->data->Draw();
 		DrawList(node->next);
-	}
-	else {
-		std::cout << "| NULL |" << std::endl;
 	}
 }

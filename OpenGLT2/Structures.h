@@ -4,6 +4,8 @@
 #include <gl/GLU.h> // OpenGL Utilities
 #include "GL\freeglut.h" // freeglut library
 
+class SceneObject;
+
 struct TextPos {
 	float x, y;
 };
@@ -58,6 +60,6 @@ struct BasicMesh{
 };
 
 struct ListNode {
-	SceneObject* data;
+	SceneObject* data = nullptr;;
 	ListNode* next = nullptr;
 };
