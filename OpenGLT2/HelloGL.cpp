@@ -182,9 +182,7 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 		Texture2D* texture = new Texture2D();
 		texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
-		//Vector3 temp = Add(camera->eye, );
-
-		//list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->, camera->, camera->));
+		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 	}
 	if (button == 2 && state == 1) {
 
