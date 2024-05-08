@@ -48,35 +48,6 @@ void LinkedList::DeleteList(ListNode** node) {
 	*node = nullptr;
 }
 
-void LinkedList::DeleteAt(ListNode* node, int pos) {
-	int count = 0;
-	ListNode* pTemp;
-
-	// find item before target
-	// if target exists
-	// get item after target
-	// set pointer for item before target to point to item after target
-	// if item after target doesnt exist, set item before target to point to nullptr
-
-	while (node != nullptr) {
-		if (count == pos - 1) {
-			if (node->next != nullptr) {
-				pTemp = node->next;
-				if (pTemp->next != nullptr) {
-					node->next = pTemp->next;
-				}
-				else {
-					node->next = nullptr;
-				}
-
-				delete pTemp;
-			}
-		}
-		count++;
-		node = node->next;
-	}
-}
-
 void LinkedList::DeleteAtPos(ListNode** head, Camera* camera) {
 	ListNode* pTemp = *head;
 
