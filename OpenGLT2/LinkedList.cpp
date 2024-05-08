@@ -91,17 +91,19 @@ void LinkedList::DeleteAtPos(ListNode** head, Camera* camera) {
 			return;
 		}
 		// other
-		else if (pTemp->next->data->GetPosition().x <= camera->center.x + 5 && pTemp->next->data->GetPosition().x >= camera->center.x - 5 &&
-			pTemp->next->data->GetPosition().y <= camera->center.y + 5 && pTemp->next->data->GetPosition().y >= camera->center.y - 5 &&
-			pTemp->next->data->GetPosition().z <= camera->center.z + 5 && pTemp->next->data->GetPosition().z >= camera->center.z - 5) {
-			if (pTemp->next->next != nullptr) {
-				pTemp->next = pTemp->next->next;
+		if (pTemp->next != nullptr) {
+			if (pTemp->next->data->GetPosition().x <= camera->center.x + 5 && pTemp->next->data->GetPosition().x >= camera->center.x - 5 &&
+				pTemp->next->data->GetPosition().y <= camera->center.y + 5 && pTemp->next->data->GetPosition().y >= camera->center.y - 5 &&
+				pTemp->next->data->GetPosition().z <= camera->center.z + 5 && pTemp->next->data->GetPosition().z >= camera->center.z - 5) {
+				if (pTemp->next->next != nullptr) {
+					pTemp->next = pTemp->next->next;
+				}
+				else {
+					pTemp->next = nullptr;
+				}
+				cout << "Node Deleted" << endl;
+				return;
 			}
-			else {
-				pTemp->next = nullptr;
-			}
-			cout << "Node Deleted" << endl;
-			return;
 		}
 		DeleteAtPos(&pTemp->next, camera);
 	}
