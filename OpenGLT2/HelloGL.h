@@ -14,6 +14,8 @@
 #include <string>
 #include "LinkedList.h"
 
+#define _USE_MATH_DEFINES
+#include <math.h> // pi
 #include "Constants.h"
 
 using namespace std;
@@ -66,5 +68,6 @@ public:
 	Vector3 Multiply(Vector3 vector, float scalar);
 	Vector3 Add(Vector3 one, Vector3 two);
 	Vector3 Subtract(Vector3 one, Vector3 two);
+	Vector3 CamLook(Camera* camera);
 };
 

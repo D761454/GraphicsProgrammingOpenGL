@@ -13,12 +13,14 @@ void HelloGL::InitObjects() {
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 50.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = -5.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
-	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - (camera->eye.z + camera->center.z);
+	camera->angleX = 0.0f; camera->angleY = 0.0f; 
+	camera->radius = camera->eye.z - (camera->eye.z + camera->center.z);
+	camera->pitch = 0.0f; camera->yaw = -90.0f;
 
 	Vector3 Target;
 	Target.x = 0.0f; Target.y = 0.0f; Target.z = 0.0f;
 
-	camera->direction = Normalize(camera->eye, Target);
+	camera->direction = Normalize(camera->eye, Target); // could use center here - might make more sense
 	camera->relativeRight = Normalize(CrossProduct(camera->up, camera->direction));
 	camera->relativeUp = CrossProduct(camera->direction, camera->relativeRight);
 
@@ -29,7 +31,6 @@ void HelloGL::InitObjects() {
 
 	for (int i = 0; i < ObjectAmounts; i++) // initial base amount of obj
 	{
-		//objects[i] = new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f);
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
 	}
 
@@ -54,7 +55,7 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
-	glutMotionFunc(GLUTCallbacks::Motion);
+	glutPassiveMotionFunc(GLUTCallbacks::Motion);
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 
@@ -123,7 +124,6 @@ void HelloGL::Display() {
 
 	list->DrawList(head);
 
-
 	// FPS text
 	TextPos v = { 10.0f, 770.0f };
 	Color c = { 0.0f, 1.0f, 0.0f };
@@ -154,6 +154,9 @@ void HelloGL::Display() {
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	float speed = 5.0f * deltaTime;
+	if (key == 'q') {
+		glutExit();
+	}
 	if (key == 'd') { // normalized to not be different based on cam center
 		camera->eye = Add(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
 	}
@@ -185,6 +188,27 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 
 void HelloGL::Motion(int x, int y) {
 	// change cam center
+	// remmeber
+	// Euler Angles - pitch, yaw, roll
+	// pitch - up/down
+	// yaw - l/r
+	// roll - not needed for this as not making a plane simulation
+	// can use these to make new direction to look at
+	// if length = 1, cos x/1 and sin y/1
+	// radians tie angle and length - nice
+
+	if (x != 400 || y != 400) {
+		glutWarpPointer(400, 400);
+	}
+}
+
+Vector3 HelloGL::CamLook(Camera* camera) {
+	Vector3 temp;
+	temp.x = cos(camera->yaw * (M_PI / 180)) * cos(camera->pitch * (M_PI / 180));
+	temp.z = sin(camera->yaw * (M_PI / 180)) * cos(camera->pitch * (M_PI / 180));
+
+	temp.y = sin(camera->pitch * (M_PI / 180));
+	return temp;
 }
 
 Vector3 HelloGL::Normalize(Vector3 one, Vector3 two) {
@@ -210,6 +234,7 @@ Vector3 HelloGL::Normalize(Vector3 one) {
 
 Vector3 HelloGL::CrossProduct(Vector3 one, Vector3 two) {
 	// return vector perpendicular to one and two
+	// can be used for relative vectors when player rotates view around diff axis (up and right like in tutorials)
 	Vector3 crossProduct;
 	crossProduct.x = ((one.y * two.z) - (one.z * two.y));
 	crossProduct.y = ((one.z * two.x) - (one.x * two.z));
