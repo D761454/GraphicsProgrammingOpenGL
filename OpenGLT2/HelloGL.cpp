@@ -223,6 +223,8 @@ void HelloGL::Motion(int x, int y) {
 	if (camera->pitch < -89.0f)
 		camera->pitch = -89.0f;
 
+	camera->center = Normalize(CamLook(camera));
+
 	if (x != 400 || y != 400) {
 		glutWarpPointer(400, 400);
 	}
