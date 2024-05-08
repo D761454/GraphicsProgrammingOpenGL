@@ -13,6 +13,7 @@ void HelloGL::InitObjects() {
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 50.0f;
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = -5.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
+
 	camera->angleX = 0.0f; camera->angleY = 0.0f; 
 	camera->radius = camera->eye.z - (camera->eye.z + camera->center.z);
 	camera->pitch = 0.0f; camera->yaw = -90.0f;
@@ -20,9 +21,11 @@ void HelloGL::InitObjects() {
 	Vector3 Target;
 	Target.x = 0.0f; Target.y = 0.0f; Target.z = 0.0f;
 
-	camera->direction = Normalize(camera->eye, Target); // could use center here - might make more sense
-	camera->relativeRight = Normalize(CrossProduct(camera->up, camera->direction));
-	camera->relativeUp = CrossProduct(camera->direction, camera->relativeRight);
+	// if use, must call in update VVV
+	camera->direction = Normalize(camera->eye, Target); // just here for principle
+	camera->relativeRight = Normalize(CrossProduct(camera->up, camera->direction)); // just here for principle
+	camera->relativeUp = CrossProduct(camera->direction, camera->relativeRight); // just here for principle
+	// ^^^
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
@@ -179,7 +182,9 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 		Texture2D* texture = new Texture2D();
 		texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
-		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->center.x, camera->center.y, camera->center.z));
+		//Vector3 temp = Add(camera->eye, );
+
+		//list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->, camera->, camera->));
 	}
 	if (button == 2 && state == 1) {
 
@@ -202,11 +207,14 @@ void HelloGL::Motion(int x, int y) {
 	// z relates to sin yaw
 	// y relates to sin pitch, x and z relate to cos pitch too
 
-	float offsetX = x - curX;
+	/*float offsetX = x - curX;
 	float offsetY = curY - y;
 
 	curX = x;
-	curY = y;
+	curY = y;*/
+
+	float offsetX = x - 400;
+	float offsetY = 400 - y;
 
 	const float sensitivity = 0.1f;
 
@@ -225,9 +233,9 @@ void HelloGL::Motion(int x, int y) {
 
 	camera->center = Normalize(CamLook(camera));
 
-	/*if (x != 400 || y != 400) {
+	if (x != 400 || y != 400) {
 		glutWarpPointer(400, 400);
-	}*/
+	}
 }
 
 Vector3 HelloGL::CamLook(Camera* camera) {
