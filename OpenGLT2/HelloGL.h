@@ -38,6 +38,8 @@ private:
 	int currentTime = 0;
 	int lastTime = 0;
 	//int frames = 0;
+
+	float curX = 400, curY = 400;
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);

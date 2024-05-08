@@ -56,6 +56,7 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
 	glutPassiveMotionFunc(GLUTCallbacks::Motion);
+	glutSetCursor(GLUT_CURSOR_NONE);
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 
@@ -200,6 +201,27 @@ void HelloGL::Motion(int x, int y) {
 	// x relates to cos yaw
 	// z relates to sin yaw
 	// y relates to sin pitch, x and z relate to cos pitch too
+
+	float offsetX = x - curX;
+	float offsetY = y - curY;
+
+	curX = x;
+	curY = y;
+
+	const float sensitivity = 0.1f;
+
+	// reduce strength to slow movement
+	offsetX *= sensitivity;
+	offsetY *= sensitivity;
+
+	camera->yaw += offsetX;
+	camera->pitch += offsetY;
+
+	// prevents camera flipping - had when using keyboard for cam rotation
+	if (camera->pitch > 89.0f)
+		camera->pitch = 89.0f;
+	if (camera->pitch < -89.0f)
+		camera->pitch = -89.0f;
 
 	if (x != 400 || y != 400) {
 		glutWarpPointer(400, 400);
