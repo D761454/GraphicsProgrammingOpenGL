@@ -157,7 +157,7 @@ void HelloGL::Display() {
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
-	float speed = 5.0f * deltaTime;
+	float speed = 10.0f * deltaTime;
 	if (key == 'q') {
 		glutExit();
 	}
