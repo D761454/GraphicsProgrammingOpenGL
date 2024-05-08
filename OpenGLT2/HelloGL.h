@@ -64,5 +64,8 @@ public:
 	Vector3 Normalize(Vector3 one, Vector3 two);
 	Vector3 Normalize(Vector3 one);
 	Vector3 CrossProduct(Vector3 one, Vector3 two);
+	Vector3 Multiply(Vector3 vector, float scalar);
+	Vector3 Add(Vector3 one, Vector3 two);
+	Vector3 Subtract(Vector3 one, Vector3 two);
 };
 

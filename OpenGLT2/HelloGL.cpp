@@ -11,11 +11,16 @@ void HelloGL::InitObjects() {
 	// camera setup
 	camera = new Camera();
 	camera->eye.x = 0.0f; camera->eye.y = 0.0f; camera->eye.z = 50.0f;
-	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
+	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = -5.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
-	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
-	camera->direction = Normalize(camera->eye, camera->center);
-	camera->right = Normalize(CrossProduct(camera->up, camera->direction));
+	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - (camera->eye.z + camera->center.z);
+
+	Vector3 Target;
+	Target.x = 0.0f; Target.y = 0.0f; Target.z = 0.0f;
+
+	camera->direction = Normalize(camera->eye, Target);
+	camera->relativeRight = Normalize(CrossProduct(camera->up, camera->direction));
+	camera->relativeUp = CrossProduct(camera->direction, camera->relativeRight);
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
@@ -146,28 +151,23 @@ void HelloGL::Display() {
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
-	if (key == 'd') {
-		camera->center.x += 0.1f;
-		camera->eye.x += 0.1f;
+	const float speed = 0.05f;
+	if (key == 'd') { // normalized to not be different based on cam center
+		camera->eye = Add(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
 	}
 	if (key == 'a') {
-		camera->center.x -= 0.1f;
-		camera->eye.x -= 0.1f;
+		camera->eye = Subtract(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
 	}
 	if (key == 'w') { 
-		camera->center.z -= 0.1f;
-		camera->eye.z -= 0.1f;
+		camera->eye = Add(camera->eye, Multiply(camera->center, speed));
 	}
 	if (key == 's') {
-		camera->center.z += 0.1f;
-		camera->eye.z += 0.1f;
+		camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
 	}
 	if (key == '9') {
-		camera->center.y += 0.1f;
 		camera->eye.y += 0.1f;
 	}
 	if (key == '0') {
-		camera->center.y -= 0.1f;
 		camera->eye.y -= 0.1f;
 	}
 	// rotate around origin
@@ -244,6 +244,7 @@ Vector3 HelloGL::Normalize(Vector3 one) {
 }
 
 Vector3 HelloGL::CrossProduct(Vector3 one, Vector3 two) {
+	// return vector perpendicular to one and two
 	Vector3 crossProduct;
 	crossProduct.x = ((one.y * two.z) - (one.z * two.y));
 	crossProduct.y = ((one.z * two.x) - (one.x * two.z));
@@ -252,10 +253,35 @@ Vector3 HelloGL::CrossProduct(Vector3 one, Vector3 two) {
 	return crossProduct;
 }
 
+Vector3 HelloGL::Multiply(Vector3 vector, float scalar) {
+	Vector3 temp;
+	temp.x = vector.x * scalar;
+	temp.y = vector.y * scalar;
+	temp.z = vector.z * scalar;
+	return temp;
+}
+
+Vector3 HelloGL::Add(Vector3 one, Vector3 two) {
+	Vector3 temp;
+	temp.x = one.x + two.x;
+	temp.y = one.y + two.y;
+	temp.z = one.z + two.z;
+	return temp;
+}
+
+Vector3 HelloGL::Subtract(Vector3 one, Vector3 two) {
+	Vector3 temp;
+	temp.x = one.x - two.x;
+	temp.y = one.y - two.y;
+	temp.z = one.z - two.z;
+	return temp;
+}
+
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
-	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.z, camera->up.y, camera->up.z);
-	camera->direction = Normalize(camera->eye, camera->center);
+	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, 
+		camera->eye.x + camera->center.x, camera->eye.y + camera->center.y, camera->eye.z + camera->center.z, 
+		camera->up.z, camera->up.y, camera->up.z);
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->ambient.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->diffuse.x));
