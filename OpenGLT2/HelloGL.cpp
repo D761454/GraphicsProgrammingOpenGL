@@ -188,7 +188,7 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 
 void HelloGL::Motion(int x, int y) {
 	// change cam center
-	// remmeber
+	// remember
 	// Euler Angles - pitch, yaw, roll
 	// pitch - up/down
 	// yaw - l/r
@@ -196,6 +196,10 @@ void HelloGL::Motion(int x, int y) {
 	// can use these to make new direction to look at
 	// if length = 1, cos x/1 and sin y/1
 	// radians tie angle and length - nice
+	// triangles stuff 
+	// x relates to cos yaw
+	// z relates to sin yaw
+	// y relates to sin pitch, x and z relate to cos pitch too
 
 	if (x != 400 || y != 400) {
 		glutWarpPointer(400, 400);
