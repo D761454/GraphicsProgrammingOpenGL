@@ -13,7 +13,6 @@ public:
 	void InsertAfter(ListNode* lastNode, SceneObject* d);
 
 	void DeleteList(ListNode** node);
-	void DeleteAt(ListNode* node, int pos);
 	void DeleteAtPos(ListNode** head, Camera* camera);
 
 	void UpdateList(ListNode* node);
