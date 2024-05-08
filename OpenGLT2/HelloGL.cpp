@@ -210,6 +210,10 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->center.x, camera->center.y, camera->center.z));
 	}
+	if (button == 1 && state == 1) {
+
+		list->DeleteAtPos(&head, camera);
+	}
 }
 
 void HelloGL::Motion(int x, int y) {
