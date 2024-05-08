@@ -202,7 +202,14 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 }
 
 void HelloGL::Mouse(int button, int state, int x, int y) {
-	
+	if (button == 0 && state == 1) {
+		Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
+
+		Texture2D* texture = new Texture2D();
+		texture->Load((char*)"Images/Penguins.raw", 512, 512);
+
+		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->center.x, camera->center.y, camera->center.z));
+	}
 }
 
 void HelloGL::Motion(int x, int y) {
