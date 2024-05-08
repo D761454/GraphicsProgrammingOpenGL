@@ -15,6 +15,7 @@ void HelloGL::InitObjects() {
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
 	camera->direction = Normalize(camera->eye, camera->center);
+	camera->right = Normalize(CrossProduct(camera->up, camera->direction));
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
@@ -233,6 +234,23 @@ Vector3 HelloGL::Normalize(Vector3 one, Vector3 two) {
 	return Normalized;
 }
 
+Vector3 HelloGL::Normalize(Vector3 one) {
+	float length = sqrt((one.x * one.x) + (one.y * one.y) + (one.z * one.z));
+	Vector3 Normalized;
+	Normalized.x = one.x / length;
+	Normalized.y = one.y / length;
+	Normalized.z = one.z / length;
+	return Normalized;
+}
+
+Vector3 HelloGL::CrossProduct(Vector3 one, Vector3 two) {
+	Vector3 crossProduct;
+	crossProduct.x = ((one.y * two.z) - (one.z * two.y));
+	crossProduct.y = ((one.z * two.x) - (one.x * two.z));
+	crossProduct.z = ((one.x * two.y) - (one.y * two.x));
+
+	return crossProduct;
+}
 
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix

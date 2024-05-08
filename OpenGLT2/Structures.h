@@ -29,7 +29,7 @@ struct Material {
 
 struct Camera {
 	Vector3 eye, center, up;
-	Vector3 direction;
+	Vector3 direction, right;
 	float angleX, angleY, radius;
 };
 
