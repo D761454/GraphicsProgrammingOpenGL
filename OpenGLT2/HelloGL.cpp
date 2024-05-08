@@ -14,6 +14,7 @@ void HelloGL::InitObjects() {
 	camera->center.x = 0.0f; camera->center.y = 0.0f; camera->center.z = 0.0f;
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 	camera->angleX = 0.0f; camera->angleY = 0.0f; camera->radius = camera->eye.z - camera->center.z;
+	camera->direction = Normalize(camera->eye, camera->center);
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
@@ -236,8 +237,7 @@ Vector3 HelloGL::Normalize(Vector3 one, Vector3 two) {
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.z, camera->up.y, camera->up.z);
-
-	camera->Direction = Normalize(camera->eye, camera->center);
+	camera->direction = Normalize(camera->eye, camera->center);
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->ambient.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->diffuse.x));
