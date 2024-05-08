@@ -25,8 +25,6 @@ class HelloGL
 private:
 	Camera* camera;
 
-	SceneObject* objects[ObjectAmounts];
-
 	LinkedList* list = new LinkedList;
 	ListNode* head = nullptr;
 
@@ -37,7 +35,7 @@ private:
 	float deltaTime = 0.0f;
 	int currentTime = 0;
 	int lastTime = 0;
-	int frames = 0;
+	//int frames = 0;
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);

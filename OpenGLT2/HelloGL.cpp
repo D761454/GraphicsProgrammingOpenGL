@@ -121,11 +121,6 @@ void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene 
 
-	/*for (int i = 0; i < ObjectAmounts; i++)
-	{
-		objects[i]->Draw();
-	}*/
-
 	list->DrawList(head);
 
 
@@ -136,10 +131,11 @@ void HelloGL::Display() {
 
 	//frames++;
 	currentTime = glutGet(GLUT_ELAPSED_TIME);
-	deltaTime = currentTime - lastTime;
+	deltaTime = currentTime - lastTime; // ms
 	lastTime = currentTime;
 
 	fps = round(1000 / deltaTime);
+	deltaTime /= 1000; // s
 
 	/*if (currentTime - lastTime > 1000) { // makes less flashy / speedy fps display
 		fps = frames * 1000 / (currentTime - lastTime);
@@ -157,7 +153,7 @@ void HelloGL::Display() {
 }
 
 void HelloGL::Keyboard(unsigned char key, int x, int y) {
-	const float speed = 0.05f;
+	float speed = 5.0f * deltaTime;
 	if (key == 'd') { // normalized to not be different based on cam center
 		camera->eye = Add(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
 	}
@@ -169,43 +165,6 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	}
 	if (key == 's') {
 		camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
-	}
-	if (key == '9') {
-		camera->eye.y += 0.1f;
-	}
-	if (key == '0') {
-		camera->eye.y -= 0.1f;
-	}
-	// rotate around
-	if (key == '4') {
-		camera->angleX += 0.1f;
-		if (camera->angleX > 6.3f) {
-			camera->angleX = 0.0f;
-		}
-		camera->eye.x = sin(camera->angleX) * camera->radius;
-		camera->eye.z = cos(camera->angleX) * camera->radius;
-	}
-	if (key == '6') {
-		camera->angleX -= 0.1f;
-		if (camera->angleX < -6.3) {
-			camera->angleX = 0.0f;
-		}
-		camera->eye.x = sin(camera->angleX) * camera->radius;
-		camera->eye.z = cos(camera->angleX) * camera->radius;
-	}
-	if (key == '8') {
-		if (camera->angleY < 1.5f) {
-			camera->angleY += 0.1f;
-		}
-		camera->eye.y = sin(camera->angleY) * camera->radius;
-		camera->eye.z = cos(camera->angleY) * camera->radius;
-	}
-	if (key == '2') {
-		if (camera->angleY > -1.5f) {
-			camera->angleY -= 0.1f;
-		}
-		camera->eye.y = sin(camera->angleY) * camera->radius;
-		camera->eye.z = cos(camera->angleY) * camera->radius;
 	}
 }
 
@@ -225,7 +184,7 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 }
 
 void HelloGL::Motion(int x, int y) {
-
+	// change cam center
 }
 
 Vector3 HelloGL::Normalize(Vector3 one, Vector3 two) {
@@ -294,10 +253,6 @@ void HelloGL::Update() {
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->specular.x));
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
 
-	/*for (int i = 0; i < ObjectAmounts; i++)
-	{
-		objects[i]->Update();
-	}*/
 	list->UpdateList(head);
 
 	glutPostRedisplay();
@@ -305,7 +260,6 @@ void HelloGL::Update() {
 
 HelloGL::~HelloGL(void) {
 	delete camera;
-	delete[] objects;
 	list->DeleteList(&head);
 }
 
