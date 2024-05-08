@@ -85,8 +85,10 @@ void LinkedList::DeleteAtPos(ListNode** head, Camera* camera) {
 		if (pTemp->data->GetPosition().x <= camera->center.x + 5 && pTemp->data->GetPosition().x >= camera->center.x - 5 &&
 			pTemp->data->GetPosition().y <= camera->center.y + 5 && pTemp->data->GetPosition().y >= camera->center.y - 5 &&
 			pTemp->data->GetPosition().z <= camera->center.z + 5 && pTemp->data->GetPosition().z >= camera->center.z - 5) {
-			delete pTemp;
-			*head = nullptr;
+			*head = pTemp->next;
+
+			cout << "Head Deleted" << endl;
+			return;
 		}
 		// other
 		else if (pTemp->next->data->GetPosition().x <= camera->center.x + 5 && pTemp->next->data->GetPosition().x >= camera->center.x - 5 &&
@@ -98,6 +100,8 @@ void LinkedList::DeleteAtPos(ListNode** head, Camera* camera) {
 			else {
 				pTemp->next = nullptr;
 			}
+			cout << "Node Deleted" << endl;
+			return;
 		}
 		DeleteAtPos(&pTemp->next, camera);
 	}
