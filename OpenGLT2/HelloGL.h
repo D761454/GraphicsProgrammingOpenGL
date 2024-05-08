@@ -60,5 +60,7 @@ public:
 	void Update();
 
 	void DrawString(const char* text, TextPos* position, Color* color);
+
+	Vector3 Normalize(Vector3 one, Vector3 two);
 };
 

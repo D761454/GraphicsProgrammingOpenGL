@@ -220,10 +220,24 @@ void HelloGL::Motion(int x, int y) {
 
 }
 
+Vector3 HelloGL::Normalize(Vector3 one, Vector3 two) {
+	float nx = one.x - two.x;
+	float ny = one.y - two.y;
+	float nz = one.z - two.z;
+	float length = sqrt((nx*nx)+(ny*ny)+(nz*nz));
+	Vector3 Normalized;
+	Normalized.x = nx / length;
+	Normalized.y = ny / length;
+	Normalized.z = nz / length;
+	return Normalized;
+}
+
 
 void HelloGL::Update() {
 	glLoadIdentity(); // reset Modelview Matrix
 	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->center.x, camera->center.y, camera->center.z, camera->up.z, camera->up.y, camera->up.z);
+
+	camera->Direction = Normalize(camera->eye, camera->center);
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->ambient.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->diffuse.x));
