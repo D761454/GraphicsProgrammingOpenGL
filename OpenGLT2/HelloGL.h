@@ -34,6 +34,7 @@ private:
 	Lighting* _lightData;
 
 	float fps = 0.0f;
+	float deltaTime = 0.0f;
 	int currentTime = 0;
 	int lastTime = 0;
 	int frames = 0;

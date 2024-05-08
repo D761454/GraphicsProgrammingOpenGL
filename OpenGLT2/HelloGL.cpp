@@ -134,16 +134,22 @@ void HelloGL::Display() {
 	Color c = { 0.0f, 1.0f, 0.0f };
 	char fpsArray[20];
 
-	frames++;
+	//frames++;
 	currentTime = glutGet(GLUT_ELAPSED_TIME);
+	deltaTime = currentTime - lastTime;
+	lastTime = currentTime;
 
-	if (currentTime - lastTime > 1000) {
+	fps = round(1000 / deltaTime);
+
+	/*if (currentTime - lastTime > 1000) { // makes less flashy / speedy fps display
 		fps = frames * 1000 / (currentTime - lastTime);
+		deltaTime = 1 / fps;
+		cout << deltaTime << endl;
 		lastTime = currentTime;
 		frames = 0;
-	}
+	}*/
 
-	sprintf_s(fpsArray, "FPS:%.2f", fps); // converts float to char
+	sprintf_s(fpsArray, "FPS:%.0f", fps); // converts float to char
 	DrawString(fpsArray, &v, &c);
 
 	glFlush(); // flush scene to graphics card
@@ -170,7 +176,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == '0') {
 		camera->eye.y -= 0.1f;
 	}
-	// rotate around origin
+	// rotate around
 	if (key == '4') {
 		camera->angleX += 0.1f;
 		if (camera->angleX > 6.3f) {
