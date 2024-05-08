@@ -203,7 +203,7 @@ void HelloGL::Motion(int x, int y) {
 	// y relates to sin pitch, x and z relate to cos pitch too
 
 	float offsetX = x - curX;
-	float offsetY = y - curY;
+	float offsetY = curY - y;
 
 	curX = x;
 	curY = y;
@@ -225,9 +225,9 @@ void HelloGL::Motion(int x, int y) {
 
 	camera->center = Normalize(CamLook(camera));
 
-	if (x != 400 || y != 400) {
+	/*if (x != 400 || y != 400) {
 		glutWarpPointer(400, 400);
-	}
+	}*/
 }
 
 Vector3 HelloGL::CamLook(Camera* camera) {
