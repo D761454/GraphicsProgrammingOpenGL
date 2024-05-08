@@ -12,11 +12,7 @@
 class RedCube : public SceneObject
 {
 private:
-	//Mesh* _mesh;
-	GLfloat _rotation;
-	Vector3 _position;
 	GLfloat _rotationSpeed = 1.0f;
-	float _rotationAxis[3] = {0.0f, 0.0f, 0.0f};
 
 	Material* _material;
 public:

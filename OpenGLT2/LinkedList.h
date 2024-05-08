@@ -14,6 +14,7 @@ public:
 
 	void DeleteList(ListNode** node);
 	void DeleteAt(ListNode* node, int pos);
+	void DeleteAtPos(ListNode* node, Camera* camera);
 
 	void UpdateList(ListNode* node);
 	void DrawList(ListNode* node);

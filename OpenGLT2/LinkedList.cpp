@@ -77,6 +77,23 @@ void LinkedList::DeleteAt(ListNode* node, int pos) {
 	}
 }
 
+void LinkedList::DeleteAtPos(ListNode* node, Camera* camera) {
+	ListNode* pTemp;
+
+	while (node != nullptr) {
+		// if head of list being deleted
+		if (node->data->GetPosition().x <= camera->center.x + 5 &&
+			node->data->GetPosition().x >= camera->center.x - 5 &&
+			node->data->GetPosition().y <= camera->center.y + 5 &&
+			node->data->GetPosition().y >= camera->center.y - 5 &&
+			node->data->GetPosition().z <= camera->center.z + 5 &&
+			node->data->GetPosition().z >= camera->center.z - 5) {
+			
+		}
+		node = node->next;
+	}
+}
+
 // recursive
 void LinkedList::UpdateList(ListNode* node) {
 	if (node != nullptr) {
