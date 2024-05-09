@@ -173,7 +173,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 's') {
 		camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
 	}
-	if (key == 32) {
+	if (key == 32) { // space bar
 		Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
 		Texture2D* texture = new Texture2D();
@@ -185,13 +185,16 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 }
 
 void HelloGL::Mouse(int button, int state, int x, int y) {
-	if (button == 0 && state == 1) { // LMB
+	if (button == 0 && state == 0) { // LMB
 		list->SelectNode(&head, camera);
 	}
-	if (button == 2 && state == 1) { // RMB
-		
+	if (button == 2 && state == 0) { // RMB
+		RMB = true;
 	}
-	if (button == 1 && state == 1) { // scroll wheel
+	if (button == 2 && state == 1) {
+		RMB = false;
+	}
+	if (button == 1 && state == 0) { // scroll wheel
 
 		list->DeleteSelected(&head, camera);
 	}
@@ -208,29 +211,30 @@ void HelloGL::Motion(int x, int y) {
 	// can use these to make new direction to look at
 	// if length = 1, cos x/1 and sin y/1
 	// radians tie angle and length - nice
+	if (RMB) {
+		offsetX = x - curX;
+		offsetY = curY - y;
 
-	offsetX = x - curX;
-	offsetY = curY - y;
+		const float sensitivity = 0.1f;
 
-	const float sensitivity = 0.1f;
+		// reduce strength to slow movement
+		offsetX *= sensitivity;
+		offsetY *= sensitivity;
 
-	// reduce strength to slow movement
-	offsetX *= sensitivity;
-	offsetY *= sensitivity;
+		camera->yaw += offsetX;
+		camera->pitch += offsetY;
 
-	camera->yaw += offsetX;
-	camera->pitch += offsetY;
+		// prevents camera flipping - had when using keyboard for cam rotation
+		if (camera->pitch > 89.0f)
+			camera->pitch = 89.0f;
+		if (camera->pitch < -89.0f)
+			camera->pitch = -89.0f;
 
-	// prevents camera flipping - had when using keyboard for cam rotation
-	if (camera->pitch > 89.0f)
-		camera->pitch = 89.0f;
-	if (camera->pitch < -89.0f)
-		camera->pitch = -89.0f;
+		camera->center = Normalize(CamLook(camera));
 
-	camera->center = Normalize(CamLook(camera));
-
-	if (x != curX || y != curY) {
-		glutWarpPointer(curX, curY);
+		if (x != curX || y != curY) {
+			glutWarpPointer(curX, curY);
+		}
 	}
 }
 
