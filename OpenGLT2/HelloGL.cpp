@@ -28,6 +28,7 @@ void HelloGL::InitObjects() {
 	// ^^^
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
+	Mesh* skyboxMesh = MeshLoader::Load((char*)"Shapes/skybox.txt");
 
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Images/Penguins.raw", 512, 512);
@@ -37,6 +38,10 @@ void HelloGL::InitObjects() {
 	{
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
 	}
+
+	Texture2D* texture2 = new Texture2D();
+	texture2->Load((char*)"Images/Skybox.png", 2048, 1536);
+	list->MakeNode(&head, new Skybox(skyboxMesh, texture2, camera->eye.x, camera->eye.y, camera->eye.z));
 
 	lastTime = 0;
 }
