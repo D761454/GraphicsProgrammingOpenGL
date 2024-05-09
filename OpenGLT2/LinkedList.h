@@ -12,8 +12,10 @@ public:
 	ListNode* MakeNode(ListNode** head, SceneObject* d);
 	void InsertAfter(ListNode* lastNode, SceneObject* d);
 
+	void SelectNode(ListNode** head, Camera* camera);
+
 	void DeleteList(ListNode** node);
-	void DeleteAtPos(ListNode** head, Camera* camera);
+	void DeleteSelected(ListNode** head, Camera* camera);
 
 	void UpdateList(ListNode* node);
 	void DrawList(ListNode* node);

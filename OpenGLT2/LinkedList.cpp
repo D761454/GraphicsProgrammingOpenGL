@@ -48,14 +48,12 @@ void LinkedList::DeleteList(ListNode** node) {
 	*node = nullptr;
 }
 
-void LinkedList::DeleteAtPos(ListNode** head, Camera* camera) {
+void LinkedList::DeleteSelected(ListNode** head, Camera* camera) {
 	ListNode* pTemp = *head;
 
 	if (pTemp != nullptr) {
 		// head
-		if (pTemp->data->GetPosition().x <= (camera->eye.x + camera->center.x * 50) + 5 && pTemp->data->GetPosition().x >= (camera->eye.x + camera->center.x * 50) - 5 &&
-			pTemp->data->GetPosition().y <= (camera->eye.y + camera->center.y * 50) + 5 && pTemp->data->GetPosition().y >= (camera->eye.y + camera->center.y * 50) - 5 &&
-			pTemp->data->GetPosition().z <= (camera->eye.z + camera->center.z * 50) + 5 && pTemp->data->GetPosition().z >= (camera->eye.z + camera->center.z * 50) - 5) {
+		if (pTemp->data->GetSelected()) {
 			*head = pTemp->next;
 
 			cout << "Head Deleted" << endl;
@@ -63,9 +61,7 @@ void LinkedList::DeleteAtPos(ListNode** head, Camera* camera) {
 		}
 		// other
 		if (pTemp->next != nullptr) {
-			if (pTemp->next->data->GetPosition().x <= (camera->eye.x + camera->center.x * 50) + 5 && pTemp->next->data->GetPosition().x >= (camera->eye.x + camera->center.x * 50) - 5 &&
-				pTemp->next->data->GetPosition().y <= (camera->eye.y + camera->center.y * 50) + 5 && pTemp->next->data->GetPosition().y >= (camera->eye.y + camera->center.y * 50) - 5 &&
-				pTemp->next->data->GetPosition().z <= (camera->eye.z + camera->center.z * 50) + 5 && pTemp->next->data->GetPosition().z >= (camera->eye.z + camera->center.z * 50) - 5) {
+			if (pTemp->next->data->GetSelected()) {
 				if (pTemp->next->next != nullptr) {
 					pTemp->next = pTemp->next->next;
 				}
@@ -76,7 +72,24 @@ void LinkedList::DeleteAtPos(ListNode** head, Camera* camera) {
 				return;
 			}
 		}
-		DeleteAtPos(&pTemp->next, camera);
+		DeleteSelected(&pTemp->next, camera);
+	}
+}
+
+void LinkedList::SelectNode(ListNode** head, Camera* camera) {
+	ListNode* pTemp = *head;
+
+	if (pTemp != nullptr) {
+		if (pTemp->data->GetPosition().x <= (camera->eye.x + camera->center.x * 50) + 5 && pTemp->data->GetPosition().x >= (camera->eye.x + camera->center.x * 50) - 5 &&
+			pTemp->data->GetPosition().y <= (camera->eye.y + camera->center.y * 50) + 5 && pTemp->data->GetPosition().y >= (camera->eye.y + camera->center.y * 50) - 5 &&
+			pTemp->data->GetPosition().z <= (camera->eye.z + camera->center.z * 50) + 5 && pTemp->data->GetPosition().z >= (camera->eye.z + camera->center.z * 50) - 5) {
+			pTemp->data->Selected(true);
+		}
+		else {
+			pTemp->data->Selected(false);
+		}
+		
+		SelectNode(&pTemp->next, camera);
 	}
 }
 
