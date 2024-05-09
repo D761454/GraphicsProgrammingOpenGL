@@ -8,7 +8,7 @@ BinaryTree::~BinaryTree() {
 
 }
 
-TreeNode* BinaryTree::MakeTreeNode(TreeNode** root, int d) {
+TreeNode* BinaryTree::MakeTreeNode(TreeNode** root, SceneObject* d) {
 	TreeNode* newNode = new TreeNode;
 	TreeNode* last = *root;
 
@@ -83,5 +83,21 @@ void BinaryTree::PrintTreePostOrder(TreeNode* node) {
 		PrintTreePostOrder(node->left);
 		PrintTreePostOrder(node->right);
 		cout << node->data << " --> ";
+	}
+}
+
+void BinaryTree::UpdateTree(TreeNode* root) {
+	if (root != NULL) {
+		root->data->Update();
+		UpdateTree(root->left);
+		UpdateTree(root->right);
+	}
+}
+
+void BinaryTree::DrawTree(TreeNode* root) {
+	if (root != NULL) {
+		root->data->Draw();
+		DrawTree(root->left);
+		DrawTree(root->right);
 	}
 }

@@ -62,12 +62,12 @@ struct BasicMesh{
 };
 
 struct ListNode {
-	SceneObject* data = nullptr;;
+	SceneObject* data = nullptr;
 	ListNode* next = nullptr;
 };
 
 struct TreeNode {
-	int data;
-	TreeNode* right;
-	TreeNode* left;
+	SceneObject* data = nullptr;
+	TreeNode* right = nullptr;
+	TreeNode* left = nullptr;
 };
