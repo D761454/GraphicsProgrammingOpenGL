@@ -53,10 +53,10 @@ void HelloGL::RenderSkyBox() {
 
 	// front
 	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0); glVertex3f(0.5f, -0.5f, -0.5f);
-		glTexCoord2f(1, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
-		glTexCoord2f(1, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
-		glTexCoord2f(0, 1); glVertex3f(0.5f, 0.5f, -0.5f);
+		glTexCoord2f(texture->GetWidth()/4, texture->GetHeight() / 3); glVertex3f(0.5f, -0.5f, -0.5f);
+		glTexCoord2f((texture->GetWidth() / 4) * 2, texture->GetHeight() / 3); glVertex3f(-0.5f, -0.5f, -0.5f);
+		glTexCoord2f((texture->GetWidth() / 4) * 2, (texture->GetHeight() / 3) * 2); glVertex3f(-0.5f, 0.5f, -0.5f);
+		glTexCoord2f(texture->GetWidth() / 4, (texture->GetHeight() / 3) * 2); glVertex3f(0.5f, 0.5f, -0.5f);
 	glEnd();
 
 	// left
