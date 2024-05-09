@@ -65,3 +65,9 @@ struct ListNode {
 	SceneObject* data = nullptr;;
 	ListNode* next = nullptr;
 };
+
+struct TreeNode {
+	int data;
+	TreeNode* right;
+	TreeNode* left;
+};
