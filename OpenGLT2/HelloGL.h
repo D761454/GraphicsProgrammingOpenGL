@@ -71,6 +71,8 @@ public:
 
 	void DrawString(const char* text, TextPos* position, Color* color);
 
+	void RenderSkyBox();
+
 	Vector3 Normalize(Vector3 one, Vector3 two);
 	Vector3 Normalize(Vector3 one);
 	Vector3 CrossProduct(Vector3 one, Vector3 two);
