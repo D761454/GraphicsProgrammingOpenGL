@@ -56,6 +56,7 @@ void HelloGL::InitObjects() {
 	tree->PrintTreePostOrder(root); // 2 5 6 9 8 7
 	cout << "| END |" << endl;
 	tree->DeleteTree(&root);
+	tree->PrintTreeInOrder(root);
 
 	lastTime = 0;
 }

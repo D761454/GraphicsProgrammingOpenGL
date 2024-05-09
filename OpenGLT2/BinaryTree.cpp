@@ -51,7 +51,15 @@ TreeNode* BinaryTree::MakeTreeNode(TreeNode** root, int d) {
 }
 
 void BinaryTree::DeleteTree(TreeNode** root) {
+	TreeNode* pTemp = *root;
 
+	if (pTemp != nullptr) {
+		DeleteTree(&pTemp->left);
+		DeleteTree(&pTemp->right);
+		delete pTemp;
+	}
+
+	*root = nullptr;
 }
 
 void BinaryTree::PrintTreePreOrder(TreeNode* node) {
