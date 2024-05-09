@@ -57,7 +57,6 @@ void LinkedList::DeleteSelected(ListNode** head, Camera* camera) {
 			*head = pTemp->next;
 
 			cout << "Head Deleted" << endl;
-			return;
 		}
 		// other
 		if (pTemp->next != nullptr) {
@@ -69,7 +68,6 @@ void LinkedList::DeleteSelected(ListNode** head, Camera* camera) {
 					pTemp->next = nullptr;
 				}
 				cout << "Node Deleted" << endl;
-				return;
 			}
 		}
 		DeleteSelected(&pTemp->next, camera);

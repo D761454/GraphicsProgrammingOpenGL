@@ -173,21 +173,25 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 's') {
 		camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
 	}
-}
-
-void HelloGL::Mouse(int button, int state, int x, int y) {
-	if (button == 0 && state == 1) {
+	if (key == 32) {
 		Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
 		Texture2D* texture = new Texture2D();
 		texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
+
 	}
-	if (button == 2 && state == 1) {
+}
+
+void HelloGL::Mouse(int button, int state, int x, int y) {
+	if (button == 0 && state == 1) { // LMB
 		list->SelectNode(&head, camera);
 	}
-	if (button == 1 && state == 1) {
+	if (button == 2 && state == 1) { // RMB
+		
+	}
+	if (button == 1 && state == 1) { // scroll wheel
 
 		list->DeleteSelected(&head, camera);
 	}
