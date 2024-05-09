@@ -41,67 +41,6 @@ void HelloGL::InitObjects() {
 	lastTime = 0;
 }
 
-void HelloGL::RenderSkyBox() {
-	glPushMatrix();
-	glLoadIdentity();
-
-	glColor4f(1, 1, 1, 1);
-	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Images/Daylight Box UV.png", 2048, 1536);
-
-	glBindTexture(GL_TEXTURE_2D, texture->GetID());
-
-	// front
-	glBegin(GL_QUADS);
-		glTexCoord2f(texture->GetWidth()/4, texture->GetHeight() / 3); glVertex3f(0.5f, -0.5f, -0.5f);
-		glTexCoord2f((texture->GetWidth() / 4) * 2, texture->GetHeight() / 3); glVertex3f(-0.5f, -0.5f, -0.5f);
-		glTexCoord2f((texture->GetWidth() / 4) * 2, (texture->GetHeight() / 3) * 2); glVertex3f(-0.5f, 0.5f, -0.5f);
-		glTexCoord2f(texture->GetWidth() / 4, (texture->GetHeight() / 3) * 2); glVertex3f(0.5f, 0.5f, -0.5f);
-	glEnd();
-
-	// left
-	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0); glVertex3f(0.5f, -0.5f, 0.5f);
-		glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, -0.5f);
-		glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, -0.5f);
-		glTexCoord2f(0, 1); glVertex3f(0.5f, 0.5f, 0.5f);
-	glEnd();
-
-	// back
-	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, 0.5f);
-		glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, 0.5f);
-		glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, 0.5f);
-		glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, 0.5f);
-	glEnd();
-
-	// right
-	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
-		glTexCoord2f(1, 0); glVertex3f(-0.5f, -0.5f, 0.5f);
-		glTexCoord2f(1, 1); glVertex3f(-0.5f, 0.5f, 0.5f);
-		glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
-	glEnd();
-
-	// top
-	glBegin(GL_QUADS);
-		glTexCoord2f(0, 1); glVertex3f(-0.5f, 0.5f, -0.5f);
-		glTexCoord2f(0, 0); glVertex3f(-0.5f, 0.5f, 0.5f);
-		glTexCoord2f(1, 0); glVertex3f(0.5f, 0.5f, 0.5f);
-		glTexCoord2f(1, 1); glVertex3f(0.5f, 0.5f, -0.5f);
-	glEnd();
-
-	// bottom
-	glBegin(GL_QUADS);
-		glTexCoord2f(0, 0); glVertex3f(-0.5f, -0.5f, -0.5f);
-		glTexCoord2f(0, 1); glVertex3f(-0.5f, -0.5f, 0.5f);
-		glTexCoord2f(1, 1); glVertex3f(0.5f, -0.5f, 0.5f);
-		glTexCoord2f(1, 0); glVertex3f(0.5f, -0.5f, -0.5f);
-	glEnd();
-
-	glPopMatrix();
-}
-
 void HelloGL::InitGL(int argc, char* argv[]) {
 	// glut setup
 	GLUTCallbacks::Init(this);
