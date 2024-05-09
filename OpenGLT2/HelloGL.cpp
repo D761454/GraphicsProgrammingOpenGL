@@ -58,8 +58,7 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 
 	glutKeyboardFunc(GLUTCallbacks::Keyboard);
 	glutMouseFunc(GLUTCallbacks::Mouse);
-	glutPassiveMotionFunc(GLUTCallbacks::Motion);
-	glutSetCursor(GLUT_CURSOR_NONE);
+	glutMotionFunc(GLUTCallbacks::Motion);
 	glutDisplayFunc(GLUTCallbacks::Display); // call back function
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 
@@ -188,11 +187,12 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 
 		list->DeleteAtPos(&head, camera);
 	}
+	curX = x;
+	curY = y;
 }
 
 void HelloGL::Motion(int x, int y) {
 	// change cam center
-	// remember
 	// Euler Angles - pitch, yaw, roll
 	// pitch - up/down
 	// yaw - l/r
@@ -200,19 +200,9 @@ void HelloGL::Motion(int x, int y) {
 	// can use these to make new direction to look at
 	// if length = 1, cos x/1 and sin y/1
 	// radians tie angle and length - nice
-	// triangles stuff 
-	// x relates to cos yaw
-	// z relates to sin yaw
-	// y relates to sin pitch, x and z relate to cos pitch too
 
-	/*float offsetX = x - curX;
-	float offsetY = curY - y;
-
-	curX = x;
-	curY = y;*/
-
-	float offsetX = x - 400;
-	float offsetY = 400 - y;
+	offsetX = x - curX;
+	offsetY = curY - y;
 
 	const float sensitivity = 0.1f;
 
@@ -231,12 +221,15 @@ void HelloGL::Motion(int x, int y) {
 
 	camera->center = Normalize(CamLook(camera));
 
-	if (x != 400 || y != 400) {
-		glutWarpPointer(400, 400);
+	if (x != curX || y != curY) {
+		glutWarpPointer(curX, curY);
 	}
 }
 
 Vector3 HelloGL::CamLook(Camera* camera) {
+	// x relates to cos yaw
+	// z relates to sin yaw
+	// y relates to sin pitch, x and z relate to cos pitch too
 	Vector3 temp;
 	temp.x = cos(camera->yaw * (M_PI / 180)) * cos(camera->pitch * (M_PI / 180));
 	temp.z = sin(camera->yaw * (M_PI / 180)) * cos(camera->pitch * (M_PI / 180));

@@ -39,7 +39,8 @@ private:
 	int lastTime = 0;
 	//int frames = 0;
 
-	float curX = 400, curY = 400;
+	float curX = 0.0f, curY = 0.0f;
+	float offsetX = 0.0f, offsetY = 0.0f;
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);
