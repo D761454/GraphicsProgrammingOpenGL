@@ -13,6 +13,7 @@
 #include "SceneObject.h"
 #include <string>
 #include "LinkedList.h"
+#include "BinaryTree.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h> // pi
@@ -29,6 +30,9 @@ private:
 
 	LinkedList* list = new LinkedList;
 	ListNode* head = nullptr;
+
+	BinaryTree* tree = new BinaryTree;
+	TreeNode* root = nullptr;
 
 	Vector4* _lightPosition;
 	Lighting* _lightData;

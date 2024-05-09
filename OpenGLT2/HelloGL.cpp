@@ -37,6 +37,25 @@ void HelloGL::InitObjects() {
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
 	}
 
+	tree->MakeTreeNode(&root, 7);
+	tree->MakeTreeNode(&root, 6);
+	tree->MakeTreeNode(&root, 5);
+	tree->MakeTreeNode(&root, 8);
+	tree->MakeTreeNode(&root, 2);
+	tree->MakeTreeNode(&root, 9);
+
+	//						7
+	//					6		8
+	//				5				9
+	//			2
+
+	tree->PrintTreeInOrder(root); // 2 5 6 7 8 9
+	cout << "| END |" << endl;
+	tree->PrintTreePreOrder(root); // 7 6 5 2 8 9
+	cout << "| END |" << endl;
+	tree->PrintTreePostOrder(root); // 2 5 6 9 8 7
+	cout << "| END |" << endl;
+
 	lastTime = 0;
 }
 

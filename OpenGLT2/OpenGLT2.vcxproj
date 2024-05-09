@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="RedCube.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="RedCube.cpp" />
     <ClCompile Include="GLUTCallbacks.cpp" />

@@ -9,12 +9,14 @@ public:
 	BinaryTree();
 	~BinaryTree();
 
-	TreeNode* MakeNode(TreeNode** root, int d);
+	TreeNode* MakeTreeNode(TreeNode** root, int d);
 
-	void DeleteTree(ListNode** root);
+	void DeleteTree(TreeNode** root);
 
-
+	void PrintTreePreOrder(TreeNode* node);
+	void PrintTreeInOrder(TreeNode* node);
+	void PrintTreePostOrder(TreeNode* node);
 private:
-	ListNode* head = nullptr;
+	TreeNode* root = nullptr;
 };
 
