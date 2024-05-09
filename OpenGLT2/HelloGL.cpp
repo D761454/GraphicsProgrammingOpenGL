@@ -183,7 +183,7 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 	}
-	if (button == 2 && state == 1) {
+	if (button == 1 && state == 1) {
 
 		list->DeleteAtPos(&head, camera);
 	}
