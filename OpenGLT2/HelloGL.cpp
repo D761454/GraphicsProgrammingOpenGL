@@ -182,6 +182,9 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 
 	}
+	if (key == 8) { // backspace
+		list->DeleteSelected(&head, camera);
+	}
 }
 
 void HelloGL::Mouse(int button, int state, int x, int y) {
@@ -193,10 +196,6 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 	}
 	if (button == 2 && state == 1) {
 		RMB = false;
-	}
-	if (button == 1 && state == 0) { // scroll wheel
-
-		list->DeleteSelected(&head, camera);
 	}
 	curX = x;
 	curY = y;
