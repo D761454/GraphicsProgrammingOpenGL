@@ -82,13 +82,14 @@ void LinkedList::SelectNode(ListNode** head, Camera* camera) {
 	if (pTemp != nullptr) {
 		if (pTemp->data->GetPosition().x <= (camera->eye.x + camera->center.x * 50) + 5 && pTemp->data->GetPosition().x >= (camera->eye.x + camera->center.x * 50) - 5 &&
 			pTemp->data->GetPosition().y <= (camera->eye.y + camera->center.y * 50) + 5 && pTemp->data->GetPosition().y >= (camera->eye.y + camera->center.y * 50) - 5 &&
-			pTemp->data->GetPosition().z <= (camera->eye.z + camera->center.z * 50) + 5 && pTemp->data->GetPosition().z >= (camera->eye.z + camera->center.z * 50) - 5) {
+			pTemp->data->GetPosition().z <= (camera->eye.z + camera->center.z * 50) + 5 && pTemp->data->GetPosition().z >= (camera->eye.z + camera->center.z * 50) - 5 && !pTemp->data->GetSelected()) {
 			pTemp->data->Selected(true);
 		}
-		else {
+		else if (pTemp->data->GetPosition().x <= (camera->eye.x + camera->center.x * 50) + 5 && pTemp->data->GetPosition().x >= (camera->eye.x + camera->center.x * 50) - 5 &&
+			pTemp->data->GetPosition().y <= (camera->eye.y + camera->center.y * 50) + 5 && pTemp->data->GetPosition().y >= (camera->eye.y + camera->center.y * 50) - 5 &&
+			pTemp->data->GetPosition().z <= (camera->eye.z + camera->center.z * 50) + 5 && pTemp->data->GetPosition().z >= (camera->eye.z + camera->center.z * 50) - 5 && pTemp->data->GetSelected()) {
 			pTemp->data->Selected(false);
 		}
-		
 		SelectNode(&pTemp->next, camera);
 	}
 }
