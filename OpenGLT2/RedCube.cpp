@@ -15,13 +15,24 @@ RedCube::~RedCube() {
 
 void RedCube::ApplyMaterial() {
 	_material = new Material();
-	_material->ambient.x = 0.8; _material->ambient.y = 0.05; _material->ambient.z = 0.05; // uniform
-	_material->ambient.w = 1.0;
-	_material->diffuse.x = 0.8; _material->diffuse.y = 0.05; _material->diffuse.z = 0.05; // bounce off
-	_material->diffuse.w = 1.0;
-	_material->specular.x = 1.0; _material->specular.y = 1.0; _material->specular.z = 1.0; // shiny and localised
-	_material->specular.w = 1.0;
-	_material->shininess = 100.0f;
+	if (!_selected) {
+		_material->ambient.x = 0.8; _material->ambient.y = 0.05; _material->ambient.z = 0.05; // uniform
+		_material->ambient.w = 1.0;
+		_material->diffuse.x = 0.8; _material->diffuse.y = 0.05; _material->diffuse.z = 0.05; // bounce off
+		_material->diffuse.w = 1.0;
+		_material->specular.x = 1.0; _material->specular.y = 1.0; _material->specular.z = 1.0; // shiny and localised
+		_material->specular.w = 1.0;
+		_material->shininess = 100.0f;
+	}
+	else { // when user hovered over object
+		_material->ambient.x = 0.8; _material->ambient.y = 0.5; _material->ambient.z = 0.05; // uniform
+		_material->ambient.w = 1.0;
+		_material->diffuse.x = 0.8; _material->diffuse.y = 0.5; _material->diffuse.z = 0.05; // bounce off
+		_material->diffuse.w = 1.0;
+		_material->specular.x = 1.0; _material->specular.y = 1.0; _material->specular.z = 1.0; // shiny and localised
+		_material->specular.w = 1.0;
+		_material->shininess = 100.0f;
+	}
 }
 
 void RedCube::Draw() {

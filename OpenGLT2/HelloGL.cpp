@@ -32,6 +32,7 @@ void HelloGL::InitObjects() {
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
+	// edit to make hold trees, trees each will have rand num of obj, all close to one another
 	for (int i = 0; i < ObjectAmounts; i++) // initial base amount of obj
 	{
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));

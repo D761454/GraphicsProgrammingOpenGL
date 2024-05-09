@@ -15,6 +15,8 @@ private:
 	GLfloat _rotationSpeed = 1.0f;
 
 	Material* _material;
+
+	bool _selected = false;
 public:
 	RedCube(Mesh* mesh, Texture2D* texture, float x, float y, float z);
 	~RedCube();
@@ -23,5 +25,7 @@ public:
 
 	void Draw();
 	void Update();
+
+	void Selected(bool selected) { _selected = selected; };
 };
 
