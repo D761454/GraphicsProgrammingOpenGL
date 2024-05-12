@@ -16,7 +16,7 @@ public:
 	void SelectAt(ListNode* head, int pos);
 
 	void DeleteList(ListNode** node);
-	void DeleteSelected(ListNode** head, Camera* camera);
+	void DeleteSelected(ListNode** node);
 
 	void UpdateList(ListNode* node);
 	void DrawList(ListNode* node);

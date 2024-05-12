@@ -23,9 +23,9 @@ void HelloGL::InitObjects() {
 	Target.x = 0.0f; Target.y = 0.0f; Target.z = 0.0f;
 
 	// if use, must call in update VVV
-	camera->direction = Normalize(camera->eye, Target); // just here for principle
-	camera->relativeRight = Normalize(CrossProduct(camera->up, camera->direction)); // just here for principle
-	camera->relativeUp = CrossProduct(camera->direction, camera->relativeRight); // just here for principle
+	//camera->direction = Normalize(camera->eye, Target); // just here for principle
+	//camera->relativeRight = Normalize(CrossProduct(camera->up, camera->direction)); // just here for principle
+	//camera->relativeUp = CrossProduct(camera->direction, camera->relativeRight); // just here for principle
 	// ^^^
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
@@ -50,22 +50,22 @@ void HelloGL::InitObjects() {
 void HelloGL::ObjectMenu(int value) {
 	if (value >= -1 && value < list->GetSize(head, 0)) {
 		list->SelectAt(head, value);
+		menuChange = true;
 	}
 }
 
 void HelloGL::UpdateMenu() {
-	for (int i = 1; i <= glutGet(GLUT_MENU_NUM_ITEMS); i++)
-	{
-		glutRemoveMenuItem(i);
-	}
-
 	ListNode* node = head;
 	int val = 0;
 	while (node != nullptr) {
-		glutAddMenuEntry("Object #", val);
+		string words = "Object # " + to_string(val) + " " + to_string(node->data->GetSelected());
+		const char* wordsc = (const char*)words.c_str();
+		glutRemoveMenuItem(val);
+		glutAddMenuEntry(wordsc, val);
 		val++;
 		node = node->next;
 	}
+	glutRemoveMenuItem(val+1);
 	glutAddMenuEntry("Exit", -1);
 }
 
@@ -219,7 +219,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 		UpdateMenu();
 	}
 	if (key == 8) { // backspace
-		list->DeleteSelected(&head, camera);
+		list->DeleteSelected(&head);
 		UpdateMenu();
 	}
 }
@@ -354,6 +354,11 @@ void HelloGL::Update() {
 	glLightfv(GL_LIGHT0, GL_POSITION, &(_lightPosition->x));
 
 	list->UpdateList(head);
+
+	if (menuChange) {
+		UpdateMenu();
+		menuChange = false;
+	}
 
 	glutPostRedisplay();
 }

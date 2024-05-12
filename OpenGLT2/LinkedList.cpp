@@ -58,16 +58,11 @@ void LinkedList::DeleteList(ListNode** node) {
 	*node = nullptr;
 }
 
-void LinkedList::DeleteSelected(ListNode** head, Camera* camera) {
-	ListNode* pTemp = *head;
+void LinkedList::DeleteSelected(ListNode** node) {
+	ListNode* pTemp = *node;
+	ListNode* next = nullptr;
 
 	if (pTemp != nullptr) {
-		// head
-		if (pTemp->data->GetSelected()) {
-			*head = pTemp->next;
-			return;
-		}
-		// other
 		if (pTemp->next != nullptr) {
 			if (pTemp->next->data->GetSelected()) {
 				if (pTemp->next->next != nullptr) {
@@ -76,11 +71,39 @@ void LinkedList::DeleteSelected(ListNode** head, Camera* camera) {
 				else {
 					pTemp->next = nullptr;
 				}
-				return;
+				*node = pTemp;
+				DeleteSelected(&pTemp);
 			}
+			DeleteSelected(&pTemp->next);
 		}
-		DeleteSelected(&pTemp->next, camera);
 	}
+
+
+	//if (pTemp != nullptr) {
+	//	// head
+	//	if (pTemp->data->GetSelected()) {
+	//		if (pTemp->next != nullptr) {
+	//			*head = pTemp->next;
+	//		}
+	//		else {
+	//			*head = nullptr;
+	//		}
+	//		//return;
+	//	}
+	//	// other
+	//	else if (pTemp->next != nullptr) {
+	//		if (pTemp->next->data->GetSelected()) {
+	//			if (pTemp->next->next != nullptr) {
+	//				pTemp->next = pTemp->next->next;
+	//			}
+	//			else {
+	//				pTemp->next = nullptr;
+	//			}
+	//			//return;
+	//		}
+	//	}
+	//	DeleteSelected(&pTemp->next);
+	//}
 }
 
 void LinkedList::SelectNode(ListNode** head, Camera* camera) {

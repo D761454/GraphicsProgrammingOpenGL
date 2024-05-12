@@ -44,6 +44,8 @@ private:
 	int lastTime = 0;
 	//int frames = 0;
 
+	bool menuChange = false;
+
 	bool RMB = false;
 
 	float curX = 0.0f, curY = 0.0f;
