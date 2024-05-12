@@ -60,13 +60,30 @@ void LinkedList::DeleteList(ListNode** node) {
 
 void LinkedList::DeleteSelected(ListNode** node) {
 	ListNode* pTemp = *node;
-	ListNode* next = nullptr;
+	ListNode* last = nullptr;
 
 	if (pTemp != nullptr) {
-		if (pTemp->next != nullptr) {
+		if (pTemp->data->GetSelected()) { // root
+			if (pTemp->next != nullptr) {
+				last = pTemp;
+				pTemp = pTemp->next;
+				*node = pTemp;
+				delete last;
+				last = nullptr;
+				DeleteSelected(node);
+			}
+			else {
+				delete *node;
+				*node = nullptr;
+			}
+		}
+		else if (pTemp->next != nullptr) {
 			if (pTemp->next->data->GetSelected()) {
 				if (pTemp->next->next != nullptr) {
+					last = pTemp->next;
 					pTemp->next = pTemp->next->next;
+					delete last;
+					last = nullptr;
 				}
 				else {
 					pTemp->next = nullptr;
