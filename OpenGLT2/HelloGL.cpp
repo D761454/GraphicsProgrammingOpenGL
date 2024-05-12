@@ -55,17 +55,20 @@ void HelloGL::ObjectMenu(int value) {
 }
 
 void HelloGL::UpdateMenu() {
+	for (int i = glutGet(GLUT_MENU_NUM_ITEMS); i > 0; i--)
+	{
+		glutRemoveMenuItem(i);
+	}
+
 	ListNode* node = head;
 	int val = 0;
 	while (node != nullptr) {
 		string words = "Object # " + to_string(val) + " " + to_string(node->data->GetSelected());
 		const char* wordsc = (const char*)words.c_str();
-		glutRemoveMenuItem(val);
 		glutAddMenuEntry(wordsc, val);
 		val++;
 		node = node->next;
 	}
-	glutRemoveMenuItem(val+1);
 	glutAddMenuEntry("Exit", -1);
 }
 
