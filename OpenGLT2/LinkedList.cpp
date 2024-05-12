@@ -8,6 +8,17 @@ LinkedList::~LinkedList() {
 
 }
 
+int LinkedList::GetSize(ListNode* node, int counter) {
+	if (node != nullptr) {
+		counter++;
+		GetSize(node->next, counter);
+	}
+	else {
+		cout << counter << " ";
+		return counter;
+	}
+}
+
 ListNode* LinkedList::MakeNode(ListNode** head, SceneObject* d) {
 	ListNode* newNode = new ListNode;
 	ListNode* last = *head;
@@ -88,6 +99,23 @@ void LinkedList::SelectNode(ListNode** head, Camera* camera) {
 			pTemp->data->Selected(false);
 		}
 		SelectNode(&pTemp->next, camera);
+	}
+}
+
+void LinkedList::SelectAt(ListNode* head, int pos) {
+	int count = 0;
+
+	while (head != nullptr) {
+		if (count == pos) {
+			if (!head->data->GetSelected()) {
+				head->data->Selected(true);
+			}
+			else {
+				head->data->Selected(false);
+			}
+		}
+		count++;
+		head = head->next;
 	}
 }
 

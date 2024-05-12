@@ -40,10 +40,22 @@ void HelloGL::InitObjects() {
 	}
 
 	Texture2D* texture2 = new Texture2D();
-	texture2->Load((char*)"Images/Skybox.png", 2048, 1536);
+	texture2->Load((char*)"Images/Skybox.raw", 2048, 1536);
 	list->MakeNode(&head, new Skybox(skyboxMesh, texture2, camera->eye.x, camera->eye.y, camera->eye.z));
 
 	lastTime = 0;
+}
+
+void HelloGL::InitMenu() {
+	glutCreateMenu(ObjectMenu());
+
+	glutAttachMenu(GLUT_LEFT_BUTTON);
+}
+
+void HelloGL::ObjectMenu(int value) {
+	if (value >= -1 && value <= list->GetSize(head, 0)) {
+
+	}
 }
 
 void HelloGL::InitGL(int argc, char* argv[]) {

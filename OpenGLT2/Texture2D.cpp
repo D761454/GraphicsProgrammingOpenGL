@@ -9,7 +9,7 @@ Texture2D::~Texture2D() {
 }
 
 bool Texture2D::Load(char* path, int width, int height) {
-	char* tempTextureData; int fileSize; ifstream inFile;
+	char* tempTextureData = nullptr; int fileSize; ifstream inFile;
 	_width = width; _height = height;
 	inFile.open(path, ios::binary);
 

@@ -54,6 +54,7 @@ public:
 
 	void InitObjects();
 	void InitGL(int argc, char* argv[]);
+	void InitMenu();
 
 	void InitLighting();
 
@@ -69,6 +70,8 @@ public:
 	void Motion(int x, int y);
 
 	void Update();
+
+	void ObjectMenu(int value);
 
 	void DrawString(const char* text, TextPos* position, Color* color);
 
