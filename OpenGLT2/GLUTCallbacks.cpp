@@ -35,4 +35,8 @@ namespace GLUTCallbacks {
 			helloGL -> Display();
 		}
 	}
+
+	void ObjectMenu(int value) {
+		helloGL->ObjectMenu(value);
+	}
 }

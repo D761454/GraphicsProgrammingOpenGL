@@ -13,4 +13,6 @@ namespace GLUTCallbacks {
 	void Motion(int x, int y);
 
 	void Display();
+
+	void ObjectMenu(int value);
 }

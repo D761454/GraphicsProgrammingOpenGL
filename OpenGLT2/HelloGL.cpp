@@ -3,6 +3,7 @@
 HelloGL::HelloGL(int argc, char* argv[]) {
 	InitGL(argc, argv); // 1st
 	InitObjects();
+	InitMenu();
 	InitLighting();
 	glutMainLoop();
 }
@@ -46,16 +47,34 @@ void HelloGL::InitObjects() {
 	lastTime = 0;
 }
 
-void HelloGL::InitMenu() {
-	glutCreateMenu(ObjectMenu());
-
-	glutAttachMenu(GLUT_LEFT_BUTTON);
+void HelloGL::ObjectMenu(int value) {
+	if (value >= -1 && value < list->GetSize(head, 0)) {
+		list->SelectAt(head, value);
+	}
 }
 
-void HelloGL::ObjectMenu(int value) {
-	if (value >= -1 && value <= list->GetSize(head, 0)) {
-
+void HelloGL::UpdateMenu() {
+	for (int i = 1; i <= glutGet(GLUT_MENU_NUM_ITEMS); i++)
+	{
+		glutRemoveMenuItem(i);
 	}
+
+	ListNode* node = head;
+	int val = 0;
+	while (node != nullptr) {
+		glutAddMenuEntry("Object #", val);
+		val++;
+		node = node->next;
+	}
+	glutAddMenuEntry("Exit", -1);
+}
+
+void HelloGL::InitMenu() {
+	int mainMenu = glutCreateMenu(GLUTCallbacks::ObjectMenu);
+
+	UpdateMenu();
+
+	glutAttachMenu(GLUT_LEFT_BUTTON);
 }
 
 void HelloGL::InitGL(int argc, char* argv[]) {
@@ -197,16 +216,17 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 		texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
-
+		UpdateMenu();
 	}
 	if (key == 8) { // backspace
 		list->DeleteSelected(&head, camera);
+		UpdateMenu();
 	}
 }
 
 void HelloGL::Mouse(int button, int state, int x, int y) {
 	if (button == 0 && state == 0) { // LMB
-		list->SelectNode(&head, camera);
+		
 	}
 	if (button == 2 && state == 0) { // RMB
 		RMB = true;

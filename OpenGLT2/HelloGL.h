@@ -73,6 +73,8 @@ public:
 
 	void ObjectMenu(int value);
 
+	void UpdateMenu();
+
 	void DrawString(const char* text, TextPos* position, Color* color);
 
 	Vector3 Normalize(Vector3 one, Vector3 two);

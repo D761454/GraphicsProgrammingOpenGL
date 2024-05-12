@@ -14,7 +14,6 @@ int LinkedList::GetSize(ListNode* node, int counter) {
 		GetSize(node->next, counter);
 	}
 	else {
-		cout << counter << " ";
 		return counter;
 	}
 }
