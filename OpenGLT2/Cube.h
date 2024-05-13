@@ -6,18 +6,21 @@
 #include "Structures.h"
 #include "Texture2D.h"
 #include "SceneObject.h"
+#include "Constants.h"
 #include <fstream>
 #include <iostream>
 
-class RedCube : public SceneObject
+class Cube : public SceneObject
 {
 private:
 	GLfloat _rotationSpeed = 1.0f;
 
+	Material* _materialArray[Materials];
 	Material* _material;
+	Material* _materialBase;
 public:
-	RedCube(Mesh* mesh, Texture2D* texture, float x, float y, float z);
-	~RedCube();
+	Cube(Mesh* mesh, Texture2D* texture, Material* material[2], int mat, float x, float y, float z);
+	~Cube();
 
 	void ApplyMaterial();
 

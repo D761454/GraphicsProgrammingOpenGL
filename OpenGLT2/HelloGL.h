@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include "Structures.h"
-#include "RedCube.h"
+#include "Cube.h"
 #include "StaticObject.h"
 #include "MeshLoader.h"
 #include "SceneObject.h"
@@ -15,6 +15,7 @@
 #include <string>
 #include "LinkedList.h"
 #include "BinaryTree.h"
+#include <vector>;
 
 #define _USE_MATH_DEFINES
 #include <math.h> // pi
@@ -38,11 +39,16 @@ private:
 	Vector4* _lightPosition;
 	Lighting* _lightData;
 
+	vector<pair<string, Material*>> materials;
+
+	Material* material[Materials];
+
 	float fps = 0.0f;
 	float deltaTime = 0.0f;
 	int currentTime = 0;
 	int lastTime = 0;
-	//int frames = 0;
+	
+	int color = 0;
 
 	bool menuChange = false;
 

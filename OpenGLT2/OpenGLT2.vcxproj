@@ -130,7 +130,7 @@
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="LinkedList.h" />
-    <ClInclude Include="RedCube.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="GLUTCallbacks.h" />
     <ClInclude Include="HelloGL.h" />
     <ClInclude Include="MeshLoader.h" />
@@ -143,7 +143,7 @@
   <ItemGroup>
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="LinkedList.cpp" />
-    <ClCompile Include="RedCube.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="GLUTCallbacks.cpp" />
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="main.cpp" />

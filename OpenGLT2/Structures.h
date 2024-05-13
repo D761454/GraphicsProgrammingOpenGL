@@ -16,6 +16,12 @@ struct Vector3 {
 
 struct Vector4 {
 	float x, y, z, w;
+	Vector4(float x, float y, float z, float w) {
+		this->x = x; this->y = y; this->z = z; this->w = w;
+	}
+	Vector4() {
+		x = 0; y = 0; z = 0; w = 0;
+	}
 };
 
 struct Lighting {
@@ -25,13 +31,19 @@ struct Lighting {
 struct Material {
 	Vector4 ambient, diffuse, specular;
 	GLfloat shininess;
+	Material(Vector4 ambient, Vector4 diffuse, Vector4 specular, GLfloat shininess) {
+		this->ambient = ambient, this->diffuse = diffuse, this->specular = specular;
+		this->shininess = shininess;
+	}
+	Material() {
+		ambient = Vector4(); diffuse = Vector4(); specular = Vector4(); shininess = 0.0f;
+	}
 };
 
 struct Camera {
 	Vector3 eye, center, up;
-	Vector3 direction, relativeRight, relativeUp;
 	float pitch, yaw;
-	float angleX, angleY, radius;
+	float angleX, angleY;
 };
 
 struct Color {

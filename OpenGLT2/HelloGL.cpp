@@ -16,27 +16,20 @@ void HelloGL::InitObjects() {
 	camera->up.x = 0.0f; camera->up.y = 1.0f; camera->up.z = 0.0f;
 
 	camera->angleX = 0.0f; camera->angleY = 0.0f; 
-	camera->radius = camera->eye.z - (camera->eye.z + camera->center.z);
 	camera->pitch = 0.0f; camera->yaw = -90.0f;
-
-	Vector3 Target;
-	Target.x = 0.0f; Target.y = 0.0f; Target.z = 0.0f;
-
-	// if use, must call in update VVV
-	//camera->direction = Normalize(camera->eye, Target); // just here for principle
-	//camera->relativeRight = Normalize(CrossProduct(camera->up, camera->direction)); // just here for principle
-	//camera->relativeUp = CrossProduct(camera->direction, camera->relativeRight); // just here for principle
-	// ^^^
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
+	material[0] = new Material(Vector4(0.8, 0.05, 0.05, 1.0), Vector4(0.8, 0.05, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f);
+	material[1] = new Material(Vector4(0.8, 0.5, 0.05, 1.0), Vector4(0.8, 0.5, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f);
+
 	// edit to make hold trees, trees each will have rand num of obj, all close to one another
 	for (int i = 0; i < ObjectAmounts; i++) // initial base amount of obj
 	{
-		list->MakeNode(&head, new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
+		list->MakeNode(&head, new Cube(cubeMesh, texture, material, color, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
 	}
 
 	lastTime = 0;
@@ -50,13 +43,24 @@ void HelloGL::ObjectMenu(int value) {
 }
 
 void HelloGL::SpawnMenu(int value) {
-	if (value > -1 && value < glutGet(GLUT_MENU_NUM_ITEMS)) {
-		Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
+	if (value >= -1 && value < glutGet(GLUT_MENU_NUM_ITEMS)) {
+		if (value == 0) {
+			Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
-		Texture2D* texture = new Texture2D();
-		texture->Load((char*)"Images/Penguins.raw", 512, 512);
+			Texture2D* texture = new Texture2D();
+			texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
-		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
+			list->MakeNode(&head, new Cube(cubeMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
+		}
+		if (value == 1) {
+			Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
+
+			Texture2D* texture = new Texture2D();
+			texture->Load((char*)"Images/Stars.raw", 512, 512);
+
+			list->MakeNode(&head, new Cube(cubeMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
+		}
+		menuChange = true;
 	}
 }
 
@@ -69,7 +73,8 @@ void HelloGL::UpdateMenu() {
 	}
 
 	int spawnMenu = glutCreateMenu(GLUTCallbacks::SpawnMenu);
-	glutAddMenuEntry("Cube", 0);
+	glutAddMenuEntry("Cube Penguin", 0);
+	glutAddMenuEntry("Cube Stars", 1);
 	glutAddMenuEntry("Exit", -1);
 
 	glutSetMenu(mainMenu);
@@ -227,15 +232,6 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 's') {
 		camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
 	}
-	//if (key == 32) { // space bar
-	//	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
-
-	//	Texture2D* texture = new Texture2D();
-	//	texture->Load((char*)"Images/Penguins.raw", 512, 512);
-
-	//	list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
-	//	UpdateMenu();
-	//}
 	if (key == 8) { // backspace
 		list->DeleteSelected(&head);
 		UpdateMenu();

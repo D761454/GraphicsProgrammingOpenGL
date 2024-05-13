@@ -1,6 +1,11 @@
-#include "RedCube.h"
+#include "Cube.h"
 
-RedCube::RedCube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObject(mesh, texture) {
+Cube::Cube(Mesh* mesh, Texture2D* texture, Material* material[Materials], int mat, float x, float y, float z) : SceneObject(mesh, texture) {
+	_materialBase = material[mat];
+	for (int i = 0; i < Materials; i++)
+	{
+		_materialArray[i] = material[i];
+	}
 	_rotation = 0.0f;
 	_rotationSpeed = (rand() % 2) + 1;
 	_rotationAxis[rand() % 3] = 1.0f;
@@ -9,33 +14,20 @@ RedCube::RedCube(Mesh* mesh, Texture2D* texture, float x, float y, float z) : Sc
 	_position.z = z;
 }
 
-RedCube::~RedCube() {
+Cube::~Cube() {
 	
 }
 
-void RedCube::ApplyMaterial() {
-	_material = new Material();
-	if (!_selected) {
-		_material->ambient.x = 0.8; _material->ambient.y = 0.05; _material->ambient.z = 0.05; // uniform
-		_material->ambient.w = 1.0;
-		_material->diffuse.x = 0.8; _material->diffuse.y = 0.05; _material->diffuse.z = 0.05; // bounce off
-		_material->diffuse.w = 1.0;
-		_material->specular.x = 1.0; _material->specular.y = 1.0; _material->specular.z = 1.0; // shiny and localised
-		_material->specular.w = 1.0;
-		_material->shininess = 100.0f;
+void Cube::ApplyMaterial() {
+	if (_selected) {
+		_material = _materialArray[1];
 	}
-	else { // when user hovered over object
-		_material->ambient.x = 0.8; _material->ambient.y = 0.5; _material->ambient.z = 0.05; // uniform
-		_material->ambient.w = 1.0;
-		_material->diffuse.x = 0.8; _material->diffuse.y = 0.5; _material->diffuse.z = 0.05; // bounce off
-		_material->diffuse.w = 1.0;
-		_material->specular.x = 1.0; _material->specular.y = 1.0; _material->specular.z = 1.0; // shiny and localised
-		_material->specular.w = 1.0;
-		_material->shininess = 100.0f;
+	else {
+		_material = _materialBase;
 	}
 }
 
-void RedCube::Draw() {
+void Cube::Draw() {
 	if (_mesh->Vertices != nullptr && _mesh->Normals != nullptr && _mesh->Indices != nullptr && _mesh->TexCoords != nullptr) {
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -63,6 +55,6 @@ void RedCube::Draw() {
 	}
 }
 
-void RedCube::Update() {
+void Cube::Update() {
 	_rotation += _rotationSpeed;
 }
