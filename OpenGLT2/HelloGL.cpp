@@ -29,7 +29,6 @@ void HelloGL::InitObjects() {
 	// ^^^
 
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
-	Mesh* skyboxMesh = MeshLoader::Load((char*)"Shapes/skybox.txt");
 
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Images/Penguins.raw", 512, 512);
@@ -40,28 +39,44 @@ void HelloGL::InitObjects() {
 		list->MakeNode(&head, new RedCube(cubeMesh, texture, ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
 	}
 
-	Texture2D* texture2 = new Texture2D();
-	texture2->Load((char*)"Images/Skybox.raw", 2048, 1536);
-	list->MakeNode(&head, new Skybox(skyboxMesh, texture2, camera->eye.x, camera->eye.y, camera->eye.z));
-
 	lastTime = 0;
 }
 
 void HelloGL::ObjectMenu(int value) {
-	if (value >= -1 && value < list->GetSize(head, 0)) {
-		list->SelectAt(head, value);
+	if (value > -1 && value < list->GetSize(head, 0)) {
+		list->SelectAt(head, value-1);
 		menuChange = true;
 	}
 }
 
+void HelloGL::SpawnMenu(int value) {
+	if (value > -1 && value < glutGet(GLUT_MENU_NUM_ITEMS)) {
+		Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
+
+		Texture2D* texture = new Texture2D();
+		texture->Load((char*)"Images/Penguins.raw", 512, 512);
+
+		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
+	}
+}
+
 void HelloGL::UpdateMenu() {
+	glutSetMenu(mainMenu);
+
 	for (int i = glutGet(GLUT_MENU_NUM_ITEMS); i > 0; i--)
 	{
 		glutRemoveMenuItem(i);
 	}
 
+	int spawnMenu = glutCreateMenu(GLUTCallbacks::SpawnMenu);
+	glutAddMenuEntry("Cube", 0);
+	glutAddMenuEntry("Exit", -1);
+
+	glutSetMenu(mainMenu);
+	glutAddSubMenu("Spawn Objects:", spawnMenu);
+
 	ListNode* node = head;
-	int val = 0;
+	int val = 1;
 	while (node != nullptr) {
 		string words = "Object # " + to_string(val) + " " + to_string(node->data->GetSelected());
 		const char* wordsc = (const char*)words.c_str();
@@ -73,7 +88,7 @@ void HelloGL::UpdateMenu() {
 }
 
 void HelloGL::InitMenu() {
-	int mainMenu = glutCreateMenu(GLUTCallbacks::ObjectMenu);
+	mainMenu = glutCreateMenu(GLUTCallbacks::ObjectMenu);
 
 	UpdateMenu();
 
@@ -212,15 +227,15 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 's') {
 		camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
 	}
-	if (key == 32) { // space bar
-		Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
+	//if (key == 32) { // space bar
+	//	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
-		Texture2D* texture = new Texture2D();
-		texture->Load((char*)"Images/Penguins.raw", 512, 512);
+	//	Texture2D* texture = new Texture2D();
+	//	texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
-		list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
-		UpdateMenu();
-	}
+	//	list->MakeNode(&head, new RedCube(cubeMesh, texture, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
+	//	UpdateMenu();
+	//}
 	if (key == 8) { // backspace
 		list->DeleteSelected(&head);
 		UpdateMenu();

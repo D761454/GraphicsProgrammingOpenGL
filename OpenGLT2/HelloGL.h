@@ -50,6 +50,8 @@ private:
 
 	float curX = 0.0f, curY = 0.0f;
 	float offsetX = 0.0f, offsetY = 0.0f;
+
+	int mainMenu = 0;
 public:
 	// constructor def
 	HelloGL(int argc, char* argv[]);
@@ -74,6 +76,8 @@ public:
 	void Update();
 
 	void ObjectMenu(int value);
+
+	void SpawnMenu(int value);
 
 	void UpdateMenu();
 
