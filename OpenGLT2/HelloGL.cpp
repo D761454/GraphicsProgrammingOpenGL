@@ -25,10 +25,10 @@ void HelloGL::InitObjects() {
 
 	material[0] = new Material(Vector4(1.0, 1.0, 1.0, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // white
 	material[1] = new Material(Vector4(0.8, 0.05, 0.05, 1.0), Vector4(0.8, 0.05, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // red
-	material[2] = new Material(Vector4(0.8, 0.5, 0.05, 1.0), Vector4(0.8, 0.5, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // green
-	material[3] = new Material(Vector4(0.8, 0.5, 0.05, 1.0), Vector4(0.8, 0.5, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // blue
+	material[2] = new Material(Vector4(0.05, 0.8, 0.05, 1.0), Vector4(0.05, 0.8, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // green
+	material[3] = new Material(Vector4(0.05, 0.05, 0.8, 1.0), Vector4(0.05, 0.05, 0.8, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // blue
 	material[4] = new Material(Vector4(0.8, 0.5, 0.05, 1.0), Vector4(0.8, 0.5, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // yellow
-	material[5] = new Material(Vector4(0.8, 0.5, 0.05, 1.0), Vector4(0.8, 0.5, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // purple
+	material[5] = new Material(Vector4(0.5, 0.05, 0.8, 1.0), Vector4(0.5, 0.05, 0.8, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // purple
 	material[6] = new Material(Vector4(0.33, 0.33, 0.33, 1.0), Vector4(0.33, 0.33, 0.33, 1.0), Vector4(0.0, 0.0, 0.0, 1.0), 0.0f); // grey
 
 	// edit to make hold trees, trees each will have rand num of obj, all close to one another
