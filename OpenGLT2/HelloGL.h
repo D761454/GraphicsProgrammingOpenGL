@@ -39,8 +39,6 @@ private:
 	Vector4* _lightPosition;
 	Lighting* _lightData;
 
-	vector<pair<string, Material*>> materials;
-
 	Material* material[Materials];
 
 	float fps = 0.0f;

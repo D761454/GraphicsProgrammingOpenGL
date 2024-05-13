@@ -20,7 +20,7 @@ Cube::~Cube() {
 
 void Cube::ApplyMaterial() {
 	if (_selected) {
-		_material = _materialArray[1];
+		_material = _materialArray[6];
 	}
 	else {
 		_material = _materialBase;
