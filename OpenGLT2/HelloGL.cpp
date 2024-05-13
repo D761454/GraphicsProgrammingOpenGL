@@ -43,8 +43,8 @@ void HelloGL::InitObjects() {
 }
 
 void HelloGL::ObjectMenu(int value) {
-	if (value > -1 && value < list->GetSize(head, 0)) {
-		list->SelectAt(head, value-1);
+	if (value >= -1 && value < list->GetSize(head, 0)) {
+		list->SelectAt(head, value);
 		menuChange = true;
 	}
 }
@@ -76,7 +76,7 @@ void HelloGL::UpdateMenu() {
 	glutAddSubMenu("Spawn Objects:", spawnMenu);
 
 	ListNode* node = head;
-	int val = 1;
+	int val = 0;
 	while (node != nullptr) {
 		string words = "Object # " + to_string(val) + " " + to_string(node->data->GetSelected());
 		const char* wordsc = (const char*)words.c_str();
