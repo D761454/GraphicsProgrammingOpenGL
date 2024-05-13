@@ -17,4 +17,6 @@ namespace GLUTCallbacks {
 	void ObjectMenu(int value);
 
 	void SpawnMenu(int value);
+
+	void ColorMenu(int value);
 }

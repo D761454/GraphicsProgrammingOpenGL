@@ -83,6 +83,8 @@ public:
 
 	void SpawnMenu(int value);
 
+	void ColorMenu(int value);
+
 	void UpdateMenu();
 
 	void DrawString(const char* text, TextPos* position, Color* color);

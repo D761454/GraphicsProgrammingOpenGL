@@ -43,4 +43,8 @@ namespace GLUTCallbacks {
 	void SpawnMenu(int value) {
 		helloGL->SpawnMenu(value);
 	}
+
+	void ColorMenu(int value) {
+		helloGL->ColorMenu(value);
+	}
 }

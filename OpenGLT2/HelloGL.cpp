@@ -69,6 +69,12 @@ void HelloGL::SpawnMenu(int value) {
 	}
 }
 
+void HelloGL::ColorMenu(int value) {
+	if (value > -1 && value < glutGet(GLUT_MENU_NUM_ITEMS)) {
+		color = value;
+	}
+}
+
 void HelloGL::UpdateMenu() {
 	glutSetMenu(mainMenu);
 
@@ -82,8 +88,17 @@ void HelloGL::UpdateMenu() {
 	glutAddMenuEntry("Cube Stars", 1);
 	glutAddMenuEntry("Exit", -1);
 
+	int colorMenu = glutCreateMenu(GLUTCallbacks::ColorMenu);
+	glutAddMenuEntry("WHITE", 0);
+	glutAddMenuEntry("RED", 1);
+	glutAddMenuEntry("GREEN", 2);
+	glutAddMenuEntry("BLUE", 3);
+	glutAddMenuEntry("YELLOW", 4);
+	glutAddMenuEntry("PURPLE", 5);
+
 	glutSetMenu(mainMenu);
 	glutAddSubMenu("Spawn Objects:", spawnMenu);
+	glutAddSubMenu("Color Selection:", colorMenu);
 
 	ListNode* node = head;
 	int val = 0;
