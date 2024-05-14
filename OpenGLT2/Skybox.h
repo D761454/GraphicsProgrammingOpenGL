@@ -14,7 +14,7 @@ class Skybox : public SceneObject
 private:
 	Material* _material;
 public:
-	Skybox(Mesh* mesh, Texture2D* texture, float x, float y, float z);
+	Skybox(Mesh* mesh, Texture2D* texture, Material* material, float x, float y, float z);
 	~Skybox();
 
 	void Draw();

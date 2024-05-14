@@ -1,6 +1,6 @@
 #include "Skybox.h"
 
-Skybox::Skybox(Mesh* mesh, Texture2D* texture, float x, float y, float z) : SceneObject(mesh, texture) {
+Skybox::Skybox(Mesh* mesh, Texture2D* texture, Material* material, float x, float y, float z) : SceneObject(mesh, texture) {
 	_position.x = x;
 	_position.y = y;
 	_position.z = z;

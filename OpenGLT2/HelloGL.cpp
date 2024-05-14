@@ -120,6 +120,16 @@ void HelloGL::InitMenu() {
 	glutAttachMenu(GLUT_LEFT_BUTTON);
 }
 
+void HelloGL::InitSkybox() {
+	glDisable(GL_DEPTH_TEST);
+
+	Mesh* skyMesh = MeshLoader::Load((char*)"Shapes/skybox.txt");
+	Texture2D* texture = new Texture2D();
+	texture->Load((char*)"Images/.raw", , );
+
+	glEnable(GL_DEPTH_TEST);
+}
+
 void HelloGL::InitGL(int argc, char* argv[]) {
 	// glut setup
 	GLUTCallbacks::Init(this);

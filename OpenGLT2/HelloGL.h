@@ -33,6 +33,8 @@ private:
 	LinkedList* list = new LinkedList;
 	ListNode* head = nullptr;
 
+	Skybox* skybox = nullptr;
+
 	BinaryTree* tree = new BinaryTree;
 	TreeNode* root = nullptr;
 
@@ -63,6 +65,7 @@ public:
 	void InitObjects();
 	void InitGL(int argc, char* argv[]);
 	void InitMenu();
+	void InitSkybox();
 
 	void InitLighting();
 
