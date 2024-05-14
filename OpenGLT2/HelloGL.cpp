@@ -18,6 +18,8 @@ void HelloGL::InitObjects() {
 	camera->angleX = 0.0f; camera->angleY = 0.0f; 
 	camera->pitch = 0.0f; camera->yaw = -90.0f;
 
+	InitSkybox();
+
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
 	Texture2D* texture = new Texture2D();
@@ -125,7 +127,9 @@ void HelloGL::InitSkybox() {
 
 	Mesh* skyMesh = MeshLoader::Load((char*)"Shapes/skybox.txt");
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Images/.raw", , );
+	texture->Load((char*)"Images/Skybox.raw", 900, 680);
+
+	skybox = new Skybox(skyMesh, texture, material[0], camera->eye.x, camera->eye.y, camera->eye.z);
 
 	glEnable(GL_DEPTH_TEST);
 }
@@ -214,6 +218,8 @@ void HelloGL::DrawString(const char* text, TextPos* position, Color* color) {
 void HelloGL::Display() {
 	// drawing code
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene 
+
+	skybox->Draw();
 
 	list->DrawList(head);
 
@@ -423,6 +429,8 @@ void HelloGL::Update() {
 		camera->eye.x + camera->center.x, camera->eye.y + camera->center.y, camera->eye.z + camera->center.z, 
 		camera->up.z, camera->up.y, camera->up.z);
 
+	skybox->Update(camera);
+
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->ambient.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->diffuse.x));
 	glLightfv(GL_LIGHT0, GL_SPECULAR, &(_lightData->specular.x));
@@ -441,6 +449,7 @@ void HelloGL::Update() {
 HelloGL::~HelloGL(void) {
 	delete camera;
 	list->DeleteList(&head);
+	delete skybox;
 }
 
 /*

@@ -18,6 +18,6 @@ public:
 	~Skybox();
 
 	void Draw();
-	void Update();
+	void Update(Camera* camera);
 };
 

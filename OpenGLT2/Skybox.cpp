@@ -4,6 +4,7 @@ Skybox::Skybox(Mesh* mesh, Texture2D* texture, Material* material, float x, floa
 	_position.x = x;
 	_position.y = y;
 	_position.z = z;
+	_material = material;
 }
 
 Skybox::~Skybox() {
@@ -32,6 +33,6 @@ void Skybox::Draw() {
 	}
 }
 
-void Skybox::Update() {
-	
+void Skybox::Update(Camera* camera) {
+	_position = camera->eye;
 }
