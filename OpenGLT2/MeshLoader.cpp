@@ -99,7 +99,6 @@ namespace MeshLoader
 namespace BasicMeshLoader // used for non textured and non normal things
 {
 	void LoadVertices(ifstream& inFile, BasicMesh& mesh);
-	void LoadColors(ifstream& inFile, BasicMesh& mesh);
 	void LoadIndices(ifstream& inFile, BasicMesh& mesh);
 
 	void LoadVertices(ifstream& inFile, BasicMesh& mesh)
@@ -115,21 +114,6 @@ namespace BasicMeshLoader // used for non textured and non normal things
 				inFile >> mesh.Vertices[i].x;
 				inFile >> mesh.Vertices[i].y;
 				inFile >> mesh.Vertices[i].z;
-			}
-		}
-	}
-
-	void LoadColors(ifstream& inFile, BasicMesh& mesh)
-	{
-		inFile >> mesh.ColorCount;
-
-		if (mesh.ColorCount > 0) {
-			mesh.Colors = new Color[mesh.ColorCount];
-
-			for (int i = 0; i < mesh.ColorCount; i++) {
-				inFile >> mesh.Colors[i].r;
-				inFile >> mesh.Colors[i].g;
-				inFile >> mesh.Colors[i].b;
 			}
 		}
 	}
@@ -163,7 +147,6 @@ namespace BasicMeshLoader // used for non textured and non normal things
 		}
 
 		LoadVertices(inFile, *mesh);
-		LoadColors(inFile, *mesh);
 		LoadIndices(inFile, *mesh);
 
 		return mesh;
