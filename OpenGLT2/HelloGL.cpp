@@ -240,18 +240,23 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	if (key == 'q') {
 		glutExit();
 	}
-	if (key == 'd') { // normalized to not be different based on cam center
-		camera->eye = Add(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
+
+	if (RMB) {
+		if (key == 'd') { // normalized to not be different based on cam center
+			camera->eye = Add(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
+		}
+		if (key == 'a') {
+			camera->eye = Subtract(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
+		}
+		if (key == 'w') {
+			camera->eye = Add(camera->eye, Multiply(camera->center, speed));
+		}
+		if (key == 's') {
+			camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
+		}
 	}
-	if (key == 'a') {
-		camera->eye = Subtract(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
-	}
-	if (key == 'w') { 
-		camera->eye = Add(camera->eye, Multiply(camera->center, speed));
-	}
-	if (key == 's') {
-		camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
-	}
+	// attempt to move all selected objects (an do just on x y and z axis as done in other apps for mvoing objs)
+	
 	if (key == 8) { // backspace
 		list->DeleteSelected(&head);
 		UpdateMenu();
