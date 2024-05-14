@@ -30,13 +30,14 @@ void HelloGL::InitObjects() {
 	material[4] = new Material(Vector4(0.8, 0.5, 0.05, 1.0), Vector4(0.8, 0.5, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // yellow
 	material[5] = new Material(Vector4(0.5, 0.05, 0.8, 1.0), Vector4(0.5, 0.05, 0.8, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // purple
 	material[6] = new Material(Vector4(0.33, 0.33, 0.33, 1.0), Vector4(0.33, 0.33, 0.33, 1.0), Vector4(0.0, 0.0, 0.0, 1.0), 0.0f); // grey
+	material[7] = new Material(Vector4(1.0, 1.0, 1.0, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), Vector4(0.0, 0.0, 0.0, 0.0), 100.0f); // skybox
 
 	InitSkybox();
 
 	// edit to make hold trees, trees each will have rand num of obj, all close to one another
 	for (int i = 0; i < ObjectAmounts; i++) // initial base amount of obj
 	{
-		list->MakeNode(&head, new Cube(cubeMesh, texture, material, rand()%(Materials-1), ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
+		list->MakeNode(&head, new Cube(cubeMesh, texture, material, rand()%(Materials-2), ((rand() % 400) / 10.0f) - 20.0f, ((rand() % 200) / 10.0f) - 10.0f, -(rand() % 1000) / 10.0f));
 	}
 
 	lastTime = 0;
@@ -127,7 +128,7 @@ void HelloGL::InitSkybox() {
 	Texture2D* texture = new Texture2D();
 	texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
-	skybox = new Skybox(skyMesh, texture, material[0], camera->eye.x, camera->eye.y, camera->eye.z);
+	skybox = new Skybox(skyMesh, texture, material[7], camera->eye.x, camera->eye.y, camera->eye.z);
 }
 
 void HelloGL::InitGL(int argc, char* argv[]) {
