@@ -29,6 +29,11 @@ void Skybox::Draw() {
 
 		glTexCoordPointer(2, GL_FLOAT, 0, _mesh->TexCoords);
 
+		glMaterialfv(GL_FRONT, GL_AMBIENT, &(_material->ambient.x));
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, &(_material->diffuse.x));
+		glMaterialfv(GL_FRONT, GL_SPECULAR, &(_material->specular.x));
+		glMaterialfv(GL_FRONT, GL_SHININESS, &(_material->shininess));
+
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
 		glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices);
@@ -44,5 +49,7 @@ void Skybox::Draw() {
 }
 
 void Skybox::Update(Camera* camera) {
-	_position = camera->eye;
+	_position.x = camera->eye.x;
+	_position.y = camera->eye.y;
+	_position.z = camera->eye.z;
 }

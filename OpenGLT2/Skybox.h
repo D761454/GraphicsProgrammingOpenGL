@@ -6,6 +6,7 @@
 #include "Structures.h"
 #include "Texture2D.h"
 #include "SceneObject.h"
+#include "Constants.h"
 #include <fstream>
 #include <iostream>
 

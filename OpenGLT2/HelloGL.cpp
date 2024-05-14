@@ -18,8 +18,6 @@ void HelloGL::InitObjects() {
 	camera->angleX = 0.0f; camera->angleY = 0.0f; 
 	camera->pitch = 0.0f; camera->yaw = -90.0f;
 
-	InitSkybox();
-
 	Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
 	Texture2D* texture = new Texture2D();
@@ -32,6 +30,8 @@ void HelloGL::InitObjects() {
 	material[4] = new Material(Vector4(0.8, 0.5, 0.05, 1.0), Vector4(0.8, 0.5, 0.05, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // yellow
 	material[5] = new Material(Vector4(0.5, 0.05, 0.8, 1.0), Vector4(0.5, 0.05, 0.8, 1.0), Vector4(1.0, 1.0, 1.0, 1.0), 100.0f); // purple
 	material[6] = new Material(Vector4(0.33, 0.33, 0.33, 1.0), Vector4(0.33, 0.33, 0.33, 1.0), Vector4(0.0, 0.0, 0.0, 1.0), 0.0f); // grey
+
+	InitSkybox();
 
 	// edit to make hold trees, trees each will have rand num of obj, all close to one another
 	for (int i = 0; i < ObjectAmounts; i++) // initial base amount of obj
@@ -63,7 +63,7 @@ void HelloGL::SpawnMenu(int value) {
 			Mesh* cubeMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
 			Texture2D* texture = new Texture2D();
-			texture->Load((char*)"Images/Stars.raw", 512, 512);
+			texture->Load((char*)"Images/stars.raw", 512, 512);
 
 			list->MakeNode(&head, new Cube(cubeMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 		}
@@ -123,15 +123,11 @@ void HelloGL::InitMenu() {
 }
 
 void HelloGL::InitSkybox() {
-	glDisable(GL_DEPTH_TEST);
-
 	Mesh* skyMesh = MeshLoader::Load((char*)"Shapes/skybox.txt");
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Images/Skybox.png", 900, 680);
+	texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
 	skybox = new Skybox(skyMesh, texture, material[0], camera->eye.x, camera->eye.y, camera->eye.z);
-
-	glEnable(GL_DEPTH_TEST);
 }
 
 void HelloGL::InitGL(int argc, char* argv[]) {
