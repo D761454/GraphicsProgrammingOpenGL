@@ -123,6 +123,15 @@ void LinkedList::DeleteSelected(ListNode** node) {
 	//}
 }
 
+void LinkedList::MoveSelected(ListNode* node, int x, int y, int z) {
+	if (node != nullptr) {
+		if (node->data->GetSelected()) {
+			node->data->Move(x, y, z);
+		}
+		MoveSelected(node->next, x, y, z);
+	}
+}
+
 void LinkedList::SelectAt(ListNode* head, int pos) {
 	int count = 0;
 

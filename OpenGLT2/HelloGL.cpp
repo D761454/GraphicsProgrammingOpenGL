@@ -255,6 +255,28 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 			camera->eye = Subtract(camera->eye, Multiply(camera->center, speed));
 		}
 	}
+	else {
+		if (key == 'd') { // normalized to not be different based on cam center
+			list->MoveSelected(head, 10, 0, 0);
+		}
+		if (key == 'a') {
+			list->MoveSelected(head, -10, 0, 0);
+		}
+		if (key == 'w') {
+			list->MoveSelected(head, 0, 0, -10);
+		}
+		if (key == 's') {
+			list->MoveSelected(head, 0, 0, 10);
+		}
+		if (key == '3') {
+			cout << "Up";
+			list->MoveSelected(head, 0, 10, 0);
+		}
+		if (key == '2') {
+			cout << "Down";
+			list->MoveSelected(head, 0, -10, 0);
+		}
+	}
 	// attempt to move all selected objects (an do just on x y and z axis as done in other apps for mvoing objs)
 	
 	if (key == 8) { // backspace
