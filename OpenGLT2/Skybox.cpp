@@ -18,6 +18,8 @@ void Skybox::Draw() {
 		GLint oldDepthFunc;
 		glGetIntegerv(GL_DEPTH_FUNC, &oldDepthFunc);
 
+		//glDisable(GL_LIGHTING);
+
 		glCullFace(GL_FRONT);
 		glDepthFunc(GL_LEQUAL);
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
@@ -45,6 +47,8 @@ void Skybox::Draw() {
 		
 		glCullFace(oldCullFace);
 		glDepthFunc(oldDepthFunc);
+
+		//glEnable(GL_LIGHTING);
 	}
 }
 
