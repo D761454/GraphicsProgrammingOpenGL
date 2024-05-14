@@ -127,7 +127,7 @@ void HelloGL::InitSkybox() {
 
 	Mesh* skyMesh = MeshLoader::Load((char*)"Shapes/skybox.txt");
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Images/Skybox.raw", 900, 680);
+	texture->Load((char*)"Images/Skybox.png", 900, 680);
 
 	skybox = new Skybox(skyMesh, texture, material[0], camera->eye.x, camera->eye.y, camera->eye.z);
 
