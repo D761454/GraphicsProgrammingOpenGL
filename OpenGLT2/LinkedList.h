@@ -13,6 +13,7 @@ public:
 	void InsertAfter(ListNode* lastNode, SceneObject* d);
 
 	void SelectAt(ListNode* head, int pos);
+	void DeselectAll(ListNode* node);
 
 	void MoveSelected(ListNode* node, int x, int y, int z);
 

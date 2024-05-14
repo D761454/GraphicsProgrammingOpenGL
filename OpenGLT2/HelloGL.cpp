@@ -276,6 +276,10 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 			cout << "Down";
 			list->MoveSelected(head, 0, -10, 0);
 		}
+		if (key == 13) { // enter
+			list->DeselectAll(head);
+			UpdateMenu();
+		}
 	}
 	// attempt to move all selected objects (an do just on x y and z axis as done in other apps for mvoing objs)
 	
