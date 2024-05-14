@@ -13,6 +13,13 @@ Skybox::~Skybox() {
 
 void Skybox::Draw() {
 	if (_mesh->Vertices != nullptr && _mesh->Normals != nullptr && _mesh->Indices != nullptr && _mesh->TexCoords != nullptr) {
+		GLint oldCullFace; 
+		glGetIntegerv(GL_CULL_FACE_MODE, &oldCullFace);
+		GLint oldDepthFunc;
+		glGetIntegerv(GL_DEPTH_FUNC, &oldDepthFunc);
+
+		glCullFace(GL_FRONT);
+		glDepthFunc(GL_LEQUAL);
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glEnableClientState(GL_VERTEX_ARRAY);
@@ -30,6 +37,9 @@ void Skybox::Draw() {
 		glDisableClientState(GL_NORMAL_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+		
+		glCullFace(oldCullFace);
+		glDepthFunc(oldDepthFunc);
 	}
 }
 
