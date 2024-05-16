@@ -69,12 +69,12 @@ void HelloGL::SpawnMenu(int value) {
 			list->MakeNode(&head, new Cube(cubeMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 		}
 		if (value == 2) {
-			Mesh* catMesh = ComplexMeshLoader::Load((char*)"Shapes/bigshape.txt");
+			Mesh* bigMesh = ComplexMeshLoader::Load((char*)"Shapes/bigshape.txt");
 
 			Texture2D* texture = new Texture2D();
 			texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
-			list->MakeNode(&head, new Cube(catMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
+			list->MakeNode(&head, new Cube(bigMesh, texture, material, color, camera->eye.x + camera->center.x, camera->eye.y + camera->center.y, camera->eye.z + camera->center.z));
 		}
 		menuChange = true;
 	}
