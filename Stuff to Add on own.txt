@@ -1,9 +1,0 @@
-SkyBox;
-
-load from obj files;
-
-custom obj that give vertices, tex coords, normals and indices;
-
-diff obj materials;
-
-scene graph - linked list of trees - trees of obj - thus when chaning one obj material, rest is changed
