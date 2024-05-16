@@ -74,7 +74,7 @@ void HelloGL::SpawnMenu(int value) {
 			Texture2D* texture = new Texture2D();
 			texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
-			list->MakeNode(&head, new Cube(bigMesh, texture, material, color, camera->eye.x + camera->center.x, camera->eye.y + camera->center.y, camera->eye.z + camera->center.z));
+			list->MakeNode(&head, new Cube(bigMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 		}
 		menuChange = true;
 	}
