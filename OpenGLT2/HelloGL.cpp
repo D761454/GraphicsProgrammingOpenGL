@@ -68,6 +68,14 @@ void HelloGL::SpawnMenu(int value) {
 
 			list->MakeNode(&head, new Cube(cubeMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 		}
+		if (value == 2) {
+			Mesh* catMesh = MeshLoader::Load((char*)"Shapes/cat.txt");
+
+			Texture2D* texture = new Texture2D();
+			texture->Load((char*)"Images/Cat_diffuse.jpg", 512, 512);
+
+			list->MakeNode(&head, new Cube(catMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
+		}
 		menuChange = true;
 	}
 }
@@ -89,6 +97,7 @@ void HelloGL::UpdateMenu() {
 	int spawnMenu = glutCreateMenu(GLUTCallbacks::SpawnMenu);
 	glutAddMenuEntry("Cube Penguin", 0);
 	glutAddMenuEntry("Cube Stars", 1);
+	glutAddMenuEntry("Cat", 2);
 	glutAddMenuEntry("Exit", -1);
 
 	int colorMenu = glutCreateMenu(GLUTCallbacks::ColorMenu);
