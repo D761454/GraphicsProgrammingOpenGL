@@ -167,11 +167,9 @@ namespace ComplexMeshLoader
 		if (mesh.VertexCount > 0)
 		{
 			mesh.Vertices = new Vertex[mesh.VertexCount];
-			string unneeded;
 
 			for (int i = 0; i < mesh.VertexCount; i++)
 			{
-				inFile >> unneeded;
 				inFile >> mesh.Vertices[i].x;
 				inFile >> mesh.Vertices[i].y;
 				inFile >> mesh.Vertices[i].z;
@@ -185,10 +183,8 @@ namespace ComplexMeshLoader
 
 		if (mesh.NormalCount > 0) {
 			mesh.Normals = new Vector3[mesh.NormalCount];
-			string unneeded;
 
 			for (int i = 0; i < mesh.NormalCount; i++) {
-				inFile >> unneeded;
 				inFile >> mesh.Normals[i].x;
 				inFile >> mesh.Normals[i].y;
 				inFile >> mesh.Normals[i].z;
@@ -202,12 +198,10 @@ namespace ComplexMeshLoader
 
 		if (mesh.TexCoordCount > 0) {
 			mesh.TexCoords = new TexCoord[mesh.TexCoordCount];
-			string unneeded;
 			int z; // in my files is allways 0
 
 			for (int i = 0; i < mesh.TexCoordCount; i++)
 			{
-				inFile >> unneeded;
 				inFile >> mesh.TexCoords[i].u;
 				inFile >> mesh.TexCoords[i].v;
 				inFile >> z;
