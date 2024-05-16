@@ -213,6 +213,8 @@ namespace ComplexMeshLoader
 	{
 		inFile >> mesh.IndexCount;
 
+		mesh.IndexCount = mesh.IndexCount * 3;
+
 		if (mesh.IndexCount > 0) {
 			mesh.Indices = new GLushort[mesh.IndexCount];
 

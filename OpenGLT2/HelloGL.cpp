@@ -135,7 +135,7 @@ void HelloGL::InitMenu() {
 void HelloGL::InitSkybox() {
 	Mesh* skyMesh = MeshLoader::Load((char*)"Shapes/skybox.txt");
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Images/stars.raw", 512, 512);
+	texture->Load((char*)"Images/Penguins.raw", 512, 512);
 
 	skybox = new Skybox(skyMesh, texture, material[7], camera->eye.x, camera->eye.y, camera->eye.z);
 }
