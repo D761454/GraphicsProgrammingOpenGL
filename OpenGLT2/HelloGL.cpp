@@ -97,7 +97,7 @@ void HelloGL::UpdateMenu() {
 	int spawnMenu = glutCreateMenu(GLUTCallbacks::SpawnMenu);
 	glutAddMenuEntry("Cube Penguin", 0);
 	glutAddMenuEntry("Cube Stars", 1);
-	glutAddMenuEntry("Cat", 2);
+	glutAddMenuEntry("Obj", 2);
 	glutAddMenuEntry("Exit", -1);
 
 	int colorMenu = glutCreateMenu(GLUTCallbacks::ColorMenu);
