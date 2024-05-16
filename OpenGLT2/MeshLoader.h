@@ -10,7 +10,3 @@ namespace MeshLoader
 namespace BasicMeshLoader {
 	BasicMesh* Load(char* path);
 }
-
-namespace ComplexMeshLoader {
-	Mesh* Load(char* path);
-}
