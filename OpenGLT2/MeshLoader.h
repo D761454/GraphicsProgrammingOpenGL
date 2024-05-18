@@ -10,3 +10,7 @@ namespace MeshLoader
 namespace BasicMeshLoader {
 	BasicMesh* Load(char* path);
 }
+
+namespace OddMeshLoader {
+	VoxelMesh* Load(char* path);
+}

@@ -73,6 +73,16 @@ struct BasicMesh{
 	int VertexCount, ColorCount, IndexCount;
 };
 
+struct VoxelMesh {
+	Vertex* Vertices;
+	Vector3* Normals;
+	GLushort* IndicesI;
+	GLushort* IndicesT;
+	GLushort* IndicesN;
+	int VertexCount, NormalCount, IndexCount, TexCoordCount;
+	TexCoord* TexCoords;
+};
+
 struct ListNode {
 	SceneObject* data = nullptr;
 	ListNode* next = nullptr;

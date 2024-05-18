@@ -1,6 +1,6 @@
 #include "VoxelObject.h"
 
-VoxelObject::VoxelObject(Mesh* mesh, Texture2D* texture, Material* material[Materials], int mat, float x, float y, float z) : SceneObject(mesh, texture) {
+VoxelObject::VoxelObject(VoxelMesh* mesh, Texture2D* texture, Material* material[Materials], int mat, float x, float y, float z) : SceneObject(mesh, texture) {
 	_materialBase = material[mat];
 	for (int i = 0; i < Materials; i++)
 	{
