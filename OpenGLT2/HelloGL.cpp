@@ -69,7 +69,7 @@ void HelloGL::SpawnMenu(int value) {
 			list->MakeNode(&head, new Cube(cubeMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 		}
 		if (value == 2) {
-			Mesh* bigMesh = MeshLoader::Load((char*)"Shapes/3x3x3.txt");
+			Mesh* bigMesh = MeshLoader::Load((char*)"Shapes/Custom.txt");
 
 			Texture2D* texture = new Texture2D();
 			texture->LoadTextureTGA((char*)"Images/chr_knight.tga");
