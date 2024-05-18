@@ -69,7 +69,7 @@ void HelloGL::SpawnMenu(int value) {
 			list->MakeNode(&head, new Cube(cubeMesh, texture, material, color, camera->eye.x + camera->center.x * 50, camera->eye.y + camera->center.y * 50, camera->eye.z + camera->center.z * 50));
 		}
 		if (value == 2) {
-			Mesh* bigMesh = MeshLoader::Load((char*)"Shapes/.txt");
+			Mesh* bigMesh = MeshLoader::Load((char*)"Shapes/cube.txt");
 
 			Texture2D* texture = new Texture2D();
 			texture->Load((char*)"Images/Penguins.raw", 512, 512);
@@ -133,9 +133,9 @@ void HelloGL::InitMenu() {
 }
 
 void HelloGL::InitSkybox() {
-	Mesh* skyMesh = MeshLoader::Load((char*)"Shapes/skybox.txt");
+	Mesh* skyMesh = MeshLoader::Load((char*)"Shapes/skybox2.txt");
 	Texture2D* texture = new Texture2D();
-	texture->Load((char*)"Images/Penguins.raw", 512, 512);
+	texture->LoadTextureTGA((char*)"Images/skybox.tga");
 
 	skybox = new Skybox(skyMesh, texture, material[7], camera->eye.x, camera->eye.y, camera->eye.z);
 }

@@ -3,6 +3,7 @@
 #include <gl/GL.h> // OpenGl
 #include <gl/GLU.h> // OpenGL Utilities
 #include "GL\freeglut.h" // freeglut library
+#include "Structures.h"
 #include <iostream>
 #include <fstream>
 
@@ -15,6 +16,7 @@ public:
 	~Texture2D();
 
 	bool Load(char* path, int width, int height);
+	int LoadTextureTGA(const char* textureFileName);
 
 	GLuint GetID() const { return _ID; }
 	int GetWidth() const { return _width; }
