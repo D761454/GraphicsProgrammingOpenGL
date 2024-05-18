@@ -139,7 +139,6 @@
     <ClInclude Include="StaticObject.h" />
     <ClInclude Include="Structures.h" />
     <ClInclude Include="Texture2D.h" />
-    <ClInclude Include="VoxelObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BinaryTree.cpp" />
@@ -154,7 +153,6 @@
     <ClCompile Include="StaticObject.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="tgaLoader.cpp" />
-    <ClCompile Include="VoxelObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
