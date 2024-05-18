@@ -6,6 +6,7 @@ class SceneObject
 {
 protected:
 	Mesh* _mesh;
+	VoxelMesh* _vMesh;
 	Texture2D* _texture;
 
 	GLfloat _rotation;
@@ -15,6 +16,7 @@ protected:
 	bool _selected = false;
 public:
 	SceneObject(Mesh* mesh, Texture2D* texture);
+	SceneObject(VoxelMesh* mesh, Texture2D* texture);
 	virtual ~SceneObject();
 
 	virtual void Update();
