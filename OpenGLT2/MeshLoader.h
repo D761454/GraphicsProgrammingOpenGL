@@ -12,5 +12,5 @@ namespace BasicMeshLoader {
 }
 
 namespace OddMeshLoader {
-	VoxelMesh* Load(char* path);
+	Mesh* AltLoad(char* path);
 }

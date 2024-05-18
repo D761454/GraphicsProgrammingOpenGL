@@ -1,6 +1,6 @@
 #include "VoxelObject.h"
 
-VoxelObject::VoxelObject(VoxelMesh* mesh, Texture2D* texture, Material* material[Materials], int mat, float x, float y, float z) : SceneObject(mesh, texture) {
+VoxelObject::VoxelObject(Mesh* mesh, Texture2D* texture, Material* material[Materials], int mat, float x, float y, float z) : SceneObject(mesh, texture) {
 	_materialBase = material[mat];
 	for (int i = 0; i < Materials; i++)
 	{
@@ -28,15 +28,15 @@ void VoxelObject::ApplyMaterial() {
 }
 
 void VoxelObject::Draw() {
-	if (_vMesh->Vertices != nullptr && _vMesh->Normals != nullptr && _vMesh->IndicesI != nullptr && _vMesh->IndicesT != nullptr && _vMesh->IndicesN != nullptr && _vMesh->TexCoords != nullptr) {
+	if (_mesh->Vertices != nullptr && _mesh->Normals != nullptr && _mesh->Indices && _mesh->TexCoords != nullptr) {
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_NORMAL_ARRAY);
-		glVertexPointer(3, GL_FLOAT, 0, _vMesh->Vertices);
-		glNormalPointer(GL_FLOAT, 0, _vMesh->Normals);
+		glVertexPointer(3, GL_FLOAT, 0, _mesh->Vertices);
+		glNormalPointer(GL_FLOAT, 0, _mesh->Normals);
 
-		glTexCoordPointer(2, GL_FLOAT, 0, _vMesh->TexCoords);
+		glTexCoordPointer(2, GL_FLOAT, 0, _mesh->TexCoords);
 		ApplyMaterial();
 		glMaterialfv(GL_FRONT, GL_AMBIENT, &(_material->ambient.x));
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, &(_material->diffuse.x));
@@ -46,7 +46,7 @@ void VoxelObject::Draw() {
 		glPushMatrix();
 		glTranslatef(_position.x, _position.y, _position.z);
 		glRotatef(_rotation, _rotationAxis[0], _rotationAxis[1], _rotationAxis[2]);
-		glDrawElements(GL_TRIANGLES, _vMesh->IndexCount, GL_UNSIGNED_SHORT, _vMesh->IndicesI);
+		glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices);
 		glPopMatrix();
 
 		glDisableClientState(GL_NORMAL_ARRAY);

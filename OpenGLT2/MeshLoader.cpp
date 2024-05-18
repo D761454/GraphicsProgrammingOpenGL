@@ -153,13 +153,14 @@ namespace BasicMeshLoader // used for non textured and non normal things
 	}
 }
 
-namespace OddMeshLoader {
-	void LoadVertices(ifstream& inFile, VoxelMesh& mesh);
-	void LoadNormals(ifstream& inFile, VoxelMesh& mesh);
-	void LoadTexCoords(ifstream& inFile, VoxelMesh& mesh);
-	void LoadIndices(ifstream& inFile, VoxelMesh& mesh);
+namespace OddMeshLoader
+{
+	void LoadVertices(ifstream& inFile, Mesh& mesh);
+	void LoadNormals(ifstream& inFile, Mesh& mesh);
+	void LoadTexCoords(ifstream& inFile, Mesh& mesh);
+	void LoadIndices(ifstream& inFile, Mesh& mesh);
 
-	void LoadVertices(ifstream& inFile, VoxelMesh& mesh)
+	void LoadVertices(ifstream& inFile, Mesh& mesh)
 	{
 		inFile >> mesh.VertexCount;
 
@@ -176,57 +177,70 @@ namespace OddMeshLoader {
 		}
 	}
 
-	void LoadNormals(ifstream& inFile, VoxelMesh& mesh)
+	void LoadNormals(ifstream& inFile, Mesh& mesh)
 	{
 		inFile >> mesh.NormalCount;
 
 		if (mesh.NormalCount > 0) {
-			mesh.Normals = new Vector3[mesh.NormalCount];
+			mesh.Normals = new Vector3[mesh.VertexCount];
+
+			Vector3 temp; int count = 0;
 
 			for (int i = 0; i < mesh.NormalCount; i++) {
-				inFile >> mesh.Normals[i].x;
-				inFile >> mesh.Normals[i].y;
-				inFile >> mesh.Normals[i].z;
+				inFile >> temp.x;
+				inFile >> temp.y;
+				inFile >> temp.z;
+				for (int j = 0; j < mesh.VertexCount / 6; j++)
+				{
+					mesh.Normals[count] = temp;
+					count++;
+				}
 			}
 		}
 	}
 
-	void LoadTexCoords(ifstream& inFile, VoxelMesh& mesh)
+	void LoadTexCoords(ifstream& inFile, Mesh& mesh)
 	{
 		inFile >> mesh.TexCoordCount;
 
 		if (mesh.TexCoordCount > 0) {
-			mesh.TexCoords = new TexCoord[mesh.TexCoordCount];
+			mesh.TexCoords = new TexCoord[mesh.VertexCount];
+
+			TexCoord temp;
 
 			for (int i = 0; i < mesh.TexCoordCount; i++)
 			{
-				inFile >> mesh.TexCoords[i].u;
-				inFile >> mesh.TexCoords[i].v;
+				inFile >> temp.u;
+				inFile >> temp.v;
+				for (int j = 0; j < mesh.VertexCount; j++)
+				{
+					mesh.TexCoords[j] = temp;
+				}
 			}
 		}
 	}
 
-	void LoadIndices(ifstream& inFile, VoxelMesh& mesh)
+	void LoadIndices(ifstream& inFile, Mesh& mesh)
 	{
 		inFile >> mesh.IndexCount;
 
 		if (mesh.IndexCount > 0) {
-			mesh.IndicesI = new GLushort[mesh.IndexCount];
-			mesh.IndicesT = new GLushort[mesh.IndexCount];
-			mesh.IndicesN = new GLushort[mesh.IndexCount];
+			mesh.Indices = new GLushort[mesh.IndexCount / 3];
 
-			for (int i = 0; i < mesh.IndexCount; i++)
+			GLushort temp;
+
+			for (int i = 0; i < mesh.IndexCount / 3; i++)
 			{
-				inFile >> mesh.IndicesI[i];
-				inFile >> mesh.IndicesT[i];
-				inFile >> mesh.IndicesN[i];
+				inFile >> mesh.Indices[i];
+				inFile >> temp;
+				inFile >> temp;
 			}
 		}
 	}
 
-	VoxelMesh* OddMeshLoader::Load(char* path)
+	Mesh* OddMeshLoader::AltLoad(char* path)
 	{
-		VoxelMesh* mesh = new VoxelMesh();
+		Mesh* mesh = new Mesh();
 
 		ifstream inFile;
 

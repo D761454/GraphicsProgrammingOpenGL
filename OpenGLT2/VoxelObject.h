@@ -19,7 +19,7 @@ private:
 	Material* _material;
 	Material* _materialBase;
 public:
-	VoxelObject(VoxelMesh* mesh, Texture2D* texture, Material* material[Materials], int mat, float x, float y, float z);
+	VoxelObject(Mesh* mesh, Texture2D* texture, Material* material[Materials], int mat, float x, float y, float z);
 	~VoxelObject();
 
 	void ApplyMaterial();
