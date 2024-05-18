@@ -31,6 +31,9 @@ void Skybox::Draw() {
 
 		glTexCoordPointer(2, GL_FLOAT, 0, _mesh->TexCoords);
 
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, 0x812F);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, 0x812F);
+
 		glMaterialfv(GL_FRONT, GL_AMBIENT, &(_material->ambient.x));
 		glMaterialfv(GL_FRONT, GL_DIFFUSE, &(_material->diffuse.x));
 		glMaterialfv(GL_FRONT, GL_SPECULAR, &(_material->specular.x));
