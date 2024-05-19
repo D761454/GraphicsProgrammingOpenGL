@@ -421,18 +421,30 @@ Vector3 HelloGL::Multiply(Vector3 vector, float scalar) {
 	return temp;
 }
 
+// forward and right
 Vector3 HelloGL::Add(Vector3 one, Vector3 two) {
 	Vector3 temp;
 	temp.x = one.x + two.x;
-	temp.y = one.y + two.y;
+	if (one.y + two.y > -19) { // prevent going below floor
+		temp.y = one.y + two.y;
+	}
+	else {
+		temp.y = one.y;
+	}
 	temp.z = one.z + two.z;
 	return temp;
 }
 
+// backwards and left
 Vector3 HelloGL::Subtract(Vector3 one, Vector3 two) {
 	Vector3 temp;
 	temp.x = one.x - two.x;
-	temp.y = one.y - two.y;
+	if (one.y - two.y > -19) { // prevent going below floor
+		temp.y = one.y - two.y;
+	}
+	else {
+		temp.y = one.y;
+	}
 	temp.z = one.z - two.z;
 	return temp;
 }
