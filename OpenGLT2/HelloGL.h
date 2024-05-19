@@ -12,7 +12,6 @@
 #include "MeshLoader.h"
 #include "SceneObject.h"
 #include "Skybox.h"
-#include "VoxelObject.h"
 #include <string>
 #include "LinkedList.h"
 #include "BinaryTree.h"
