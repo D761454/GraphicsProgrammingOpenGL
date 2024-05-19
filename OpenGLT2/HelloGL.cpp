@@ -425,7 +425,7 @@ Vector3 HelloGL::Multiply(Vector3 vector, float scalar) {
 Vector3 HelloGL::Add(Vector3 one, Vector3 two) {
 	Vector3 temp;
 	temp.x = one.x + two.x;
-	if (one.y + two.y > -19) { // prevent going below floor
+	if (one.y + two.y > -19) { // prevent going below floor - could use collision detection but for something like this it isnt really needed
 		temp.y = one.y + two.y;
 	}
 	else {
