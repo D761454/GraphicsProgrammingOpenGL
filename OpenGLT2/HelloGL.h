@@ -12,6 +12,7 @@
 #include "MeshLoader.h"
 #include "SceneObject.h"
 #include "Skybox.h"
+#include "Floor.h"
 #include <string>
 #include "LinkedList.h"
 #include "BinaryTree.h"
@@ -34,6 +35,7 @@ private:
 	ListNode* head = nullptr;
 
 	Skybox* skybox = nullptr;
+	Floor* floor = nullptr;
 
 	BinaryTree* tree = new BinaryTree;
 	TreeNode* root = nullptr;

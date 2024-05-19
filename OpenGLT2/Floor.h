@@ -9,13 +9,13 @@
 #include <fstream>
 #include <iostream>
 
-class Skybox : public SceneObject
+class Floor : public SceneObject
 {
 private:
 	Material* _material;
 public:
-	Skybox(Mesh* mesh, Texture2D* texture, Material* material, float x, float y, float z);
-	~Skybox();
+	Floor(Mesh* mesh, Texture2D* texture, Material* material, float x, float y, float z);
+	~Floor();
 
 	void Draw();
 	void Update(Camera* camera);

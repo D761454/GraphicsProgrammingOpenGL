@@ -34,6 +34,11 @@ void HelloGL::InitObjects() {
 
 	InitSkybox();
 
+	Mesh* floorMesh = MeshLoader::Load((char*)"Shapes/floor.txt");
+	Texture2D* ftexture = new Texture2D();
+	ftexture->LoadTextureTGA((char*)"Images/grass.tga");
+	floor = new Floor(floorMesh, ftexture, material[0], camera->eye.x, camera->eye.y - 100, camera->eye.z);
+
 	// edit to make hold trees, trees each will have rand num of obj, all close to one another
 	for (int i = 0; i < ObjectAmounts; i++) // initial base amount of obj
 	{
@@ -199,7 +204,7 @@ void HelloGL::DrawString(const char* text, TextPos* position, Color* color) {
 	glMatrixMode(GL_PROJECTION); // needed for ortho
 	glPushMatrix();
 	glLoadIdentity();
-	gluOrtho2D(0, 800, 0, 800); // 2 view of window , means i can place text based on window
+	gluOrtho2D(0, 800, 0, 800); // 2d view of window , means i can place text based on window
 
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
@@ -226,6 +231,7 @@ void HelloGL::Display() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear scene 
 
 	skybox->Draw();
+	floor->Draw();
 
 	list->DrawList(head);
 
@@ -265,6 +271,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 
 	if (RMB) {
 		if (key == 'd') { // normalized to not be different based on cam center
+			// cross product to get camera right to move left and right
 			camera->eye = Add(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
 		}
 		if (key == 'a') {
@@ -356,6 +363,7 @@ void HelloGL::Motion(int x, int y) {
 		camera->center = Normalize(CamLook(camera));
 
 		if (x != curX || y != curY) {
+			// keep mouse in place when looking around
 			glutWarpPointer(curX, curY);
 		}
 	}
@@ -396,7 +404,7 @@ Vector3 HelloGL::Normalize(Vector3 one) {
 
 Vector3 HelloGL::CrossProduct(Vector3 one, Vector3 two) {
 	// return vector perpendicular to one and two
-	// can be used for relative vectors when player rotates view around diff axis (up and right like in tutorials)
+	// can be used for relative vectors when player rotates view around diff axis (up and right like in lectures)
 	Vector3 crossProduct;
 	crossProduct.x = ((one.y * two.z) - (one.z * two.y));
 	crossProduct.y = ((one.z * two.x) - (one.x * two.z));
@@ -436,6 +444,7 @@ void HelloGL::Update() {
 		camera->up.z, camera->up.y, camera->up.z);
 
 	skybox->Update(camera);
+	floor->Update(camera);
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->ambient.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->diffuse.x));
@@ -456,6 +465,7 @@ HelloGL::~HelloGL(void) {
 	delete camera;
 	list->DeleteList(&head);
 	delete skybox;
+	delete floor;
 }
 
 /*
