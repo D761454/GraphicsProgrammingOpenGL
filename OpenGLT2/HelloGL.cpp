@@ -37,7 +37,7 @@ void HelloGL::InitObjects() {
 	Mesh* floorMesh = MeshLoader::Load((char*)"Shapes/floor.txt");
 	Texture2D* ftexture = new Texture2D();
 	ftexture->LoadTextureTGA((char*)"Images/grass.tga");
-	floor = new Floor(floorMesh, ftexture, material[0], camera->eye.x, camera->eye.y - 100, camera->eye.z);
+	floor = new Floor(floorMesh, ftexture, material[0], camera->eye.x, camera->eye.y - 20, camera->eye.z);
 
 	// edit to make hold trees, trees each will have rand num of obj, all close to one another
 	for (int i = 0; i < ObjectAmounts; i++) // initial base amount of obj
