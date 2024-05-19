@@ -286,24 +286,24 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	}
 	else {
 		if (key == 'd') { // normalized to not be different based on cam center
-			list->MoveSelected(head, 10, 0, 0);
+			list->MoveSelected(head, 1, 0, 0);
 		}
 		if (key == 'a') {
-			list->MoveSelected(head, -10, 0, 0);
+			list->MoveSelected(head, -1, 0, 0);
 		}
 		if (key == 'w') {
-			list->MoveSelected(head, 0, 0, -10);
+			list->MoveSelected(head, 0, 0, -1);
 		}
 		if (key == 's') {
-			list->MoveSelected(head, 0, 0, 10);
+			list->MoveSelected(head, 0, 0, 1);
 		}
 		if (key == '3') {
 			cout << "Up";
-			list->MoveSelected(head, 0, 10, 0);
+			list->MoveSelected(head, 0, 1, 0);
 		}
 		if (key == '2') {
 			cout << "Down";
-			list->MoveSelected(head, 0, -10, 0);
+			list->MoveSelected(head, 0, -1, 0);
 		}
 		if (key == 13) { // enter
 			list->DeselectAll(head);
