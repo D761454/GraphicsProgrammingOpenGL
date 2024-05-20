@@ -204,7 +204,7 @@ void HelloGL::DrawString(const char* text, TextPos* position, Color* color) {
 	glMatrixMode(GL_PROJECTION); // needed for ortho
 	glPushMatrix();
 	glLoadIdentity();
-	gluOrtho2D(0, 800, 0, 800); // 2d view of window , means i can place text based on window
+	gluOrtho2D(0, 800, 0, 800); // 2d view of window , means i can place text based on window, not world
 
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
@@ -270,7 +270,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 	}
 
 	if (RMB) {
-		if (key == 'd') { // normalized to not be different based on cam center
+		if (key == 'd') { // normalized to not be different during playtime
 			// cross product to get camera right to move left and right
 			camera->eye = Add(camera->eye, Multiply(Normalize(CrossProduct(camera->center, camera->up)), speed));
 		}
@@ -285,7 +285,7 @@ void HelloGL::Keyboard(unsigned char key, int x, int y) {
 		}
 	}
 	else {
-		if (key == 'd') { // normalized to not be different based on cam center
+		if (key == 'd') {
 			list->MoveSelected(head, 1, 0, 0);
 		}
 		if (key == 'a') {
@@ -339,8 +339,8 @@ void HelloGL::Motion(int x, int y) {
 	// yaw - l/r
 	// roll - not needed for this as not making a plane simulation
 	// can use these to make new direction to look at
-	// if length = 1, cos x/1 and sin y/1
-	// radians tie angle and length - nice
+	// if length = 1, cos x and sin y
+	// radians tie angle and length
 	if (RMB) {
 		offsetX = x - curX;
 		offsetY = curY - y;
@@ -370,9 +370,8 @@ void HelloGL::Motion(int x, int y) {
 }
 
 Vector3 HelloGL::CamLook(Camera* camera) {
-	// x relates to cos yaw
-	// z relates to sin yaw
-	// y relates to sin pitch, x and z relate to cos pitch too
+	// from above - x and z - bottom side length (X) = cos yaw, far side length (Z) = sin yaw
+	// from side (x, z) and y - bottom side length (X, Z) = cos pitch, far side length (Y) = sin pitch
 	Vector3 temp;
 	temp.x = cos(camera->yaw * (M_PI / 180)) * cos(camera->pitch * (M_PI / 180));
 	temp.z = sin(camera->yaw * (M_PI / 180)) * cos(camera->pitch * (M_PI / 180));
@@ -425,7 +424,8 @@ Vector3 HelloGL::Multiply(Vector3 vector, float scalar) {
 Vector3 HelloGL::Add(Vector3 one, Vector3 two) {
 	Vector3 temp;
 	temp.x = one.x + two.x;
-	if (one.y + two.y > -19) { // prevent going below floor - could use collision detection but for something like this it isnt really needed
+	if (one.y + two.y > -19) { 
+		// prevent going below floor - could use collision detection but for something like this it isnt really needed
 		temp.y = one.y + two.y;
 	}
 	else {
@@ -439,7 +439,8 @@ Vector3 HelloGL::Add(Vector3 one, Vector3 two) {
 Vector3 HelloGL::Subtract(Vector3 one, Vector3 two) {
 	Vector3 temp;
 	temp.x = one.x - two.x;
-	if (one.y - two.y > -19) { // prevent going below floor
+	if (one.y - two.y > -19) { 
+		// prevent going below floor
 		temp.y = one.y - two.y;
 	}
 	else {
@@ -456,7 +457,7 @@ void HelloGL::Update() {
 		camera->up.z, camera->up.y, camera->up.z);
 
 	skybox->Update(camera);
-	floor->Update(camera);
+	floor->Update();
 
 	glLightfv(GL_LIGHT0, GL_AMBIENT, &(_lightData->ambient.x));
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, &(_lightData->diffuse.x));

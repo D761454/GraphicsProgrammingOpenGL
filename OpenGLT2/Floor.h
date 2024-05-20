@@ -18,6 +18,6 @@ public:
 	~Floor();
 
 	void Draw();
-	void Update(Camera* camera);
+	void Update();
 };
 

@@ -42,6 +42,6 @@ void Floor::Draw() {
 	}
 }
 
-void Floor::Update(Camera* camera) {
+void Floor::Update() {
 	
 }
