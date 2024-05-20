@@ -342,6 +342,7 @@ void HelloGL::Motion(int x, int y) {
 	// if length = 1, cos x and sin y
 	// radians tie angle and length
 	if (RMB) {
+		// use the small mouse movements from mouse at point of clicking RMB to determine neg and pos x and y offsets
 		offsetX = x - curX;
 		offsetY = curY - y;
 
@@ -360,6 +361,8 @@ void HelloGL::Motion(int x, int y) {
 		if (camera->pitch < -89.0f)
 			camera->pitch = -89.0f;
 
+		// move our center (what cam is looking at) based on pitch and yaw 
+		// then normalize to not get any odd results
 		camera->center = Normalize(CamLook(camera));
 
 		if (x != curX || y != curY) {
