@@ -94,33 +94,6 @@ void LinkedList::DeleteSelected(ListNode** node) {
 			DeleteSelected(&pTemp->next);
 		}
 	}
-
-
-	//if (pTemp != nullptr) {
-	//	// head
-	//	if (pTemp->data->GetSelected()) {
-	//		if (pTemp->next != nullptr) {
-	//			*head = pTemp->next;
-	//		}
-	//		else {
-	//			*head = nullptr;
-	//		}
-	//		//return;
-	//	}
-	//	// other
-	//	else if (pTemp->next != nullptr) {
-	//		if (pTemp->next->data->GetSelected()) {
-	//			if (pTemp->next->next != nullptr) {
-	//				pTemp->next = pTemp->next->next;
-	//			}
-	//			else {
-	//				pTemp->next = nullptr;
-	//			}
-	//			//return;
-	//		}
-	//	}
-	//	DeleteSelected(&pTemp->next);
-	//}
 }
 
 void LinkedList::DeselectAll(ListNode* node) {
@@ -158,7 +131,6 @@ void LinkedList::SelectAt(ListNode* head, int pos) {
 	}
 }
 
-// recursive
 void LinkedList::UpdateList(ListNode* node) {
 	if (node != nullptr) {
 		node->data->Update();
@@ -166,7 +138,6 @@ void LinkedList::UpdateList(ListNode* node) {
 	}
 }
 
-// recursive
 void LinkedList::DrawList(ListNode* node) {
 	if (node != nullptr) {
 		node->data->Draw();

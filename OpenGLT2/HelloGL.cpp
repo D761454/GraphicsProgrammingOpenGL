@@ -248,14 +248,6 @@ void HelloGL::Display() {
 	fps = round(1000 / deltaTime);
 	deltaTime /= 1000; // s
 
-	/*if (currentTime - lastTime > 1000) { // makes less flashy / speedy fps display
-		fps = frames * 1000 / (currentTime - lastTime);
-		deltaTime = 1 / fps;
-		cout << deltaTime << endl;
-		lastTime = currentTime;
-		frames = 0;
-	}*/
-
 	sprintf_s(fpsArray, "FPS:%.0f", fps); // converts float to char
 	DrawString(fpsArray, &v, &c);
 
@@ -334,10 +326,7 @@ void HelloGL::Mouse(int button, int state, int x, int y) {
 
 void HelloGL::Motion(int x, int y) {
 	// change cam center
-	// Euler Angles - pitch, yaw, roll
-	// pitch - up/down
-	// yaw - l/r
-	// roll - not needed for this as not making a plane simulation
+	// Euler Angles - pitch - up/down, yaw - l/r, roll - not needed for this as not making a plane simulation
 	// can use these to make new direction to look at
 	// if length = 1, cos x and sin y
 	// radians tie angle and length
@@ -471,17 +460,3 @@ HelloGL::~HelloGL(void) {
 	delete skybox;
 	delete floor;
 }
-
-/*
-matrix multiplication
-[A, B] [E, F]   [(A*E)+(B*G), (A*F)+(B*H)]
-[C, D].[G, H] = [(C*E)+(D*G), (C*F)+(D*H)]
-
-E.G. COL 1 ANSWER = 1st and 2nd in row of 1, * 1st and 2nd in col of 2, added together
-rows of Matrix A and col of Matrix B determine matrix size. can only * if A col size = B row size
-
-standard *
-
-2 * [2, 0] = [4, 0]
-    [3, 4]   [6, 8]
-*/
