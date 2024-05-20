@@ -102,7 +102,7 @@ void HelloGL::UpdateMenu() {
 	int spawnMenu = glutCreateMenu(GLUTCallbacks::SpawnMenu);
 	glutAddMenuEntry("Cube Penguin", 0);
 	glutAddMenuEntry("Cube Stars", 1);
-	glutAddMenuEntry("Test", 2);
+	glutAddMenuEntry("Weird Shape", 2);
 	glutAddMenuEntry("Exit", -1);
 
 	int colorMenu = glutCreateMenu(GLUTCallbacks::ColorMenu);
@@ -381,18 +381,6 @@ Vector3 HelloGL::CamLook(Camera* camera) {
 
 	temp.y = sin(camera->pitch * (M_PI / 180));
 	return temp;
-}
-
-Vector3 HelloGL::Normalize(Vector3 one, Vector3 two) {
-	float nx = one.x - two.x;
-	float ny = one.y - two.y;
-	float nz = one.z - two.z;
-	float length = sqrt((nx*nx)+(ny*ny)+(nz*nz));
-	Vector3 Normalized;
-	Normalized.x = nx / length;
-	Normalized.y = ny / length;
-	Normalized.z = nz / length;
-	return Normalized;
 }
 
 Vector3 HelloGL::Normalize(Vector3 one) {
