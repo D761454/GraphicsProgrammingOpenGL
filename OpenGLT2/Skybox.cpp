@@ -17,6 +17,8 @@ void Skybox::Draw() {
 		glGetIntegerv(GL_CULL_FACE_MODE, &oldCullFace);
 		GLint oldDepthFunc;
 		glGetIntegerv(GL_DEPTH_FUNC, &oldDepthFunc);
+		glDisable(GL_LIGHTING);
+		glEnableClientState(GL_COLOR);
 
 		glCullFace(GL_FRONT);
 		glDepthFunc(GL_LEQUAL);
@@ -38,6 +40,7 @@ void Skybox::Draw() {
 		glMaterialfv(GL_FRONT, GL_SHININESS, &(_material->shininess));
 
 		glPushMatrix();
+		glColor3f(1.0f, 1.0f, 1.0f);
 		glTranslatef(_position.x, _position.y, _position.z);
 		glDrawElements(GL_TRIANGLES, _mesh->IndexCount, GL_UNSIGNED_SHORT, _mesh->Indices);
 		glPopMatrix();
@@ -48,6 +51,8 @@ void Skybox::Draw() {
 		
 		glCullFace(oldCullFace);
 		glDepthFunc(oldDepthFunc);
+		glDisableClientState(GL_COLOR);
+		glEnable(GL_LIGHTING);
 	}
 }
 

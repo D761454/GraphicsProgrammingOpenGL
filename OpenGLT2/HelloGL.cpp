@@ -177,7 +177,7 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 void HelloGL::InitLighting() {
 	_lightPosition = new Vector4();
 	_lightPosition->x = 0.0;
-	_lightPosition->y = 0.0;
+	_lightPosition->y = 0.5;
 	_lightPosition->z = 1.0;
 	_lightPosition->w = 0.0;
 

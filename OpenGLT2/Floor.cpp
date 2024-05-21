@@ -13,8 +13,6 @@ Floor::~Floor() {
 
 void Floor::Draw() {
 	if (_mesh->Vertices != nullptr && _mesh->Normals != nullptr && _mesh->Indices != nullptr && _mesh->TexCoords != nullptr) {
-		glDisable(GL_LIGHTING);
-
 		glBindTexture(GL_TEXTURE_2D, _texture->GetID());
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glEnableClientState(GL_VERTEX_ARRAY);
@@ -37,8 +35,6 @@ void Floor::Draw() {
 		glDisableClientState(GL_NORMAL_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-
-		glEnable(GL_LIGHTING);
 	}
 }
 
