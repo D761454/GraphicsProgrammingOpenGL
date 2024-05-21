@@ -150,7 +150,7 @@ void HelloGL::InitGL(int argc, char* argv[]) {
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH); // enable double buffering - reduce flicker
-	glutInitWindowSize(700, 700);
+	glutInitWindowSize(800, 800);
 	glutCreateWindow("Yoinky Sploinky");
 
 	glEnable(GL_TEXTURE_2D);
